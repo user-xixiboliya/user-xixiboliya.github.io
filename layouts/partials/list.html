@@ -1,0 +1,39 @@
+{{ $paginator := .paginator }}
+{{ $ctx := .ctx }}
+{{ range $paginator }}
+  <section class="archives-wrap" data-aos="{{ $ctx.Site.Params.animation.options.archive.section }}">
+    <div class="archive-year-wrap">
+      <a href="" class="archive-year">{{ .Key }}</a>
+    </div>
+    <ul>
+      {{ range .Pages }}
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <a href="{{ .Permalink }}">
+              <time
+                class="dt-published"
+                datetime="{{ .Date }}"
+                itemprop="datePublished"
+                >{{ .Date.Format $ctx.Site.Params.monthFormat }}</time
+              >
+            </a>
+          </div>
+          {{ if .Params.link }}
+            <a
+              class="archive-article-title"
+              href="{{ .Params.link }}"
+              target="_blank"
+              itemprop="url"
+              rel="noopener external nofollow noreferrer"
+              >{{ .Title }}</a
+            >
+          {{ else if .Title }}
+            <a class="archive-article-title" href="{{ .Permalink }}"
+              >{{ .Title }}</a
+            >
+          {{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}

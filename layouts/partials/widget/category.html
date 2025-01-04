@@ -1,0 +1,21 @@
+{{ if len .Site.Taxonomies.categories }}
+  <div class="widget-wrapper">
+    <div
+      class="widget-wrap"
+      data-aos="{{ .Site.Params.animation.options.home.widget }}"
+    >
+      <h3 class="widget-title">{{ i18n "categories" }}</h3>
+      <div class="widget">
+        <ul class="category-list">
+          {{ range .Site.Taxonomies.categories }}
+            <li class="category-list-item">
+              <a class="category-list-link" href="{{ .Page.RelPermalink }}"
+                >{{ .Page.Title }}</a
+              >
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+{{ end }}

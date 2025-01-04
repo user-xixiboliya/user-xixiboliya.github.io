@@ -1,0 +1,149 @@
+.archives-outer-wrap {
+  background: var(--color-wrap);
+  border-radius: $post-radius;
+  padding: 15px 0;
+}
+
+.archives-wrap {
+  padding: 20px $block-margin;
+}
+
+.archive-year-wrap {
+  margin-bottom: 2em;
+  position: relative;
+
+  &:before {
+    content: "";
+    width: 100%;
+    border-bottom: 1px solid var(--color-h2-border);
+    position: absolute;
+    bottom: -15px;
+    transition: 1s;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    background: var(--color-h2-after);
+    width: 1em;
+    height: 7px;
+    bottom: -18px;
+    left: 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px var(--color-red-6-shadow);
+    transition: 0.3s;
+  }
+
+  &:hover:after {
+    width: 3em;
+  }
+}
+
+.archive-year {
+  text-decoration: none;
+  color: var(--color-archive-year);
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.archive-article {
+  padding: 15px 0 15px 25px;
+  display: flex;
+  align-items: center;
+
+  &:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 6px;
+    height: 15px;
+    background: var(--color-h2-after);
+    margin: -2px 11px 0 -25px;
+    box-shadow: 0 2px 12px var(--color-red-6-shadow);
+    opacity: 0.5;
+    transition: 0.2s;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    &:before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      opacity: 1;
+    }
+
+    .archive-article-title {
+      opacity: 1;
+    }
+  }
+}
+
+.archive-article-date-wrap {
+  flex-shrink: 0;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.dt-published {
+  color: var(--grey-9);
+  margin-left: 5px;
+}
+
+.archive-article-title {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--red-0);
+  transition: 0.3s;
+  opacity: 0.7;
+  margin-left: 15px;
+}
+
+.tag-wrap,
+.category-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px $block-margin;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.archives-tag-list-item,
+.archives-category-list-item {
+  display: flex;
+  text-transform: uppercase;
+  background: var(--red-5);
+  border-radius: 20px;
+  padding: 8px 15px;
+  margin: 5px;
+  box-shadow: 0 0 5px 3px var(--color-meta-shadow);
+}
+
+.archives-tag-list-link,
+.archives-category-list-link {
+  color: var(--red-1);
+  font-size: 12px;
+
+  &:before {
+    margin-right: 10px;
+  }
+}
+
+.archives-category-list-item {
+  background: var(--red-5-5);
+  padding: 10px 20px;
+}
+
+.archives-category-list-link {
+  font-size: 14px;
+
+  &:before {
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<html
+  lang="{{ .Site.LanguageCode }}"
+  {{ if .Site.Params.dark_mode.enable }}data-theme="dark"{{ end }}
+>
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body>
+    {{ partial "loader.html" . }}
+    <div id="container">
+      <div id="wrap">
+        {{ partial "header.html" . }}
+        <main id="content">
+          {{ if eq .Site.Params.sidebar "left" }}
+            {{ partial "sidebar.html" . }}
+          {{ end }}
+          <section id="main">{{ block "main" . }}{{ end }}</section>
+          {{ if eq .Site.Params.sidebar "right" }}
+            {{ partial "sidebar.html" . }}
+          {{ end }}
+        </main>
+        {{ partial "footer.html" . }}
+        {{ if .Site.Params.top.enable }}
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi {{ if .Site.Params.top.icon.rotate }}rotate{{ end }}"></div>
+            <div class="arrow-up"></div>
+          </div>
+        {{ end }}
+        <div id="mask" class="hide"></div>
+      </div>
+      {{ partial "mobilebar.html" . }}
+    </div>
+    {{ if .Site.Params.algolia_search.enable }}
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div class="reimu-search-input" id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="{{ "images/reimu.png" | relURL }}" />
+        </div>
+      </div>
+    {{ end }}
+    {{ partial "afterFooter.html" . }}
+  </body>
+</html>

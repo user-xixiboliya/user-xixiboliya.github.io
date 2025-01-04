@@ -1,0 +1,15 @@
+baseURL = 'https://user-xixiboliya.github.io/'
+languageCode = 'en-us'
+title = 'Welcome to Bertsin Homepage!'
+themes = 'hugo-theme-reimu'
+
+
+
+[outputs]
+home = ["Algolia", "HTML", "RSS"]
+
+[outputFormats.Algolia]
+baseName = "algolia"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true

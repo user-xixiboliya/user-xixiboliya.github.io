@@ -1,0 +1,32 @@
+<aside id="sidebar">
+  <div class="sidebar-wrapper {{ if in .Site.Params.mainSections .Type }}wrap-sticky{{ end }}">
+    <div
+      class="sidebar-wrap"
+      data-aos="{{ .Site.Params.animation.options.home.sidebar }}"
+    >
+      {{ if in .Site.Params.mainSections .Type }}
+        <div class="sidebar-toc-sidebar">
+          {{ partial "sidebar/tocBar.html" . }}
+        </div>
+        <div class="sidebar-common-sidebar hidden">
+          {{ partial "sidebar/commonBar.html" . }}
+        </div>
+      {{ else }}
+        {{ partial "sidebar/commonBar.html" . }}
+      {{ end }}
+
+      {{ if in .Site.Params.mainSections .Type }}
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+
+  {{ if and (not (in .Site.Params.mainSections .Type)) .Site.Params.widgets }}
+    {{ range .Site.Params.widgets }}
+      {{ partial (printf "widget/%s.html" .) $ }}
+    {{ end }}
+  {{ end }}
+</aside>

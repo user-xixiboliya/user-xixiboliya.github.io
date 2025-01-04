@@ -1,0 +1,100 @@
+{{ $params := .Site.Params }}
+<div id="header-nav">
+  <nav id="main-nav">
+    {{ range .Site.Params.menu }}
+      <span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon {{ if or (and (eq .icon "e62b") ($params.icon_font)) (and (eq .icon "f6ad") (not $params.icon_font)) (not .icon) }}rotate{{ end }}'>
+          {{ if .icon }}
+            &#x{{ .icon }};
+          {{ else }}
+            {{ if $params.icon_font }}
+              &#xe62b;
+            {{ else }}
+              &#xf6ad;
+            {{ end }}
+          {{ end }}
+        </div>
+        <a class="main-nav-link" href="{{ .url | relURL }}">{{ i18n .name }}</a>
+      </span>
+    {{ end }}
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    {{ with .OutputFormats.Get "rss" -}}
+      <a id="nav-rss-link" class="nav-icon" href="{{ .Permalink }}" title="{{ i18n "rss_feed" }}" target="_blank"></a>
+    {{ end }}
+    {{ if .Site.Params.algolia_search.enable }}
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="{{ i18n "search" }}"></a>
+    {{ end }}
+  </nav>
+</div>
+<header id="header">
+  {{ if .Params.cover }}
+    {{ if strings.HasPrefix .Params.cover "rgb" }}
+      <div style="position: absolute;top: 0;left: 0;width: 100%;height: 150%;z-index: -2;display: block;background: {{ .Params.cover | safeCSS }};mask: linear-gradient(to top, transparent, #fff 50%);"></div>
+    {{ else }}
+      <img fetchpriority="high" src="{{ .Params.cover | relURL }}" alt="{{ .Title }}">
+    {{ end }}
+  {{ else if .Site.Params.banner_srcset.enable }}
+    <picture>
+      {{ range .Site.Params.banner_srcset.srcset  }}
+        <div></div>
+        <source media="{{ .media }}" srcset="{{ .src | relURL }}">
+      {{ end }}
+      <img fetchpriority="high" src="{{ .Site.Params.banner | relURL }}" alt="{{ .Title }}">
+    </picture>
+  {{ else }}
+    <img fetchpriority="high" src="{{ .Site.Params.banner | relURL }}" alt="{{ .Title }}">
+  {{ end }}
+
+  <div id="header-outer">
+    <div id="header-title">
+      {{ if eq .Type "404" }}
+        <a href="{{ "" | relURL }}" id="logo">
+          <h1 data-aos="{{ .Site.Params.animation.options.header.title }}">{{ i18n "not_found.title" }}</h1>
+        </a>
+      {{ else }}
+        {{ $title := "" }}
+        {{ if .IsHome }}
+          {{ $title = .Site.Title }}
+        {{ else if eq .Type "archives" }}
+          {{ $title = i18n "archive_a" }}
+        {{ else if eq .Type "tags" }}
+          {{ $title = i18n "tag" }}
+        {{ else if eq .Type "categories" }}
+          {{ $title = i18n "category" }}
+        {{ else if .Title }}
+          {{ $title = .Title }}
+        {{ else }}
+          {{ $title = .Site.Title }}
+        {{ end }}
+  
+        {{ if $title }}
+          <a href="{{ "" | relURL }}" id="logo">
+            <h1 data-aos="{{ .Site.Params.animation.options.header.title }}">{{ $title }}</h1>
+          </a>
+        {{ end }}
+      {{ end }}
+  
+      {{ if eq .Type "404" }}
+        <h2 id="subtitle-wrap" data-aos="{{ .Site.Params.animation.options.header.subTitle }}">
+          <a href="{{ "" | relURL }}" id="subtitle">{{ i18n "not_found.subtitle" }}</a>
+        </h2>
+      {{ else }}
+        {{ $subtitle := "" }}
+        {{ if .IsHome }}
+          {{ $subtitle = .Site.Params.subtitle | default .Site.Params.subtitle }}
+        {{ else if and (eq .Type "categories") (not (eq .Title "Categories")) }}
+          {{ $subtitle = .Title }}
+        {{ else if and (eq .Type "tags") (not (eq .Title "Tags")) }}
+          {{ $subtitle = .Title }}
+        {{ end }}
+        <h2 id="subtitle-wrap" data-aos="{{ .Site.Params.animation.options.header.subTitle }}">
+          {{ if $subtitle }}
+            <a href="{{ "" | relURL }}" id="subtitle">{{ $subtitle }}</a>
+          {{ end }}
+        </h2>
+      {{ end }}
+    </div>
+  </div>
+</header>

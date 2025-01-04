@@ -1,0 +1,2 @@
+{{ $paginator := .Paginator.Pages.GroupByDate .Site.Params.yearFormat }}
+{{ partial "list.html" (dict "paginator" $paginator "ctx" .) }}

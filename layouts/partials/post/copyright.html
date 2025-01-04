@@ -1,0 +1,36 @@
+{{ $articleCopyright := .Site.Params.article_copyright }}
+{{ $author := .Site.Params.author }}
+{{ $title := .Site.Title }}
+{{ $permalink := .Permalink }}
+{{ $date := .Date.Format .Site.Params.timeFormat }}
+{{ $updated := .Lastmod.Format .Site.Params.timeFormat }}
+
+<blockquote class="article-copyright">
+  {{ if $articleCopyright.content.author }}
+    <p><strong>本文作者：</strong>{{ $author }} @ {{ $title }}</p>
+  {{ end }}
+  {{ if $articleCopyright.content.link }}
+    <p>
+      <strong>本文链接：</strong><a href="{{ $permalink }}">{{ $permalink }}</a>
+    </p>
+  {{ end }}
+  {{ if $articleCopyright.content.title }}
+    <p><strong>本文标题：</strong>{{ .Title }}</p>
+  {{ end }}
+  {{ if $articleCopyright.content.date }}
+    <p><strong>本文发布时间：</strong>{{ $date }}</p>
+  {{ end }}
+  {{ if $articleCopyright.content.updated }}
+    <p><strong>本文修改时间：</strong>{{ $updated }}</p>
+  {{ end }}
+  {{ if $articleCopyright.content.license }}
+    <p>
+      <strong>本文版权：</strong>本博客所有文章除特别声明外，均采用
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank"
+        ><span class="icon-creative-commons"></span>BY-NC-SA</a
+      >
+      许可协议。转载请注明出处！
+    </p>
+    <span class="icon-creative-commons article-copyright-bg"></span>
+  {{ end }}
+</blockquote>

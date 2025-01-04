@@ -1,0 +1,286 @@
+@mixin code-block {
+  background: var(--highlight-background);
+  padding: 0 $article-padding 15px;
+  border-radius: 10px;
+  //overflow: auto;
+  color: var(--highlight-foreground);
+  line-height: $line-height;
+}
+
+.article-entry {
+  .mermaid {
+    background: transparent;
+  }
+
+  pre,
+  code,
+  kbd {
+    font-family: $font-code;
+    font-size: 95%;
+    transition: 0.3s;
+  }
+  code,
+  kbd {
+    background: var(--color-code-background);
+    padding: 1px 5px;
+    border-radius: 5px;
+    color: var(--color-link);
+  }
+
+  pre {
+    @include code-block;
+    border-radius: 0;
+
+    code {
+      background: none;
+      text-shadow: none;
+      color: var(--highlight-foreground);
+      padding: 0;
+    }
+  }
+
+  div.highlight {
+    @include code-block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    transition: 0.3s;
+
+    &:hover {
+      box-shadow: 0 0.3125rem 0.625rem -0.125rem var(--highlight-scrollbar);
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: var(--highlight-scrollbar);
+    }
+
+    pre {
+      border: none;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    table {
+      margin: 0;
+      table-layout: fixed;
+    }
+
+    td {
+      border: none;
+      padding: 0;
+    }
+
+    // with lineno
+    tr td:first-of-type {
+      width: 30px;
+      padding-right: 10px;
+
+      pre code {
+        color: #666;
+      }
+    }
+
+    tr td:last-of-type {
+      overflow: auto;
+    }
+
+    // without lineno
+    > pre {
+      overflow: auto;
+    }
+  }
+}
+
+.code-area {
+  width: 100%;
+  overflow: auto;
+  transition: 0.3s;
+}
+
+.code-figcaption {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+
+  align-items: center;
+  flex-shrink: 0;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--highlight-nav) 50%,
+    transparent 100%
+  );
+  margin-bottom: 10px;
+}
+
+.code-decoration {
+  width: 70px;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    border-radius: 50%;
+    background: #ff5f56;
+    width: 12px;
+    height: 12px;
+    box-shadow:
+      20px 0 #ffbd2e,
+      40px 0 #27c93f;
+  }
+}
+
+.code-left-wrap,
+.code-right-wrap {
+  display: flex;
+}
+
+.code-copy {
+  margin: 5px;
+  z-index: 1;
+  filter: invert(50%);
+  color: #fff;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.code-lang {
+  margin: 5px;
+  line-height: 0;
+  font-weight: bold;
+  z-index: 1;
+  filter: invert(50%);
+}
+
+.code-expand {
+  margin: 5px;
+  filter: invert(50%);
+  z-index: 1;
+  transition: 0.3s;
+  transform: rotate(0deg);
+  color: #fff;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.code-closed .code-expand {
+  transform: rotate(-180deg) !important;
+  transition: 0.3s;
+}
+
+.code-closed {
+  pre {
+    display: none;
+  }
+}
+
+.chroma {
+  .s,
+  .sa,
+  .sb,
+  .sc,
+  .dl,
+  .sd,
+  .s2,
+  .se,
+  .sh,
+  .si,
+  .sx,
+  .sr,
+  .s1,
+  .ss {
+    color: var(--highlight-green);
+  }
+
+  .m,
+  .mb,
+  .mf,
+  .mh,
+  .mi,
+  .il,
+  .mo {
+    color: var(--highlight-orange);
+  }
+
+  .c,
+  .ch,
+  .cm,
+  .c1,
+  .cs,
+  .cp,
+  .cpf {
+    color: var(--highlight-comment);
+  }
+
+  .k,
+  .kc,
+  .kd,
+  .kn,
+  .kp,
+  .kr,
+  .kt {
+    color: var(--highlight-purple);
+  }
+
+  .nb,
+  .nl,
+  .nt {
+    color: var(--highlight-orange);
+  }
+
+  .n,
+  .na,
+  .nc,
+  .no,
+  .nd,
+  .ni,
+  .ne,
+  .fm,
+  .nn,
+  .nx,
+  .py {
+    color: var(--highlight-comment);
+  }
+
+  .hl {
+    background-color: var(--highlight-selection);
+  }
+
+  .lnt,
+  .ln {
+    white-space: pre;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .hl:has(.lnt) {
+    background-color: inherit;
+  }
+
+  .gd {
+    background: #ff5e5e80;
+  }
+
+  .gi {
+    background: #5eff667a;
+  }
+}

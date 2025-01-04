@@ -1,0 +1,265 @@
+{{ $params := .Site.Params }}
+{{ $local_basic_families := default "" (delimit (apply (default slice $params.local_font.article) "printf" "'%s'" ".") ",") }}
+{{ $local_code_families := default "" (delimit (apply (default slice $params.local_font.code) "printf" "'%s'" ".") ",") }}
+
+$icon_font: {{ $params.icon_font }};
+$reimu_cursor: {{ $params.reimu_cursor }};
+$basic-families: {{ default $local_basic_families (delimit (apply (default slice $params.font.article) "printf" "'%s'" ".") ",") }};
+$code-families: {{ default $local_code_families (delimit (apply (default slice $params.font.code) "printf" "'%s'" "." ) ",") }};
+$local-basic-families: {{ $local_basic_families }};
+$local-code-families: {{ $local_code_families }};
+
+$footer_icon_mask: {{  $params.footer.icon.mask }};
+$top_icon_mask: {{  $params.top.icon.mask }};
+$sponsor_icon_mask: {{  $params.sponsor.icon.mask }};
+
+{{ $social := $params.social }}
+{{ $social_keys := slice }}
+{{ range $key, $value := $social }}
+  {{ $social_keys = $social_keys | append $key }}
+{{ end }}
+{{ $social_keys = $social_keys | append "__dummy__" }}
+$social-keys: {{ delimit (apply $social_keys "printf" "'%s'" "." ) "," }};
+
+:root {
+  --footer-icon: url({{ $params.footer.icon.url }});
+  --top-icon: url({{ $params.top.icon.url }});
+  --sponsor-icon: url({{ $params.sponsor.icon.url }});
+}
+
+@import "_reset";
+@import "_variables";
+@import "_animation";
+@import "_extend";
+
+{{ if $params.icon_font }}
+  @import "iconfont";
+{{ else }}
+  @import "frontawesome";
+{{ end }}
+
+@include global-reset;
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-basic;
+  font-weight: 700;
+}
+
+input, button {
+  margin: 0;
+  padding: 0;
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+}
+
+html, body, #container {
+  height: 100%;
+  scroll-behavior: smooth;
+  {{ if $params.reimu_cursor }}
+  cursor: var(--cursor-default);
+  {{ end }}
+}
+
+body {
+  width: 100%;
+  background: var(--color-background);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  font-family: $font-basic;
+  transition: background 1s;
+
+  ::selection {
+    background: var(--red-1);
+    color: #fff;
+  }
+}
+
+{{ if $params.reimu_cursor }}
+a, .main-nav-icon, .popup-btn-close {
+  cursor: var(--cursor-pointer) !important;
+}
+
+.site-search {
+  input {
+    cursor: var(--cursor-text) !important;
+  }
+}
+
+#main {
+  span, p, code, kbd, input, textarea {
+    cursor: var(--cursor-text) !important;
+  }
+
+  nav {
+    span {
+      cursor: var(--cursor-default) !important;
+    }
+  }
+}
+
+.code-copy, .code-lang, .code-expand {
+  cursor: var(--cursor-pointer) !important;
+}
+
+.reimu-powered {
+  cursor: var(--cursor-default) !important;
+}
+{{ else }}
+.code-copy, .code-lang, .code-expand {
+  cursor: pointer !important;
+}
+
+.main-nav-icon, .popup-btn-close {
+  cursor: pointer !important;
+}
+{{ end }}
+
+#container {
+  position: relative;
+}
+
+.mobile-nav-on {
+  overflow: hidden !important;
+}
+
+#wrap {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: 1s;
+  background: var(--color-background);
+}
+
+#main {
+  padding: 0 10px;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @media #{$mg-large} {
+    min-width: 100%;
+  }
+}
+
+#content {
+  position: relative;
+  display: flex;
+  padding-top: 5px;
+  align-items: stretch;
+  max-width: 1350px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+{{ if $params.sidebar }}
+#main {
+  @media #{$mq-large} {
+    padding: 0;
+    width: 73%;
+    margin: 0 1%;
+  }
+}
+{{ end }}
+
+#mask {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 1;
+  transition: 0.3s;
+
+  &.hide {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@import "partials/header";
+@import "partials/footer";
+@import "partials/archive";
+@import "partials/post";
+@import "partials/pagination";
+@import "partials/article";
+@import "partials/highlight";
+@import "partials/sponsor";
+@import "partials/comment";
+@import "partials/mobile";
+@import "partials/friend";
+@import "partials/card";
+
+{{ if $params.top.enable }}
+@import "partials/top";
+{{ end }}
+
+{{ if $params.algolia_search.enable }}
+@import "partials/search";
+{{ end }}
+
+{{ if and (reflect.IsSlice $params.widgets) (len $params.widgets) }}
+@import "partials/widget";
+{{ end }}
+
+{{ if $params.sidebar }}
+@import "partials/sidebar";
+{{ end }}
+
+{{ if $params.service_worker.enable }}
+@import "partials/notification";
+{{ end }}
+
+[data-theme="dark"] {
+  ::-webkit-scrollbar, ::-webkit-scrollbar-track {
+    background-color: #616161;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--red-3);
+}
+
+{{ if $params.pace.enable }}
+.pace {
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+.pace .pace-progress {
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 2px;
+  background: var(--red-1);
+}
+{{ end }}

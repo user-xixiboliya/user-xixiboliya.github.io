@@ -1,0 +1,121 @@
+{{ $site := .Site }}
+{{ $params := .Site.Params }}
+{{ $js := .Site.Data.vendor.js }}
+
+{{ if and $params.valine.enable $params.valine.appId $params.valine.appKey }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.valine "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.valine)) 0)) }}
+  <script data-pjax>
+    var GUEST_INFO = ['nick', 'mail', 'link'];
+    var guest_info = '{{ $params.valine.guest_info }}'.split(',').filter((item) => {
+      return GUEST_INFO.indexOf(item) > -1
+    });
+    var recordIP = JSON.parse('{{ $params.valine.recordIP }}');
+    var highlight = JSON.parse('{{ $params.valine.highlight }}');
+    var visitor = JSON.parse('{{ $params.valine.visitor }}');
+
+    new Valine({
+      el: '.vcomment',
+      appId: "{{ $params.valine.appId }}",
+      appKey: "{{ $params.valine.appKey }}",
+      placeholder: "{{ $params.valine.placeholder }}",
+      pageSize: '{{ $params.valine.pageSize }}',
+      avatar: '{{ $params.valine.avatar }}',
+      lang: '{{ $params.valine.lang }}',
+      recordIP: recordIP,
+      highlight: highlight,
+      visitor: visitor,
+      requiredFields: guest_info,
+      path: window.location.pathname
+    });
+  </script>
+{{ end }}
+
+{{ if and $params.waline.enable $params.waline.serverURL }}
+<script data-pjax  type="module">
+  const { init } = await safeImport('{{ index (partial "helpers/vendorCdn.html" (dict "item" $js.waline "ctx" $site)) 0 }}', '{{ index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.waline "ctx" $site)) 0 }}');
+  if(_$('.wcomment')) {
+    window.walineInstance = init({
+      el: '.wcomment',
+      serverURL: '{{ $params.waline.serverURL }}',
+      lang: '{{ $params.waline.lang }}',
+      locale: JSON.parse({{ $params.waline.locale | jsonify }}),
+      emoji: JSON.parse({{ $params.waline.emoji | jsonify}}),
+      meta: JSON.parse({{ $params.waline.meta | jsonify }}),
+      requiredMeta: JSON.parse({{ $params.waline.requiredMeta | jsonify }}),
+      wordLimit: {{ $params.waline.wordLimit }},
+      comment: true,
+      pageSize: {{ $params.waline.pageSize }},
+      dark: 'html[data-theme="dark"]',
+      pageview: {{ $params.waline.pageview }},
+  });
+  }
+</script>
+{{ end }}
+
+{{ if and $params.gitalk.enable $params.gitalk.clientID $params.gitalk.clientSecret }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.gitalk "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.gitalk)) 0)) }}
+  {{ if $params.gitalk.md5 }}
+    {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.md5 "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.md5)) 0)) }}
+  {{ end }}
+  <script data-pjax>
+    var gitalkId = {{ if $params.gitalk.md5 }}'md5(location.pathname)'{{else }}'location.pathname'{{end}};
+    var gitalk = new Gitalk({
+      clientID: '{{ $params.gitalk.clientID }}',
+      clientSecret: '{{ $params.gitalk.clientSecret}}',
+      repo: '{{ $params.gitalk.repo }}',
+      owner: '{{ $params.gitalk.owner }}',
+      admin: JSON.parse({{ $params.gitalk.admin | jsonify }}),
+      id: gitalkId, // Ensure uniqueness and length less than 50
+      distractionFreeMode: false // Facebook-like distraction free mode
+    })
+    if (document.getElementById('comments')) {
+      gitalk.render('comments')
+    }
+  </script>
+{{ end }}
+
+{{ if and $params.twikoo.enable $params.twikoo.envId }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.twikoo "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.twikoo)) 0)) }}
+  <script data-pjax>
+    twikoo.init({
+      envId: '{{ $params.twikoo.envId }}',
+      el: '.tcomment',
+      region: '{{ $params.twikoo.region }}',
+    })
+  </script>
+{{ end }}
+
+{{ if and $params.giscus.enable (not (eq .Params.comments false)) }}
+<script data-pjax>
+  var giscusContainer = document.querySelector('.giscus');
+  if (giscusContainer) {
+    const giscusScript = document.createElement('script');
+    const domMode = document.documentElement.getAttribute("data-theme");
+    giscusScript.src = 'https://giscus.app/client.js';
+    giscusScript.setAttribute('data-repo', '{{ $params.giscus.repo }}');
+    giscusScript.setAttribute('data-repo-id', '{{ $params.giscus.repoId }}');
+    giscusScript.setAttribute('data-category', '{{ $params.giscus.category }}');
+    giscusScript.setAttribute('data-category-id', '{{ $params.giscus.categoryId }}');
+    giscusScript.setAttribute('data-mapping', '{{ $params.giscus.strict }}');
+    giscusScript.setAttribute('data-strict', '{{ $params.giscus.strict }}');
+    giscusScript.setAttribute('data-reactions-enabled', '{{ $params.giscus.reactionsEnabled }}');
+    giscusScript.setAttribute('data-emit-metadata', '{{ $params.giscus.emitMetadata }}');
+    giscusScript.setAttribute('data-input-position', '{{ $params.giscus.inputPosition }}');
+    giscusScript.setAttribute('data-theme', domMode === 'dark' ? 'dark' : 'light');
+    giscusScript.setAttribute('data-lang', '{{ $params.giscus.lang }}');
+    giscusScript.setAttribute('crossorigin', 'anonymous');
+    giscusScript.async = true;
+    giscusContainer.appendChild(giscusScript);
+    document.body.addEventListener('light-theme-set', () => {
+      const iframe = document.querySelector('iframe.giscus-frame');
+      if (!iframe) return;
+      iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'light' } } }, 'https://giscus.app');
+    });
+    document.body.addEventListener('dark-theme-set', () => {
+      const iframe = document.querySelector('iframe.giscus-frame');
+      if (!iframe) return;
+      iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: 'dark' } } }, 'https://giscus.app');
+    });
+}
+</script>
+{{ end }}

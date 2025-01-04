@@ -1,0 +1,366 @@
+{{ $site := .Site }}
+{{ $params := .Site.Params }}
+{{ $js := .Site.Data.vendor.js }}
+{{ $css := .Site.Data.vendor.css }}
+
+{{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.lazysizes "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.lazysizes)) 0)) }}
+{{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.clipboard "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.clipboard)) 0)) }}
+
+{{ partial "helpers/ts.html" (dict "source" "js/main.ts" "ctx" .) }}
+
+{{ if $params.animation.enable }}
+  {{ partial "helpers/ts.html" (dict "source" "js/aos.ts" "ctx" .) }}
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+{{ end }}
+
+{{ partial "helpers/ts.html" (dict "source" "js/pjax_main.ts" "pjax" true "ctx" .) }}
+
+{{ if $params.algolia_search.enable }}
+  <script>
+    var ALGOLIA_CONFIG = {
+      logo: '{{ "images/algolia_logo.svg" | relURL }}',
+      algolia: {
+        applicationID: "{{ $params.algolia_search.appID }}",
+        apiKey: "{{ $params.algolia_search.apiKey }}",
+        indexName: "{{ $params.algolia_search.indexName }}",
+        hits: {
+          "per_page": parseInt("{{ $params.algolia_search.hits.per_page }}")
+        },
+        labels: {
+          "input_placeholder": "{{ $params.algolia_search.labels.input_placeholder }}",
+          "hits_empty": "{{ $params.algolia_search.labels.hits_empty }}",
+          "hits_stats": "{{ $params.algolia_search.labels.hits_stats }}"
+        }
+      }
+    };
+  </script>
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.algolia "ctx" $site)) 0) "defer" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.algolia)) 0)) }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.instantsearch "ctx" $site)) 0) "defer" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.instantsearch)) 0)) }}
+  {{ partial "helpers/ts.html" (dict "source" "js/algolia_search.ts" "ctx" .) }}
+{{ end }}
+
+{{ if $params.firework.enable }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.firework "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.firework)) 0)) }}
+<script>
+  if (window.firework) {
+    const options = JSON.parse({{ $params.firework.options | jsonify }});
+    options.excludeElements = options.excludeelements;
+    delete options.excludeelements;
+    window.firework(options);
+  }
+</script>
+{{ end }}
+
+{{ if $params.pjax.enable }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.pjax "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.pjax)) 0)) }}
+  <script>
+    function loadScripts(scripts, index) {
+      if (index < scripts.length) {
+        const script = scripts[index];
+        const src = script.getAttribute("src");
+
+        const loadScript = (scriptContent) => {
+          const scriptElement = document.createElement('script');
+          if (script.type) {
+            scriptElement.type = script.type;
+          }
+          scriptElement.text = scriptContent;
+          document.head.appendChild(scriptElement);
+          loadScripts(scripts, index + 1);
+        }
+
+        if (src) {
+          fetch(src)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(
+                  "Network response was not ok " + response.statusText,
+                );
+              }
+              return response.text();
+            })
+            .then((scriptContent) => {
+              loadScript(scriptContent);
+            })
+            .catch((error) => {
+              console.error("Failed to load script:", src, error);
+            });
+        } else {
+          loadScript(script.text);
+        }
+      }
+    }
+    window.Pjax &&
+      new window.Pjax({
+        selectors: [
+          "#header img",
+          "#header picture",
+          "head title",
+          "#header-title",
+          "#subtitle-wrap",
+          "#content",
+          "#mobile-nav",
+          "#lazy-script",
+        ],
+        switches: {
+          "#header-title": Pjax.switches.outerHTML,
+          "#subtitle-wrap": Pjax.switches.outerHTML,
+          "#content": function (oldEl, newEl) {
+            const scripts = [...newEl.querySelectorAll("script")];
+            loadScripts(scripts, 0);
+            oldEl.outerHTML = newEl.outerHTML;
+            this.onSwitch();
+          },
+          "#mobile-nav": Pjax.switches.outerHTML,
+          "#lazy-script": function (oldEl, newEl) {
+            const scripts = [...newEl.querySelectorAll("script")];
+            loadScripts(scripts, 0);
+            oldEl.innerHTML = newEl.innerHTML;
+            this.onSwitch();
+          },
+        },
+        cacheBust: false,
+      });
+  </script>
+  {{ partial "helpers/ts.html" (dict "source" "js/pjax.ts" "ctx" .) }}
+{{ end }}
+
+{{ if $params.live2d.enable }}
+<script>
+  function initLive2d() {
+    live2d.init('{{ index (partial "helpers/vendorCdn.html" (dict "item" $js.live2d.base "ctx" $site)) 0 }}', {themeTipsPath: ""});
+  }
+</script> {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.live2d.js "ctx" $site)) 0) "async" true "onload" "initLive2d()") }}
+{{ end }}
+
+{{ if $params.quicklink.enable }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.quicklink "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.quicklink)) 0)) }}
+  <script data-pjax>
+    window.quicklink?.listen({
+      timeout: {{ $params.quicklink.timeout }},
+      priority: {{ $params.quicklink.priority }},
+      ignores: JSON.parse({{ $params.quicklink.ignores | jsonify }})
+    });
+  </script>
+{{ end }}
+
+<div id="lazy-script">
+  <div>
+    {{ if and (.Store.Get "hasMermaid") .Params.mermaid }}
+      {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.mermaid "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.mermaid)) 0)) }}
+      <script data-pjax>
+        if (window.mermaid) {
+          // https://github.com/mermaid-js/mermaid/issues/1945
+          const elementCode = ".mermaid";
+          const saveOriginalData = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                var els = _$$(elementCode),
+                  count = els.length;
+                els.forEach((element) => {
+                  if (element.getAttribute("data-original-code") == null) {
+                    element.setAttribute(
+                      "data-original-code",
+                      element.innerHTML,
+                    );
+                  }
+                  count--;
+                  if (count == 0) {
+                    resolve();
+                  }
+                });
+              } catch (error) {
+                reject(error);
+              }
+            });
+          };
+          const resetProcessed = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                var els = _$$(elementCode),
+                  count = els.length;
+                els.forEach((element) => {
+                  if (element.getAttribute("data-original-code") != null) {
+                    element.removeAttribute("data-processed");
+                    element.innerHTML =
+                      element.getAttribute("data-original-code");
+                  }
+                  count--;
+                  if (count == 0) {
+                    resolve();
+                  }
+                });
+              } catch (error) {
+                reject(error);
+              }
+            });
+          };
+          const loadMermaid = (theme) => {
+            window.mermaid.initialize({ theme });
+            window.mermaid.init({ theme }, _$$(elementCode));
+          };
+          document.body.addEventListener("dark-theme-set", () => {
+            saveOriginalData()
+              .then(resetProcessed())
+              .then(loadMermaid("dark"))
+              .catch(console.error);
+          });
+          document.body.addEventListener("light-theme-set", () => {
+            saveOriginalData()
+              .then(resetProcessed())
+              .then(loadMermaid("default"))
+              .catch(console.error);
+          });
+          if (localStorage.getItem("dark_mode") == "true") {
+            saveOriginalData()
+              .then(resetProcessed())
+              .then(loadMermaid("dark"))
+              .catch(console.error);
+          } else {
+            saveOriginalData()
+              .then(resetProcessed())
+              .then(loadMermaid("default"))
+              .catch(console.error);
+          }
+        }
+      </script>
+    {{ end }}
+    {{ if not .IsHome }}
+      {{ partial "helpers/ts.html" (dict "source" "js/insert_highlight.ts" "pjax" true "ctx" .) }}
+      {{ $photoswipe_lightbox := index (partial "helpers/vendorCdn.html" (dict "item" $js.photoswipe_lightbox "ctx" $site)) 0 }}
+      {{ $photoswipe_lightbox_integrity := index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.photoswipe_lightbox)) 0 }}
+      {{ $photoswipe := index (partial "helpers/vendorCdn.html" (dict "item" $js.photoswipe "ctx" $site)) 0 }}
+      {{ $photoswipe_integrity := index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.photoswipe)) 0 }}
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("{{ $photoswipe_lightbox }}", "{{ $photoswipe_lightbox_integrity }}")).default;
+
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("{{ $photoswipe }}", "{{ $photoswipe_integrity }}")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("{{ $photoswipe }}", "{{ $photoswipe_integrity }}")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      {{ partial "post/comment.html" . }}
+    {{ end }}
+    {{ if .Params.math }}
+      {{ if .Site.Params.math.katex.enable }}
+        {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.katex "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.katex)) 0)) }}
+        {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.katex_auto_render "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.katex_auto_render)) 0)) }}
+        <script data-pjax>
+          var renderMath = () => {
+            if (!window.renderMathInElement) return;
+            window.renderMathInElement(document.body, {
+              delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "\\[", right: "\\]", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+              ],
+            });
+          };
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", renderMath, { once: true });
+          } else {
+            renderMath();
+          }
+        </script>
+      {{ end }}
+      {{ if .Site.Params.math.mathjax.enable }}
+        <script data-pjax>
+          window.MathJax = JSON.parse({{ .Site.Params.math.mathjax.options | jsonify }})[0];
+        </script>
+        {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.mathjax "ctx" $site)) 0) "defer" true "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.mathjax)) 0)) }}
+      {{ end }}
+    {{ end }}
+  </div>
+</div>
+
+{{ if $params.outdate.enable }}
+  <script data-pjax>
+    var updateTime = _$('#post-update-time')?.innerHTML;
+
+    if (updateTime) {
+      const update = new Date(updateTime);
+      const now = new Date();
+      const diff = now - update;
+      const days = diff / 86400000;
+      const { daysago: daysAgo, message: template } = window.siteConfig.outdate;
+      if (days >= daysAgo) {
+        const message = template.replace(/{time}/, updateTime);
+        const blockquote = _$('#outdate-blockquote');
+        if (blockquote) {
+          blockquote.querySelector('p').innerText = message;
+          blockquote.style.display = 'block';
+        }
+      }
+    }
+  </script>
+{{ end }}
+
+{{ if $params.footer.busuanzi }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.busuanzi "ctx" $site)) 0) "async" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.busuanzi)) 0)) }}
+{{ end }}
+
+{{ if $params.service_worker.enable }}
+  {{ partial "helpers/ts.html" (dict "source" "js/sw.ts" "ctx" . "inline" false "target" "sw.js") }}
+  {{ partial "helpers/ts.html" (dict "source" "js/service_worker.ts" "ctx" .) }}
+{{ else }}
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script>
+{{ end }}
+
+<script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script>

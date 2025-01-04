@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}" {{ if .Site.Params.dark_mode.enable }}data-theme="dark"{{ end }}>
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      {{ partial "partials/header.html" (merge (dict "Page" .) (dict "Site" .Site) (dict "Type" "404")) }}
+    </div>
+  </div>
+  
+  {{ if .Site.Params.algolia_search.enable }}
+    <div class="site-search">
+      <div class="reimu-popup popup">
+        <div class="reimu-search">
+          <div class="reimu-search-input-icon"></div>
+          <div class="reimu-search-input" id="reimu-search-input"></div>
+          <div class="popup-btn-close"></div>
+        </div>
+        <div class="reimu-results">
+          <div id="reimu-stats"></div>
+          <div id="reimu-hits"></div>
+          <div id="reimu-pagination" class="reimu-pagination"></div>
+        </div>
+        <img class="reimu-bg" src="{{ "images/reimu.png" | relURL }}"/>
+      </div>
+    </div>
+  {{ end }}
+  {{ partial "afterFooter.html" . }}
+</body>
+</html>

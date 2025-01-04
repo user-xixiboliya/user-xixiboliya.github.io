@@ -1,0 +1,81 @@
+.sidebar-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-wrap);
+  border-radius: 50%;
+  @if $icon_font {
+    font-family: $font-icon;
+  } @else {
+    font-family: var(--font-icon);
+  }
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+
+  .sidebar-top-taichi {
+    width: 50px;
+    height: 50px;
+    opacity: 0.8;
+    transition: 0.3s;
+    border-radius: 50%;
+
+    &.rotate {
+      animation: rotate-all 3s linear infinite;
+    }
+  }
+
+  .arrow-up {
+    transition: 0.3s;
+    opacity: 0;
+
+    &:before {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      color: var(--red-1);
+      font-size: 20px;
+      top: 0;
+      text-align: center;
+      line-height: 50px;
+    }
+  }
+
+  &:hover {
+    .sidebar-top-taichi {
+      opacity: 0;
+    }
+
+    .arrow-up {
+      opacity: 1;
+    }
+  }
+}
+
+@if $top_icon_mask {
+  @supports (-webkit-mask: var(--top-icon) no-repeat center / 100%) {
+    .sidebar-top-taichi {
+      background-color: var(--red-1);
+      -webkit-mask: var(--top-icon) no-repeat center / 100%;
+    }
+  }
+  @supports (-webkit-mask: var(--top-icon) no-repeat center / 100%) {
+    .sidebar-top-taichi {
+      background-color: var(--red-1);
+      mask: var(--top-icon) no-repeat center / 100%;
+    }
+  }
+  @supports not (
+    (mask: var(--top-icon) no-repeat center / 100%) and
+      (-webkit-mask: var(--top-icon) no-repeat center / 100%)
+  ) {
+    .sidebar-top-taichi {
+      background: var(--top-icon) no-repeat center / 100%;
+    }
+  }
+} @else {
+  .sidebar-top-taichi {
+    background: var(--top-icon) no-repeat center / 100%;
+  }
+}

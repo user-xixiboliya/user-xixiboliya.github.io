@@ -1,0 +1,25 @@
+{{ if len .Site.Taxonomies.tags }}
+  <div class="widget-wrapper">
+    <div
+      class="widget-wrap"
+      data-aos="{{ .Site.Params.animation.options.home.widget }}"
+    >
+      <h3 class="widget-title">{{ i18n "tags" }}</h3>
+      <div class="widget">
+        <ul class="tag-list" itemprop="keywords">
+          {{  range .Site.Taxonomies.tags }}
+            <li class="tag-item">
+              <a
+                class="tag-link"
+                href="{{ .Page.RelPermalink }}"
+                aria-label="{{ i18n "tag" }}: {{ .Page.Title }}"
+              >
+                {{ .Page.Title }}
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+{{ end }}

@@ -1,0 +1,28 @@
+{{ $friends := .Site.Data.friends }}
+
+
+<div class="friend-wrap" data-aos="zoom-in">
+  {{ range $friends }}
+    <div class="friend-item-wrap">
+      <a href="{{ .url }}" rel="noopener external nofollow noreferrer" target="_blank"></a>
+      <div class="friend-icon-wrap">
+        <div class="friend-icon">
+          <img
+            data-src="{{ .image }}"
+            data-sizes="auto"
+            alt="{{ .name }}"
+            class="lazyload"
+          />
+        </div>
+      </div>
+      <div class="friend-info-wrap">
+        <div class="friend-name">
+          {{ .name }}
+        </div>
+        <div class="friend-desc">
+          {{ .desc }}
+        </div>
+      </div>
+    </div>
+  {{ end }}
+</div>

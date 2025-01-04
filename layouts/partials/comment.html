@@ -1,0 +1,39 @@
+{{ if and (not (eq .Params.comments false)) (.Site.Params.valine.enable) (.Site.Params.valine.appId) (.Site.Params.valine.appKey) }}
+  <section
+    id="comments"
+    class="vcomment"
+    data-aos="{{ .Site.Params.animation.options.article.whole }}"
+  ></section>
+{{ end }}
+
+{{ if and (not (eq .Params.comments false)) (.Site.Params.waline.enable) (.Site.Params.waline.serverURL) }}
+  <div
+    id="comments"
+    class="wcomment"
+    data-aos="{{ .Site.Params.animation.options.article.whole }}"
+  ></div>
+{{ end }}
+
+{{ if and (not (eq .Params.comments false)) (.Site.Params.twikoo.enable) (.Site.Params.twikoo.envId) }}
+  <div
+    id="comments"
+    class="tcomment"
+    data-aos="{{ .Site.Params.animation.options.article.whole }}"
+  ></div>
+{{ end }}
+
+{{ if and (not (eq .Params.comments false)) (.Site.Params.gitalk.enable) (.Site.Params.gitalk.clientID) (.Site.Params.gitalk.clientSecret) }}
+  <div
+    id="comments"
+    class="gtcomment"
+    data-aos="{{ .Site.Params.animation.options.article.whole }}"
+  ></div>
+{{ end }}
+
+{{ if and (not (eq .Params.comments false)) (.Site.Params.giscus.enable) }}
+  <div
+    id="comments"
+    class="gscomment giscus"
+    data-aos="{{ .Site.Params.animation.options.article.whole }}"
+  ></div>
+{{ end }}

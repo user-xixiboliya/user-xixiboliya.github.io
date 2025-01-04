@@ -1,0 +1,14 @@
+<div class="article-date">
+  <a
+    href="{{ .Permalink }}"
+    class="article-date-link"
+    data-aos="{{.Site.Params.animation.options.article.date}}"
+  >
+    <time datetime="{{ .Date }}" itemprop="datePublished"
+      >{{ .Date.Format .Site.Params.dateFormat }}</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >{{ .Lastmod.Format .Site.Params.dateFormat }}</time
+    >
+  </a>
+</div>

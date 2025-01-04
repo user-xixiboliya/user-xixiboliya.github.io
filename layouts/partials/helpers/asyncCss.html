@@ -1,0 +1,12 @@
+{{ $items := . }}
+{{ if not (reflect.IsSlice $items) }}
+  {{ $items = slice $items }}
+{{ end }}
+{{ range $items }}
+  <link
+    rel="preload"
+    as="style"
+    href="{{ . }}"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+{{ end }}
