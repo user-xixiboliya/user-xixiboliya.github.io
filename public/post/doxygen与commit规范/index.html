@@ -1,0 +1,1366 @@
+<!doctype html>
+<html
+  lang="en-us"
+  
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+
+
+
+
+
+
+
+  
+
+<title>
+  Doxygen 与 commit规范 | Bertsin
+</title>
+<meta
+  name="description"
+  content="祈祷中..."
+/>
+
+
+
+
+
+
+
+
+
+
+<script>
+  window.siteConfig = JSON.parse("{\"anchor_icon\":null,\"clipboard\":{\"copyright\":{\"content\":\"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\",\"count\":50,\"enable\":false},\"fail\":\"复制失败 (ﾟ⊿ﾟ)ﾂ\",\"success\":\"复制成功(*^▽^*)\"},\"code_block\":{\"expand\":true},\"icon_font\":\"4552607_tq6stt6tcg\",\"outdate\":{\"daysago\":180,\"enable\":false,\"message\":\"本文最后更新于 {time}，请注意文中内容可能已经发生变化。\"}}");
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+  
+  
+  
+    
+  
+
+  
+    
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="preload"
+  as="style"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"
+  media="print"
+  onload="this.media='all'"
+/>
+
+
+
+
+
+
+  <link
+    rel="preload"
+    href="//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin="anonymous"
+  />
+
+
+
+  
+
+
+
+
+
+
+ <link rel="stylesheet" href="/css/loader.css" />
+
+
+
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Doxygen 与 commit规范 | Bertsin" />
+  <meta
+    property="og:description"
+    content="祈祷中..."
+  />
+  <meta property="og:url" content="http://localhost:1313/post/doxygen%E4%B8%8Ecommit%E8%A7%84%E8%8C%83/" />
+  <meta
+    property="og:site_name"
+    content="My New Hugo Site"
+  />
+  <meta
+    property="og:image"
+    content="/"
+  />
+  <meta property="article:author" content="Bertsin" />
+  <meta property="article:published_time" content="2024-12-24T11:00:00-07:00" />
+  <meta property="article:modified_time" content="2024-12-24T11:00:00-07:00" />
+  
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="/" />
+  
+  
+  
+  
+  
+
+
+
+
+<link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+
+
+
+ <link rel="stylesheet" href="/css/main.css" />
+
+
+
+
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+
+
+
+
+
+  <link
+    rel="preload"
+    as="style"
+    href="https://npm.webcache.cn/katex@0.16.9/dist/katex.min.css"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"
+    
+    
+    
+    
+    integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"
+  ></script>
+
+
+
+
+
+  
+
+
+  <link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css" />
+
+
+
+
+  </head>
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff5252" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+          M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="#ff5252" />
+          </svg>
+        
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    var endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
+
+
+    <div id="container">
+      <div id="wrap">
+        
+<div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>
+          
+            
+              &#xe62b;
+            
+          
+        </div>
+        <a class="main-nav-link" href="/">Home</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>
+          
+            
+              &#xe62b;
+            
+          
+        </div>
+        <a class="main-nav-link" href="/archives">Archives</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>
+          
+            
+              &#xe62b;
+            
+          
+        </div>
+        <a class="main-nav-link" href="/about">About</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <div class='main-nav-icon icon rotate'>
+          
+            
+              &#xe62b;
+            
+          
+        </div>
+        <a class="main-nav-link" href="/friend">Friend</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    <img fetchpriority="high" src="/images/banner.webp" alt="Doxygen 与 commit规范">
+  
+
+  <div id="header-outer">
+    <div id="header-title">
+      
+        
+        
+          
+        
+  
+        
+          <a href="/" id="logo">
+            <h1 data-aos="slide-up">Doxygen 与 commit规范</h1>
+          </a>
+        
+      
+  
+      
+        
+        
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+        <main id="content">
+          
+          <section id="main">
+  <article
+  class="h-entry article"
+  itemprop="blogPost"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta">
+      <div class="article-date">
+  <a
+    href="http://localhost:1313/post/doxygen%E4%B8%8Ecommit%E8%A7%84%E8%8C%83/"
+    class="article-date-link"
+    data-aos="zoom-in"
+  >
+    <time datetime="2024-12-24 11:00:00 -0700 -0700" itemprop="datePublished"
+      >2024-12-24</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2024-12-24</time
+    >
+  </a>
+</div>
+
+      <div class="article-category">
+  
+</div>
+
+    </div>
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <!-- raw HTML omitted -->
+<p>Doxygen 是一种<strong>文档生成工具</strong>，常用于整个项目的Doxyfile的生成，主要用于从源代码中提取注释，并生成技术文档。它广泛用于 C++、C、Java、Python 等多种编程语言中，帮助开发者自动生成文档，从而提高代码的可读性和维护性。</p>
+<h3 id="具体功能">
+<a class="header-anchor" href="#%e5%85%b7%e4%bd%93%e5%8a%9f%e8%83%bd"></a>
+具体功能：
+</h3><ol>
+<li>
+<p><strong>从代码注释中生成文档</strong>：Doxygen 通过解析源代码中的特殊注释格式，将其转换成 HTML、LaTeX、XML 等多种格式的文档。</p>
+</li>
+<li>
+<p><strong>支持多种编程语言</strong>：除了 C 和 C++，Doxygen 还支持 Java、Python、PHP 等许多其他语言。</p>
+</li>
+<li>
+<p><strong>交叉引用代码和文档</strong>：Doxygen 可以生成类结构、函数调用图等内容，使得文档与代码紧密结合，便于开发者理解代码的架构。</p>
+</li>
+<li>
+<p><strong>可生成不同格式的输出</strong>：例如 HTML 文档可以方便地作为在线帮助系统，LaTeX 格式可以用于打印高质量的 PDF 文档。</p>
+</li>
+</ol>
+<h1 id="下载与使用">
+<a class="header-anchor" href="#%e4%b8%8b%e8%bd%bd%e4%b8%8e%e4%bd%bf%e7%94%a8"></a>
+下载与使用
+</h1><h2 id="vscode插件">
+<a class="header-anchor" href="#vscode%e6%8f%92%e4%bb%b6"></a>
+vscode插件
+</h2><p>在扩展商店里搜索并安装如下扩展</p>
+<ul>
+<li>Doxygen Documentation Generator
+<img src="attachment/ce1561f40548e8ba159f0f652a931e0a.png" alt=""></li>
+</ul>
+<p>接着按下<code>ctrl+shift+p</code>，输入<code>settings.json</code>，打开工作区设置，可以设置快捷键和默认样式</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 触发快捷键
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;doxdocgen.c.triggerSequence&#34;</span><span class="p">:</span> <span class="s2">&#34;///&#34;</span>   <span class="c1">//在函数名前插入 `///`+回车，触发函数注释
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>进一步也可以：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 起始行样式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;doxdocgen.c.firstLine&#34;</span><span class="p">:</span> <span class="s2">&#34;/*!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 模版文件样式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;doxdocgen.cpp.tparamTemplate&#34;</span><span class="p">:</span> <span class="s2">&#34;@tparam{indent:15}{param}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 文件头注释样式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;doxdocgen.file.fileTemplate&#34;</span><span class="p">:</span> <span class="s2">&#34;@file{indent:15}{name}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 函数注释样式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;doxdocgen.generic.useGitUserName&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;doxdocgen.generic.authorTag&#34;</span><span class="p">:</span> <span class="s2">&#34;@author{indent:15}{author}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;doxdocgen.generic.briefTemplate&#34;</span><span class="p">:</span> <span class="s2">&#34;@brief{indent:15}{text}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;doxdocgen.generic.dateTemplate&#34;</span><span class="p">:</span> <span class="s2">&#34;@date{indent:15}{date}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;doxdocgen.generic.paramTemplate&#34;</span><span class="p">:</span> <span class="s2">&#34;@param{indent:15}{param}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;doxdocgen.generic.returnTemplate&#34;</span><span class="p">:</span> <span class="s2">&#34;@return{indent:15}{type}&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 自定义标签、顺序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nt">&#34;doxdocgen.file.fileOrder&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;file&#34;</span><span class="p">,</span> <span class="s2">&#34;author&#34;</span><span class="p">,</span> <span class="s2">&#34;date&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;doxdocgen.generic.customTags&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;@attention&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="windows下载doxygen">
+<a class="header-anchor" href="#windows%e4%b8%8b%e8%bd%bddoxygen"></a>
+Windows下载doxygen
+</h2><ul>
+<li>打开开始菜单，查找“Doxygen”。如果未找到，说明你需要下载并安装 Doxygen。</li>
+<li>访问 <a href="http://www.doxygen.nl/download.html">Doxygen 官方下载页面</a>，下载适用于 Windows 的 Doxygen 安装包。</li>
+<li>安装完成后，重新打开 VSCode 尝试运行 <code>doxygen</code>。</li>
+</ul>
+<h2 id="ubuntu--linux">
+<a class="header-anchor" href="#ubuntu--linux"></a>
+Ubuntu / Linux
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">	sudo apt-get install doxygen
+</span></span></code></pre></div><p>打开终端，编辑 <code>.bashrc</code> 文件:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">	vim ~/.bashrc  <span class="c1"># 对于 Bash Shell</span>
+</span></span></code></pre></div><p>添加以下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl">	<span class="k">export</span> <span class="n">PATH</span><span class="o">=</span><span class="s2">&#34;/usr/local/bin:$PATH&#34;</span>
+</span></span></code></pre></div><p>保存文件并刷新终端配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">	 <span class="nb">source</span> ~/.bashrc  <span class="c1"># 使用 Bash</span>
+</span></span></code></pre></div><h2 id="使用">
+<a class="header-anchor" href="#%e4%bd%bf%e7%94%a8"></a>
+使用
+</h2><h3 id="文件头">
+<a class="header-anchor" href="#%e6%96%87%e4%bb%b6%e5%a4%b4"></a>
+文件头
+</h3><p>这部分包括<code>license</code>、版权声明注释、文件描述注释。
+<img src="attachment/43bb3de6535913713d9df2d780da734b.png" alt=""></p>
+<h2 id="函数">
+<a class="header-anchor" href="#%e5%87%bd%e6%95%b0"></a>
+函数
+</h2><p>接着在函数名前、<code>#include</code>前输入<code>/***/</code>或者<code>///</code>并且分行，便可以使用<code>Doxygen</code>。
+<img src="attachment/323db5b811c4f15ac59903509e75c54d.png" alt="">
+将鼠标<code>hover</code>在函数上会出现如下信息：
+<img src="attachment/d5c80a3adceffa5cc6d8484d1eb03fd3.png" alt=""></p>
+<h2 id="生成doxyfile">
+<a class="header-anchor" href="#%e7%94%9f%e6%88%90doxyfile"></a>
+生成Doxyfile
+</h2><p>打开当前工作目录，在终端中输入:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">	doxygen -g // g是generate，用于生成默认的 <span class="sb">`</span>Doxyfile<span class="sb">`</span> 配置文件。
+</span></span></code></pre></div><p>此时你的项目下会多一个<code>Doxyfile</code>。
+<img src="attachment/0696d0a77f76fac3477a6456f44a2729.png" alt="">如果你想进一步，可以：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">	doxygen
+</span></span></code></pre></div><p>你的项目下会生成<code>html</code>和<code>latex</code>文件夹。</p>
+<h1 id="语法">
+<a class="header-anchor" href="#%e8%af%ad%e6%b3%95"></a>
+语法
+</h1><h2 id="文件">
+<a class="header-anchor" href="#%e6%96%87%e4%bb%b6"></a>
+文件
+</h2><ul>
+<li>@file： 文件名</li>
+<li>@brief：文件一句话介绍</li>
+<li>@author：文件作者</li>
+<li>@date：修改日期</li>
+<li>@see：额外的一些参考信息，比如有用过的链接</li>
+<li>@addtogroup ：创建函数分组 ，<code>@{</code> 和 <code>@}</code> 表示分组的开始和结束</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/** @addtogroup DOXYGEN_API
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @brief Doxygen api example.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Detailed api description.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @{
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @brief A sample function in the API group.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * This function demonstrates a typical API function.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param a Input parameter.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return Result of some computation.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sample_function</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/** @} */</span>
+</span></span></code></pre></div><p>结果在doxygen Doxyfile中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">API</span> <span class="nl">Groups</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span> <span class="n">DOXYGEN_API</span>
+</span></span><span class="line"><span class="cl">    <span class="o">-</span> <span class="nf">sample_function</span> <span class="p">(</span><span class="n">A</span> <span class="n">sample</span> <span class="n">function</span> <span class="n">in</span> <span class="n">the</span> <span class="n">API</span> <span class="n">group</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="变量前的注释">
+<a class="header-anchor" href="#%e5%8f%98%e9%87%8f%e5%89%8d%e7%9a%84%e6%b3%a8%e9%87%8a"></a>
+变量前的注释
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @brief Use brief, otherwise the index won&#39;t have a brief explanation.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Detailed explanation.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">BoxStruct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>    <span class="cm">/**&lt; Some documentation for the member BoxStruct#a. */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>    <span class="cm">/**&lt; Some documentation for the member BoxStruct#b. */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">c</span><span class="p">;</span> <span class="cm">/**&lt; Etc. */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">tBoxStruct</span><span class="p">;</span>
+</span></span></code></pre></div><h2 id="api-函数注释样例">
+<a class="header-anchor" href="#api-%e5%87%bd%e6%95%b0%e6%b3%a8%e9%87%8a%e6%a0%b7%e4%be%8b"></a>
+API 函数注释样例
+</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/* GLOBAL FUNCTIONS */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @brief Example showing how to document a function with Doxygen.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Description of what the function does. This part may refer to the parameters
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * of the function, like @p param1 or @p param2. A word of code can also be
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * inserted like @c this which is equivalent to &lt;tt&gt;this&lt;/tt&gt; and can be useful
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * to say that the function returns a @c void or an @c int. If you want to have
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * more than one word in typewriter font, then just use @&lt;tt@&gt;.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param [in] param1 Description of the first parameter of the function.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param [out] param2 The second one, which follows @p param1, and represents output. //变量
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return Describe what the function returns.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @retval XXX_OK if successful.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @see doxygen_theSecondFunction
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @see Box_The_Last_One
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @see &lt;http://website/&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @note Something to note.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @warning Warning.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">doxygen_theFirstFunction</span><span class="p">(</span><span class="kt">int</span> <span class="n">param1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">param2</span><span class="p">);</span>
+</span></span></code></pre></div><ul>
+<li>@param：标记变量 [in] [out]表示输入输出方向</li>
+<li>@return：返回值描述</li>
+<li>@retval：具体返回值及其含义</li>
+<li>@see：link信息</li>
+<li>@note：备注信息</li>
+<li>@warning：需要函数使用者注意的信息，比如：功能未经完全验证</li>
+</ul>
+<h1 id="commit规范">
+<a class="header-anchor" href="#commit%e8%a7%84%e8%8c%83"></a>
+commit规范
+</h1><h2 id="1示例">
+<a class="header-anchor" href="#1%e7%a4%ba%e4%be%8b"></a>
+1.示例
+</h2><p><img src="attachment/0fd83edf427f730b0329e0a1a0dcc572.png" alt=""></p>
+<h2 id="2-提交标题subject-line">
+<a class="header-anchor" href="#2-%e6%8f%90%e4%ba%a4%e6%a0%87%e9%a2%98subject-line"></a>
+2. 提交标题（Subject Line）
+</h2><ul>
+<li>
+<p><strong>动词时态</strong>：使用 <strong>祈使句</strong>（动词原型），描述这次提交所做的工作。比如：</p>
+<ul>
+<li><code>Add login feature</code>（添加登录功能）</li>
+<li><code>Fix button alignment issue</code>（修复按钮对齐问题）</li>
+<li><code>Update README for installation instructions</code>（更新 README，添加安装说明）</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-常见的提交类型">
+<a class="header-anchor" href="#3-%e5%b8%b8%e8%a7%81%e7%9a%84%e6%8f%90%e4%ba%a4%e7%b1%bb%e5%9e%8b"></a>
+3. 常见的提交类型
+</h2><p>为了规范化提交标题中的描述，项目或团队会使用特定的前缀来标记提交的类型。这些前缀可以帮助人们快速了解提交的目的。例如：</p>
+<ul>
+<li><strong>feat</strong>：引入新功能（feature）。
+<ul>
+<li><code>feat: add user login functionality</code></li>
+</ul>
+</li>
+<li><strong>fix</strong>：修复 bug。
+<ul>
+<li><code>fix: resolve password hashing issue</code></li>
+</ul>
+</li>
+<li><strong>docs</strong>：仅更新文档。
+<ul>
+<li><code>docs: update API documentation</code></li>
+</ul>
+</li>
+<li><strong>style</strong>：代码风格的调整（不涉及功能或逻辑变化），如格式化、空格调整等。
+<ul>
+<li><code>style: reformat code with prettier</code></li>
+</ul>
+</li>
+<li><strong>refactor</strong>：重构代码，通常是改善代码结构，但没有新功能或 bug 修复。
+<ul>
+<li><code>refactor: optimize login function</code></li>
+</ul>
+</li>
+<li><strong>test</strong>：添加或修改测试。
+<ul>
+<li><code>test: add tests for user authentication</code></li>
+</ul>
+</li>
+<li><strong>chore</strong>：不影响源代码的其他更改，如构建过程、依赖管理等。
+<ul>
+<li><code>chore: update npm dependencies</code></li>
+</ul>
+</li>
+<li><strong>perf</strong>：性能优化。
+<ul>
+<li><code>perf: improve database query performance</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="4参考资料">
+<a class="header-anchor" href="#4%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99"></a>
+4.参考资料
+</h2><p>具体可以<a href="https://zhuanlan.zhihu.com/p/684354477">参考这篇文档</a>
+<a href="https://zhuanlan.zhihu.com/p/182553920">如何规范你的Git commit？ - 知乎 (zhihu.com)</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <ul class="article-tag-list" itemprop="keywords">
+  
+</ul>
+
+    </footer>
+  </div>
+  
+    
+  <nav
+    id="article-nav"
+    data-aos="fade-up"
+  >
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img
+              data-src="https://upload-bbs.miyoushe.com/upload/2023/09/04/326552234/f1b6350e764e14d74a2115aa38ce5320_4051001620276447913.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,"
+              data-sizes="auto"
+              alt="《置身事内》读后记"
+              class="lazyload"
+            />
+          
+        
+        <a href="http://localhost:1313/post/%E7%BD%AE%E8%BA%AB%E4%BA%8B%E5%86%85/"></a>
+        <div class="article-nav-caption">Newer</div>
+        <h3 class="article-nav-title">
+          
+            《置身事内》读后记
+          
+        </h3>
+      </div>
+    
+
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrapper wrap-sticky">
+    <div
+      class="sidebar-wrap"
+      data-aos="fade-up"
+    >
+      
+        <div class="sidebar-toc-sidebar">
+          <div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#具体功能">具体功能：</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#vscode插件">vscode插件</a></li>
+    <li><a href="#windows下载doxygen">Windows下载doxygen</a></li>
+    <li><a href="#ubuntu--linux">Ubuntu / Linux</a></li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#文件头">文件头</a></li>
+      </ul>
+    </li>
+    <li><a href="#函数">函数</a></li>
+    <li><a href="#生成doxyfile">生成Doxyfile</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#文件">文件</a></li>
+    <li><a href="#变量前的注释">变量前的注释</a></li>
+    <li><a href="#api-函数注释样例">API 函数注释样例</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1示例">1.示例</a></li>
+    <li><a href="#2-提交标题subject-line">2. 提交标题（Subject Line）</a></li>
+    <li><a href="#3-常见的提交类型">3. 常见的提交类型</a></li>
+    <li><a href="#4参考资料">4.参考资料</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+        </div>
+        <div class="sidebar-common-sidebar hidden">
+          
+<div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="Bertsin"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">Bertsin</div>
+  <div class="sidebar-description">祈祷中...</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="Home"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>
+        
+          
+            &#xe62b;
+          
+        
+      </div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="Archives"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>
+        
+          
+            &#xe62b;
+          
+        
+      </div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="About"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>
+        
+          
+            &#xe62b;
+          
+        
+      </div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="Friend"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>
+        
+          
+            &#xe62b;
+          
+        
+      </div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+
+        </div>
+      
+
+      
+        <div class="sidebar-btn-wrapper" style="position:static">
+          <div class="sidebar-toc-btn current"></div>
+          <div class="sidebar-common-btn"></div>
+        </div>
+      
+    </div>
+  </div>
+
+  
+</aside>
+
+          
+        </main>
+        
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+<footer id="footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+      2020 -
+      2024
+      <span class="footer-info-sep rotate"></span>
+      Bertsin
+    </div>
+    
+      <div>
+        Powered by&nbsp;<a
+          href="https://gohugo.io/"
+          target="_blank"
+          >Hugo</a
+        >&nbsp; Theme.<a
+          href="https://github.com/D-Sketon/hugo-theme-reimu"
+          target="_blank"
+          >Reimu</a
+        >
+      </div>
+    
+    
+      <div>
+        <span class="icon-brush"
+          >&nbsp;
+            620
+          </span
+        >
+        &nbsp;|&nbsp;
+        <span class="icon-coffee">&nbsp;
+          
+          
+
+          00:06
+        </span>
+      </div>
+    
+    
+    
+    
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv"
+          >Number of visits&nbsp;<span
+            id="busuanzi_value_site_pv"
+          ></span
+        ></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv"
+          >Number of visitors&nbsp;<span
+            id="busuanzi_value_site_uv"
+          ></span
+        ></span>
+      </div>
+    
+  </div>
+</footer>
+
+        
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar">
+        <div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper toc-div-class">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#具体功能">具体功能：</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#vscode插件">vscode插件</a></li>
+    <li><a href="#windows下载doxygen">Windows下载doxygen</a></li>
+    <li><a href="#ubuntu--linux">Ubuntu / Linux</a></li>
+    <li><a href="#使用">使用</a>
+      <ul>
+        <li><a href="#文件头">文件头</a></li>
+      </ul>
+    </li>
+    <li><a href="#函数">函数</a></li>
+    <li><a href="#生成doxyfile">生成Doxyfile</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#文件">文件</a></li>
+    <li><a href="#变量前的注释">变量前的注释</a></li>
+    <li><a href="#api-函数注释样例">API 函数注释样例</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1示例">1.示例</a></li>
+    <li><a href="#2-提交标题subject-line">2. 提交标题（Subject Line）</a></li>
+    <li><a href="#3-常见的提交类型">3. 常见的提交类型</a></li>
+    <li><a href="#4参考资料">4.参考资料</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+      </div>
+      <div class="sidebar-common-sidebar hidden">
+        
+<div class="sidebar-author">
+  <img
+    data-src="/avatar/avatar.webp"
+    data-sizes="auto"
+    alt="Bertsin"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">Bertsin</div>
+  <div class="sidebar-description">祈祷中...</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    
+    <div class="sidebar-state-number">4</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">
+      0
+    </div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/"
+        aria-label="Home"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>
+        
+          
+            &#xe62b;
+          
+        
+      </div>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/archives"
+        aria-label="Archives"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>
+        
+          
+            &#xe62b;
+          
+        
+      </div>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/about"
+        aria-label="About"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>
+        
+          
+            &#xe62b;
+          
+        
+      </div>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a
+        class="sidebar-menu-link-dummy"
+        href="/friend"
+        aria-label="Friend"
+      ></a>
+      <div class='sidebar-menu-icon icon rotate'>
+        
+          
+            &#xe62b;
+          
+        
+      </div>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    
+    
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"
+    
+    
+    
+    
+    integrity="sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf&#43;e" crossorigin="anonymous"
+  ></script>
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"
+    
+    
+    
+    
+    integrity="sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"
+  ></script>
+
+
+
+
+
+
+
+
+
+  
+      
+      <script src="/js/main.js" ></script>
+      
+
+
+
+  
+
+
+
+
+
+  
+      
+      <script src="/js/aos.js" ></script>
+      
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+
+
+
+
+
+
+  
+      
+      <script src="/js/pjax_main.js" data-pjax></script>
+      
+
+
+
+
+
+  
+
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/mouse-firework@0.0.6/dist/index.umd.js"
+    
+    
+    
+    
+    integrity="sha384-vkGvf25gm1C1PbcoD5dNfc137HzNL/hr1RKA5HniJOaawtvUmH5lTVFgFAruE9Ge" crossorigin="anonymous"
+  ></script>
+
+
+<script>
+  if (window.firework) {
+    const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"#ff5252\",\"#ff7c7c\",\"#ffafaf\",\"#ffd0d0\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"#ff0000\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
+    options.excludeElements = options.excludeelements;
+    delete options.excludeelements;
+    window.firework(options);
+  }
+</script>
+
+
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+    
+    
+      
+
+
+
+
+
+  
+      
+      <script src="/js/insert_highlight.js" data-pjax></script>
+      
+
+      
+      
+      
+      
+      <script type="module" data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;
+
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+  </div>
+</div>
+
+
+
+
+  
+
+  
+  
+  
+  
+  
+  
+  <script
+    src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js"
+    
+    async
+    
+    
+    integrity="sha384-0M75wtSkhjIInv4coYlaJU83&#43;OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id&#43;S" crossorigin="anonymous"
+  ></script>
+
+
+
+
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script>
+
+
+<script>
+  const reimuCopyright = String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;
+  console.log(String.raw`%c ${reimuCopyright}`, "color: #ff5252;");
+  console.log(
+    "%c Theme.Reimu" + " %c https://github.com/D-Sketon/hugo-theme-reimu ",
+    "color: white; background: #ff5252; padding:5px 0;",
+    "padding:4px;border:1px solid #ff5252;",
+  );
+</script>
+
+  </body>
+</html>
