@@ -34,7 +34,7 @@ jobs:
 
       - name: Build
         run: hugo --minify
-        working-directory:  ../../public # 注意修改成你使用hugo创建的项目名称
+        working-directory:  ./ # 注意修改成你使用hugo创建的项目名称
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
