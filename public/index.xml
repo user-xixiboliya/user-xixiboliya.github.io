@@ -6,8 +6,15 @@
     <description>Recent content on Welcome to Bertsin Homepage!</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Dec 2024 11:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 29 Dec 2024 16:00:00 -0720</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>my 2024 summary</title>
+      <link>http://localhost:1313/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sun, 29 Dec 2024 15:00:00 -0710</pubDate>
+      <guid>http://localhost:1313/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;h1 id=&#34;我的2024总结&#34;&gt;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#%e6%88%91%e7%9a%842024%e6%80%bb%e7%bb%93&#34;&gt;&lt;/a&gt;&#xA;我的2024总结&#xA;&lt;/h1&gt;</description>
+    </item>
     <item>
       <title>Doxygen 与 commit规范</title>
       <link>http://localhost:1313/post/doxygencommit/</link>
