@@ -17,7 +17,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
