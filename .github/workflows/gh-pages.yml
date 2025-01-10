@@ -38,7 +38,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/gh-pages'
         with:
           PERSONAL_TOKEN: ${{ secrets.ACTION_TOKEN }}
           PUBLISH_DIR: ./public # 注意修改成你使用hugo创建的项目名称
