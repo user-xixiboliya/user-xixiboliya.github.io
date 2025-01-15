@@ -1,1 +1,224 @@
-(()=>{var E=(a,n)=>()=>(n||a((n={exports:{}}).exports,n),n.exports);var T=E(w=>{var H=(a,n)=>{let i;return(...r)=>{clearTimeout(i),i=setTimeout(()=>{a.apply(w,r)},n)}},L=(a,n)=>{let i,r;return(...l)=>{let m=w;!r||Date.now()-r>=n?(a.apply(m,l),r=Date.now()):(clearTimeout(i),i=setTimeout(()=>{a.apply(m,l),r=Date.now()},n-(Date.now()-r)))}},b,u,h;(()=>{let a={offset:120,delay:0,duration:400,disable:!1,once:!1,startEvent:"DOMContentLoaded",throttleDelay:99,debounceDelay:50,easing:"ease"},n=[],i=!1,r=e=>{let t=0,o=0;for(;e;)t+=e.offsetLeft-(e.tagName!="BODY"?e.scrollLeft:0),o+=e.offsetTop-(e.tagName!="BODY"?e.scrollTop:0),e=e.offsetParent;return{top:o,left:t}},l=e=>[...e].some(t=>t.dataset?.aos||t.children&&l(t.children)),m=e=>{h?.disconnect(),h=new MutationObserver(t=>{t?.some(({addedNodes:o,removedNodes:s})=>l([...o,...s]))&&e()}),h.observe(document.documentElement,{childList:!0,subtree:!0})},g=(e,t,o)=>{let s=e.node.getAttribute("data-aos-once");t>e.position?e.node.classList.add("aos-animate"):(s==="false"||!o&&s!=="true")&&e.node.classList.remove("aos-animate")},v=(e,t)=>{let o=window.innerHeight+window.scrollY;e.forEach(s=>g(s,o,t))},y=(e,t)=>{let o=0,s=0,f=window.innerHeight,d={offset:e.getAttribute("data-aos-offset"),anchor:e.getAttribute("data-aos-anchor"),anchorPlacement:e.getAttribute("data-aos-anchor-placement")};switch(d.offset&&(s=parseInt(d.offset)),d.anchor&&(e=_$(d.anchor)||e),o=r(e).top,d.anchorPlacement){case"top-bottom":break;case"center-bottom":o+=e.offsetHeight/2;break;case"bottom-bottom":o+=e.offsetHeight;break;case"top-center":o+=f/2;break;case"bottom-center":o+=f/2+e.offsetHeight;break;case"center-center":o+=f/2+e.offsetHeight/2;break;case"top-top":o+=f;break;case"bottom-top":o+=e.offsetHeight+f;break;case"center-top":o+=e.offsetHeight/2+f;break}return!d.anchorPlacement&&!d.offset&&(s=t),o+s},O=(e,t)=>(e.forEach(o=>{o.node.classList.add("aos-init"),o.position=y(o.node,t.offset)}),e),c=(e=!1)=>{if(e&&(i=!0),i)return n=O(n,a),v(n,a.once),n},p=()=>{n=[..._$$("[data-aos]")].map(e=>({node:e})),c()},A=e=>{if(a={...a,...e},n=[..._$$("[data-aos]")].map(t=>({node:t})),a.disable){n.forEach(({node:t})=>{t.removeAttribute("data-aos"),t.removeAttribute("data-aos-easing"),t.removeAttribute("data-aos-duration"),t.removeAttribute("data-aos-delay")});return}return document.body.setAttribute("data-aos-easing",a.easing),document.body.setAttribute("data-aos-duration",a.duration),document.body.setAttribute("data-aos-delay",a.delay),a.startEvent==="DOMContentLoaded"&&["complete","interactive"].indexOf(document.readyState)>-1?c(!0):a.startEvent==="load"?window.addEventListener(a.startEvent,()=>{c(!0)}):document.addEventListener(a.startEvent,()=>{c(!0)}),u&&(window.off("resize",u),window.off("orientationchange",u)),u=H(c,a.debounceDelay),window.on("resize",u),window.on("orientationchange",u),b&&window.off("scroll",b),b=L(()=>v(n,a.once),a.throttleDelay),window.on("scroll",b),m(p),n};window.AOS={init:A,refresh:c,refreshHard:p}})()});T();})();
+(() => {
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+
+  // <stdin>
+  var require_stdin = __commonJS({
+    "<stdin>"(exports) {
+      var debounce = (func, delay) => {
+        let timeoutId;
+        return (...args) => {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            func.apply(exports, args);
+          }, delay);
+        };
+      };
+      var throttle = (func, limit) => {
+        let lastFunc, lastRan;
+        return (...args) => {
+          const context = exports;
+          if (!lastRan || Date.now() - lastRan >= limit) {
+            func.apply(context, args);
+            lastRan = Date.now();
+          } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(
+              () => {
+                func.apply(context, args);
+                lastRan = Date.now();
+              },
+              limit - (Date.now() - lastRan)
+            );
+          }
+        };
+      };
+      var __aosScrollHandler;
+      var __aosResizeHandler;
+      var __observer;
+      (() => {
+        let options = {
+          offset: 120,
+          delay: 0,
+          duration: 400,
+          disable: false,
+          once: false,
+          startEvent: "DOMContentLoaded",
+          throttleDelay: 99,
+          debounceDelay: 50,
+          easing: "ease"
+        };
+        let $aosElements = [];
+        let initialized = false;
+        const getOffset = (el) => {
+          let left = 0;
+          let top = 0;
+          while (el) {
+            left += el.offsetLeft - (el.tagName != "BODY" ? el.scrollLeft : 0);
+            top += el.offsetTop - (el.tagName != "BODY" ? el.scrollTop : 0);
+            el = el.offsetParent;
+          }
+          return {
+            top,
+            left
+          };
+        };
+        const containsAOSNode = (nodes) => {
+          return [...nodes].some((node) => {
+            return node.dataset?.aos || node.children && containsAOSNode(node.children);
+          });
+        };
+        const observe = (fn) => {
+          __observer?.disconnect();
+          __observer = new MutationObserver((mutations) => {
+            if (mutations?.some(
+              ({ addedNodes, removedNodes }) => containsAOSNode([...addedNodes, ...removedNodes])
+            )) {
+              fn();
+            }
+          });
+          __observer.observe(document.documentElement, {
+            childList: true,
+            subtree: true
+          });
+        };
+        const setState = (el, top, once) => {
+          const attrOnce = el.node.getAttribute("data-aos-once");
+          if (top > el.position) {
+            el.node.classList.add("aos-animate");
+          } else if (attrOnce === "false" || !once && attrOnce !== "true") {
+            el.node.classList.remove("aos-animate");
+          }
+        };
+        const handleScroll = ($elements, once) => {
+          const threshold = window.innerHeight + window.scrollY;
+          $elements.forEach((el) => setState(el, threshold, once));
+        };
+        const calculateOffset = (el, optionalOffset) => {
+          let elementOffsetTop = 0;
+          let additionalOffset = 0;
+          const windowHeight = window.innerHeight;
+          const attrs = {
+            offset: el.getAttribute("data-aos-offset"),
+            anchor: el.getAttribute("data-aos-anchor"),
+            anchorPlacement: el.getAttribute("data-aos-anchor-placement")
+          };
+          if (attrs.offset) {
+            additionalOffset = parseInt(attrs.offset);
+          }
+          if (attrs.anchor) {
+            el = _$(attrs.anchor) || el;
+          }
+          elementOffsetTop = getOffset(el).top;
+          switch (attrs.anchorPlacement) {
+            case "top-bottom":
+              break;
+            case "center-bottom":
+              elementOffsetTop += el.offsetHeight / 2;
+              break;
+            case "bottom-bottom":
+              elementOffsetTop += el.offsetHeight;
+              break;
+            case "top-center":
+              elementOffsetTop += windowHeight / 2;
+              break;
+            case "bottom-center":
+              elementOffsetTop += windowHeight / 2 + el.offsetHeight;
+              break;
+            case "center-center":
+              elementOffsetTop += windowHeight / 2 + el.offsetHeight / 2;
+              break;
+            case "top-top":
+              elementOffsetTop += windowHeight;
+              break;
+            case "bottom-top":
+              elementOffsetTop += el.offsetHeight + windowHeight;
+              break;
+            case "center-top":
+              elementOffsetTop += el.offsetHeight / 2 + windowHeight;
+              break;
+          }
+          if (!attrs.anchorPlacement && !attrs.offset) {
+            additionalOffset = optionalOffset;
+          }
+          return elementOffsetTop + additionalOffset;
+        };
+        const prepare = ($elements, options2) => {
+          $elements.forEach((el) => {
+            el.node.classList.add("aos-init");
+            el.position = calculateOffset(el.node, options2.offset);
+          });
+          return $elements;
+        };
+        const refresh = (initialize = false) => {
+          if (initialize) initialized = true;
+          if (initialized) {
+            $aosElements = prepare($aosElements, options);
+            handleScroll($aosElements, options.once);
+            return $aosElements;
+          }
+        };
+        const refreshHard = () => {
+          $aosElements = [..._$$("[data-aos]")].map((node) => ({
+            node
+          }));
+          refresh();
+        };
+        const init = (opts) => {
+          options = { ...options, ...opts };
+          $aosElements = [..._$$("[data-aos]")].map((node) => ({
+            node
+          }));
+          if (options.disable) {
+            $aosElements.forEach(({ node }) => {
+              node.removeAttribute("data-aos");
+              node.removeAttribute("data-aos-easing");
+              node.removeAttribute("data-aos-duration");
+              node.removeAttribute("data-aos-delay");
+            });
+            return;
+          }
+          document.body.setAttribute("data-aos-easing", options.easing);
+          document.body.setAttribute("data-aos-duration", options.duration);
+          document.body.setAttribute("data-aos-delay", options.delay);
+          if (options.startEvent === "DOMContentLoaded" && ["complete", "interactive"].indexOf(document.readyState) > -1) {
+            refresh(true);
+          } else if (options.startEvent === "load") {
+            window.addEventListener(options.startEvent, () => {
+              refresh(true);
+            });
+          } else {
+            document.addEventListener(options.startEvent, () => {
+              refresh(true);
+            });
+          }
+          if (__aosResizeHandler) {
+            window.off("resize", __aosResizeHandler);
+            window.off("orientationchange", __aosResizeHandler);
+          }
+          __aosResizeHandler = debounce(refresh, options.debounceDelay);
+          window.on("resize", __aosResizeHandler);
+          window.on("orientationchange", __aosResizeHandler);
+          if (__aosScrollHandler) {
+            window.off("scroll", __aosScrollHandler);
+          }
+          __aosScrollHandler = throttle(
+            () => handleScroll($aosElements, options.once),
+            options.throttleDelay
+          );
+          window.on("scroll", __aosScrollHandler);
+          observe(refreshHard);
+          return $aosElements;
+        };
+        window.AOS = {
+          init,
+          refresh,
+          refreshHard
+        };
+      })();
+    }
+  });
+  require_stdin();
+})();
