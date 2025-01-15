@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/algolia.json</link><description>Recent content on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 29 Dec 2024 16:00:00 -0720</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>my 2024 summary</title><link>https://user-xixiboliya.github.io/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/</link><pubDate>Sun, 29 Dec 2024 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/</guid><description>&lt;h1 id="我的2024总结">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/algolia.json</link><description>Recent content on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 15 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Git 相关</title><link>https://user-xixiboliya.github.io/post/git%E7%9B%B8%E5%85%B3/</link><pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/git%E7%9B%B8%E5%85%B3/</guid><description>&lt;p>本文前半部分较为基础，后半部分对&lt;code>.git&lt;/code>目录下进行了相关的解释。&lt;/p>
+&lt;h2 id="基本命令">
+&lt;a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4">&lt;/a>
+基本命令
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>cd : 改变目录
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd .. 退回到上级目录
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd &lt;span style="color:#f92672">(&lt;/span>filename&lt;span style="color:#f92672">)&lt;/span>进入文件夹
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pwd 显示当前目录
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>clear 清屏
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ls 显示当前目录下的所有文件
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>touch （文件名.后缀） 新建一个文件
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rm （文件名.后缀） 删除一个文件
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkdir test 建立一个test目录
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rm -r test 删除test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mv index.txt test 移动index至test中
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>history 查看历史命令
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>help 帮助
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>exit 退出
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="git项目基础">
+&lt;a class="header-anchor" href="#git%e9%a1%b9%e7%9b%ae%e5%9f%ba%e7%a1%80">&lt;/a>
+git项目基础
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>cd /path/to/your/project &lt;span style="color:#75715e"># 进入项目目录 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git init &lt;span style="color:#75715e"># 初始化 Git 仓库 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git add . &lt;span style="color:#75715e"># 添加所有文件到暂存区 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git commit -m &lt;span style="color:#e6db74">&amp;#34;initial commit&amp;#34;&lt;/span> &lt;span style="color:#75715e"># 提交文件 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git remote add origin https://github.com/your_username/your_repository.git &lt;span style="color:#75715e"># 添加远程仓库 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git branch -M main 将本地主分支设置为main
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git checkout -b new-branch &lt;span style="color:#75715e"># 创建并切换到新分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git push -u origin new-branch &lt;span style="color:#75715e"># 推送到新分支&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>内容过于基础，不再赘述。
+&lt;img src="imgs/github.png" alt="">&lt;/p></description></item><item><title>my 2024 summary</title><link>https://user-xixiboliya.github.io/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/</link><pubDate>Sun, 29 Dec 2024 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/</guid><description>&lt;h1 id="我的2024总结">
 &lt;a class="header-anchor" href="#%e6%88%91%e7%9a%842024%e6%80%bb%e7%bb%93">&lt;/a>
 我的2024总结
 &lt;/h1>&lt;p>hi~&lt;/p></description></item><item><title>Doxygen 与 commit规范</title><link>https://user-xixiboliya.github.io/post/doxygencommit/</link><pubDate>Tue, 24 Dec 2024 11:00:00 -0700</pubDate><guid>https://user-xixiboliya.github.io/post/doxygencommit/</guid><description>&lt;h1 id="开始之前">
@@ -248,7 +278,7 @@ tar -xzvf clashpremium-release-linux-amd64.s1lSU-Ho.tar.gz.tar.gz
 &lt;h3 id="向前之路">
 &lt;a class="header-anchor" href="#%e5%90%91%e5%89%8d%e4%b9%8b%e8%b7%af">&lt;/a>
 向前之路
-&lt;/h3>&lt;p>我们生活在一个焦虑的时代。我们的政治观念遭到颠覆，民主制度遭遇威胁，对疾病的掌控力也遭遇考验。经济、社会和健康中的不平等将奴役之罪恶和美国的黑人歧视传统揭露了出来。道德愤慨普遍存在，失业率达到了自大萧条以来的最高水平，这一切都让人难以看清前路。我们需要领导者，需要教育，需要科学，需要更大程度的平等。&lt;/p></description></item><item><title>Hello World</title><link>https://user-xixiboliya.github.io/post/hello/hello/</link><pubDate>Wed, 15 Mar 2023 11:00:00 -0700</pubDate><guid>https://user-xixiboliya.github.io/post/hello/hello/</guid><description>&lt;p>💘 This is Bertsin. Welcome to my website!💘&lt;/p></description></item><item><title>一些记录</title><link>https://user-xixiboliya.github.io/about/</link><pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate><guid>https://user-xixiboliya.github.io/about/</guid><description>&lt;h1 id="这里是还未开拓的荒原">
+&lt;/h3>&lt;p>我们生活在一个焦虑的时代。我们的政治观念遭到颠覆，民主制度遭遇威胁，对疾病的掌控力也遭遇考验。经济、社会和健康中的不平等将奴役之罪恶和美国的黑人歧视传统揭露了出来。道德愤慨普遍存在，失业率达到了自大萧条以来的最高水平，这一切都让人难以看清前路。我们需要领导者，需要教育，需要科学，需要更大程度的平等。&lt;/p></description></item><item><title>一些记录</title><link>https://user-xixiboliya.github.io/about/</link><pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate><guid>https://user-xixiboliya.github.io/about/</guid><description>&lt;h1 id="这里是还未开拓的荒原">
 &lt;a class="header-anchor" href="#%e8%bf%99%e9%87%8c%e6%98%af%e8%bf%98%e6%9c%aa%e5%bc%80%e6%8b%93%e7%9a%84%e8%8d%92%e5%8e%9f">&lt;/a>
 这里是还未开拓的荒原
 &lt;/h1></description></item><item><title>友情链接</title><link>https://user-xixiboliya.github.io/friend/</link><pubDate>Thu, 09 Jun 2022 20:12:52 +0800</pubDate><guid>https://user-xixiboliya.github.io/friend/</guid><description>&lt;h2 id="本站信息">
