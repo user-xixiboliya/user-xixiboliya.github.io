@@ -16,6 +16,20 @@
       <description></description>
     </item>
     <item>
+      <title>Technology</title>
+      <link>http://localhost:1313/categories/technology/</link>
+      <pubDate>Fri, 17 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/technology/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Life</title>
+      <link>http://localhost:1313/categories/life/</link>
+      <pubDate>Sun, 29 Dec 2024 15:00:00 -0710</pubDate>
+      <guid>http://localhost:1313/categories/life/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>通识</title>
       <link>http://localhost:1313/categories/%E9%80%9A%E8%AF%86/</link>
       <pubDate>Mon, 23 Dec 2024 15:00:00 -0710</pubDate>
