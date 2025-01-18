@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Technology on Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/categories/technology/</link><description>Recent content in Technology on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 17 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/categories/technology/index.xml" rel="self" type="application/rss+xml"/><item><title>存储系统基础</title><link>https://user-xixiboliya.github.io/post/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80/</link><pubDate>Fri, 17 Jan 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80/</guid><description>&lt;p>存储系统分为四类：&lt;/p>
+&lt;ul>
+&lt;li>单机存储 File-system Key-Value&lt;/li>
+&lt;li>单机数据库 关系型和非关系型&lt;/li>
+&lt;li>分布式存储 分布式文件系统GFS HDFS等 对象存储TOS&lt;/li>
+&lt;li>分布式数据库：关系型(MySQL Oracle)和非关系型数据库
+&lt;img src="attachment/2fe4cb8f650425e13a28cea09cab648c.png" alt="">&lt;/li>
+&lt;/ul>
+&lt;h1 id="分布式存储选型">
+&lt;a class="header-anchor" href="#%e5%88%86%e5%b8%83%e5%bc%8f%e5%ad%98%e5%82%a8%e9%80%89%e5%9e%8b">&lt;/a>
+分布式存储选型
+&lt;/h1>&lt;p>&lt;img src="attachment/ea14c570671bd78031d891aa1ae06de6.png" alt="">
+&lt;img src="attachment/544c6d6234371abea3cc0ed7edecd847.png" alt="">
+在TOS中，所有的数据都存储在“桶”中。桶是容器，可以理解为用于组织存储对象的命名空间。每个桶都具有唯一的名字，并可以设置权限来控制谁可以访问。
+&lt;img src="attachment/306e5e5c965c370fefe58da2883ab8ee.png" alt="">&lt;/p>
+&lt;h1 id="存储对象使用">
+&lt;a class="header-anchor" href="#%e5%ad%98%e5%82%a8%e5%af%b9%e8%b1%a1%e4%bd%bf%e7%94%a8">&lt;/a>
+存储对象使用
+&lt;/h1>&lt;p>先在TOS上申请一个Bucket，里面可以存放很多objects。此外，TOS提供了丰富的RESTful API，可以实现文件的上传、下载、删除、查询等操作。&lt;/p>
+&lt;p>对象存储对外提供的一般都是Restful风格的接口。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span>restful风格&lt;span style="color:#960050;background-color:#1e0010">：&lt;/span>[&lt;span style="color:#960050;background-color:#1e0010">参考链接&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>](https:&lt;span style="color:#75715e">//zhuanlan.zhihu.com/p/334809573)、[参考链接2](https://www.runoob.com/w3cnote/restful-architecture.html)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">以资源为基础&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">：资源可以是一个图片、音乐、一个&lt;/span>XML格式&lt;span style="color:#960050;background-color:#1e0010">、&lt;/span>HTML格式或者JSON格式等网络上的一个实体&lt;span style="color:#960050;background-color:#1e0010">，除了一些二进制的资源外普通的文本资源更多以&lt;/span>JSON为载体&lt;span style="color:#960050;background-color:#1e0010">、面向用户的一组数据&lt;/span>(&lt;span style="color:#960050;background-color:#1e0010">通常从数据库中查询而得到&lt;/span>)&lt;span style="color:#960050;background-color:#1e0010">。&lt;/span>RESTful风格的API则要求在URL上都以名词的方式出现&lt;span style="color:#960050;background-color:#1e0010">，从几种请求方式上就可以看出想要进行的操作，这点与非&lt;/span>RESTful风格的API形成鲜明对比&lt;span style="color:#960050;background-color:#1e0010">。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">统一接口&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#960050;background-color:#1e0010">对资源的操作包括获取、创建、修改和删除，这些操作正好对应&lt;/span>HTTP协议提供的GET&lt;span style="color:#960050;background-color:#1e0010">、&lt;/span>POST&lt;span style="color:#960050;background-color:#1e0010">、&lt;/span>PUT和DELETE方法&lt;span style="color:#960050;background-color:#1e0010">。换言而知，使用&lt;/span>RESTful风格的接口但从接口上你可能只能定位其资源&lt;span style="color:#960050;background-color:#1e0010">，但是无法知晓它具体进行了什么操作，需要具体了解其发生了什么操作动作要从其&lt;/span>HTTP请求方法类型上进行判断&lt;span style="color:#960050;background-color:#1e0010">。具体的&lt;/span>HTTP方法和方法含义如下&lt;span style="color:#960050;background-color:#1e0010">：&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-&lt;/span> GET&lt;span style="color:#960050;background-color:#1e0010">（&lt;/span>SELECT&lt;span style="color:#960050;background-color:#1e0010">）：从服务器取出资源（一项或多项）。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-&lt;/span> POST&lt;span style="color:#960050;background-color:#1e0010">（&lt;/span>CREATE&lt;span style="color:#960050;background-color:#1e0010">）：在服务器新建一个资源。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-&lt;/span> PUT&lt;span style="color:#960050;background-color:#1e0010">（&lt;/span>UPDATE&lt;span style="color:#960050;background-color:#1e0010">）：在服务器更新资源（客户端提供完整资源数据）。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-&lt;/span> PATCH&lt;span style="color:#960050;background-color:#1e0010">（&lt;/span>UPDATE&lt;span style="color:#960050;background-color:#1e0010">）：在服务器更新资源（客户端提供需要修改的资源数据）。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">-&lt;/span> DELETE&lt;span style="color:#960050;background-color:#1e0010">（&lt;/span>DELETE&lt;span style="color:#960050;background-color:#1e0010">）：从服务器删除资源。&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="attachment/2c1b089c1aeef36efa097e0a7e31e4b5.png" alt="">&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@PutMapping&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;/dogs/{id}&amp;#34;&lt;/span>) &lt;span style="color:#75715e">//`@PutMapping(&amp;#34;/dogs/{id}&amp;#34;)`：这是Spring注解，它将HTTP请求（路径为`/dogs/{id}`的PUT请求）与 `updateDog()` 方法绑定。&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> ResponseEntity&lt;span style="color:#f92672">&amp;lt;&lt;/span>String&lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#a6e22e">updateDog&lt;/span>(&lt;span style="color:#a6e22e">@PathVariable&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> id, &lt;span style="color:#a6e22e">@RequestBody&lt;/span> Dog dog) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dog.&lt;span style="color:#a6e22e">setId&lt;/span>(id); &lt;span style="color:#75715e">// 设置ID&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">boolean&lt;/span> isSuccess &lt;span style="color:#f92672">=&lt;/span> dogMapper.&lt;span style="color:#a6e22e">updateDog&lt;/span>(dog);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (isSuccess) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> ResponseEntity&lt;span style="color:#f92672">&amp;lt;&amp;gt;&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Dog updated successfully&amp;#34;&lt;/span>, HttpStatus.&lt;span style="color:#a6e22e">OK&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> ResponseEntity&lt;span style="color:#f92672">&amp;lt;&amp;gt;&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Failed to update dog&amp;#34;&lt;/span>, HttpStatus.&lt;span style="color:#a6e22e">BAD_REQUEST&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>} 
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="multiupload-接口">
+&lt;a class="header-anchor" href="#multiupload-%e6%8e%a5%e5%8f%a3">&lt;/a>
+MultiUpload 接口
+&lt;/h2>&lt;p>对于GB数据大对象：
+&lt;img src="attachment/d5ba229bc15946a82b98b3fd154f5022.png" alt="">&lt;/p></description></item><item><title>Git 相关</title><link>https://user-xixiboliya.github.io/post/git%E7%9B%B8%E5%85%B3/</link><pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/git%E7%9B%B8%E5%85%B3/</guid><description>&lt;p>本文前半部分较为基础，后半部分对&lt;code>.git&lt;/code>目录下进行了相关的解释。&lt;/p>
+&lt;h2 id="基本命令">
+&lt;a class="header-anchor" href="#%e5%9f%ba%e6%9c%ac%e5%91%bd%e4%bb%a4">&lt;/a>
+基本命令
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>cd : 改变目录
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd .. 退回到上级目录
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd &lt;span style="color:#f92672">(&lt;/span>filename&lt;span style="color:#f92672">)&lt;/span>进入文件夹
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pwd 显示当前目录
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>clear 清屏
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ls 显示当前目录下的所有文件
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>touch （文件名.后缀） 新建一个文件
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rm （文件名.后缀） 删除一个文件
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkdir test 建立一个test目录
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>rm -r test 删除test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mv index.txt test 移动index至test中
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>history 查看历史命令
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>help 帮助
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>exit 退出
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="git项目基础">
+&lt;a class="header-anchor" href="#git%e9%a1%b9%e7%9b%ae%e5%9f%ba%e7%a1%80">&lt;/a>
+git项目基础
+&lt;/h2>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>cd /path/to/your/project &lt;span style="color:#75715e"># 进入项目目录 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git init &lt;span style="color:#75715e"># 初始化 Git 仓库 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git add . &lt;span style="color:#75715e"># 添加所有文件到暂存区 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git commit -m &lt;span style="color:#e6db74">&amp;#34;initial commit&amp;#34;&lt;/span> &lt;span style="color:#75715e"># 提交文件 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git remote add origin https://github.com/your_username/your_repository.git &lt;span style="color:#75715e"># 添加远程仓库 &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git branch -M main 将本地主分支设置为main
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git checkout -b new-branch &lt;span style="color:#75715e"># 创建并切换到新分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git push -u origin new-branch &lt;span style="color:#75715e"># 推送到新分支&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>内容过于基础，不再赘述。
+&lt;img src="imgs/github.png" alt="">&lt;/p></description></item><item><title>Linux/ubuntu VPN教程</title><link>https://user-xixiboliya.github.io/post/vpn%E6%95%99%E7%A8%8B/</link><pubDate>Thu, 14 Nov 2024 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/vpn%E6%95%99%E7%A8%8B/</guid><description>&lt;h2 id="ubuntu-2204-vpn配置教程">
+&lt;a class="header-anchor" href="#ubuntu-2204-vpn%e9%85%8d%e7%bd%ae%e6%95%99%e7%a8%8b">&lt;/a>
+Ubuntu 22.04 VPN配置教程
+&lt;/h2>&lt;hr>
+&lt;p>ubuntu版本不同其实差别不是很大。&lt;/p>
+&lt;h4 id="步骤一建立clash文件夹并导入安装包">
+&lt;a class="header-anchor" href="#%e6%ad%a5%e9%aa%a4%e4%b8%80%e5%bb%ba%e7%ab%8bclash%e6%96%87%e4%bb%b6%e5%a4%b9%e5%b9%b6%e5%af%bc%e5%85%a5%e5%ae%89%e8%a3%85%e5%8c%85">&lt;/a>
+步骤一：建立clash文件夹并导入安装包
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>mkdir clash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd clash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>之后在本仓库下载&lt;code>clashpremium-release-linux-amd64.s1lSU-Ho.tar.gz&lt;/code>导入到&lt;code>~/clash/&lt;/code>路径下，换言之，就是将安装包放置在&lt;code>clash&lt;/code>文件夹里面，之后解压该文件，并修改命名为&lt;code>clash&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>bash
+tar -xzvf clashpremium-release-linux-amd64.s1lSU-Ho.tar.gz.tar.gz
+&lt;/code>&lt;/pre>&lt;h4 id="步骤二配置vpn参数文件">
+&lt;a class="header-anchor" href="#%e6%ad%a5%e9%aa%a4%e4%ba%8c%e9%85%8d%e7%bd%aevpn%e5%8f%82%e6%95%b0%e6%96%87%e4%bb%b6">&lt;/a>
+步骤二：配置VPN参数文件
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>wget -O config.yaml &lt;span style="color:#e6db74">&amp;#34;https://cqd4w.no-mad-world.club/link/JMdr9H6ofZOHDvJO?clash=3&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="步骤三执行配置命令实现启动clash和vpn代理">
+&lt;a class="header-anchor" href="#%e6%ad%a5%e9%aa%a4%e4%b8%89%e6%89%a7%e8%a1%8c%e9%85%8d%e7%bd%ae%e5%91%bd%e4%bb%a4%e5%ae%9e%e7%8e%b0%e5%90%af%e5%8a%a8clash%e5%92%8cvpn%e4%bb%a3%e7%90%86">&lt;/a>
+步骤三：执行配置命令实现启动clash和VPN代理
+&lt;/h4>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>chmod +x clash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>./clash -d . 
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>执行效果图如下所示：
+&lt;img src="imgs/clash_results.png" alt="clash_results image">&lt;/p>
+&lt;h4 id="步骤四购买机场提供的稳定vpn并修改设置网络参数">
+&lt;a class="header-anchor" href="#%e6%ad%a5%e9%aa%a4%e5%9b%9b%e8%b4%ad%e4%b9%b0%e6%9c%ba%e5%9c%ba%e6%8f%90%e4%be%9b%e7%9a%84%e7%a8%b3%e5%ae%9avpn%e5%b9%b6%e4%bf%ae%e6%94%b9%e8%ae%be%e7%bd%ae%e7%bd%91%e7%bb%9c%e5%8f%82%e6%95%b0">&lt;/a>
+步骤四：购买机场提供的稳定VPN,并修改设置网络参数
+&lt;/h4>&lt;p>机场链接&lt;a href="https://ikuuu.one/user/tutorial?os=linux&amp;amp;client=clash##">IKUUU VPN&lt;/a>&lt;/p>
+&lt;p>在这个机场里面选择VPN网络包,效果如下图所示
+&lt;img src="imgs/VPN_merchant.png" alt="VPN_choice image">
+以 Ubuntu 20.04 为例，打开系统设置，选择网络，点击网络代理右边的&lt;code>设置&lt;/code>按钮，选择手动，填写&lt;code> HTTP&lt;/code> 和 &lt;code>HTTPS&lt;/code> 代理为 &lt;code>127.0.0.1:7890&lt;/code>，填写 &lt;code>Socks&lt;/code> 主机为 &lt;code>127.0.0.1:7891&lt;/code>，即可启用系统代理&lt;/p>
+&lt;p>修改图如下所示&lt;/p>
+&lt;p>&lt;img src="imgs/change_results.png" alt="change_results image">&lt;/p>
+&lt;p>之后点击&lt;code>clash&lt;/code>链接&lt;a href="https://clash.razord.top/#/proxies">clash board&lt;/a>&lt;/p>
+&lt;p>clash界面如下图所示&lt;/p>
+&lt;p>&lt;img src="imgs/clash.png" alt="clash image">&lt;/p>
+&lt;p>点击确定，之后便可享用VPN了&lt;/p>
+&lt;p>最终clash效果图如下所示：&lt;/p>
+&lt;p>&lt;img src="imgs/VPN_results.png" alt="VPN_results image">&lt;/p>
+&lt;p>外网游行&amp;ndash;&lt;code>Youtube&lt;/code>展示:&lt;/p>
+&lt;p>&lt;img src="imgs/Youtube.png" alt="Youtube image">&lt;/p>
+&lt;h4 id="平日开启vpn的方法">
+&lt;a class="header-anchor" href="#%e5%b9%b3%e6%97%a5%e5%bc%80%e5%90%afvpn%e7%9a%84%e6%96%b9%e6%b3%95">&lt;/a>
+平日开启VPN的方法
+&lt;/h4>&lt;p>在终端中&lt;code>cd&lt;/code>到&lt;code>clash&lt;/code>的文件夹下，输入&lt;code>./clash -d .&lt;/code>启动clash，启动完之后一般不要使用&lt;code>ctrl+c&lt;/code>或&lt;code>ctrl+z&lt;/code>打断运行，否则再次输入&lt;code>./clash -d .&lt;/code>运行会出现端口占用，如果打断了就只能：&lt;/p></description></item><item><title>ssh与remote ssh的使用</title><link>https://user-xixiboliya.github.io/post/sshremotessh/</link><pubDate>Sat, 07 Sep 2024 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/sshremotessh/</guid><description>&lt;h2 id="ssh简介">
+&lt;a class="header-anchor" href="#ssh%e7%ae%80%e4%bb%8b">&lt;/a>
+ssh简介
+&lt;/h2>&lt;p>ssh是一个多义词。&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>SSH（Secure Shell，安全外壳）是一种&lt;strong>网络安全协议&lt;/strong>。SSH协议通过对网络数据进行加密和验证，在不安全的网络环境中提供了安全的网络服务。作为Telnet和其他不安全远程shell协议的安全替代方案，目前SSH协议已经被全世界广泛使用，大多数设备都支持SSH功能。&lt;a href="https://info.support.huawei.com/info-finder/encyclopedia/zh/SSH.html">关于ssh协议的更多内容&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ssh是通过SSH协议提供远程终端(壳shell)访问（远程命令行登入）的&lt;strong>计算机服务&lt;/strong>。其分为客户端与服务端，其中客户端预装在几乎每一台windows与linux上，而服务端需要手动安装，以防止被攻击破解。在客户端登录服务端后，默认情况下，客户端的命令行指令会被发送到服务端，服务端的指令执行结果也会发回客户端，其效果如同直接使用服务端的命令行一样（即远程终端）；通过重定向程序的输入输出流到ssh服务，也可以达到为明文流量加密的作用;ssh的其他应用还包括端口转发，代理等，堪称万能的网络工具。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Java三大框架。（显然不是这个）&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="ssh使用入门">
+&lt;a class="header-anchor" href="#ssh%e4%bd%bf%e7%94%a8%e5%85%a5%e9%97%a8">&lt;/a>
+ssh使用入门
+&lt;/h2>&lt;h3 id="在服务器安装ssh服务端">
+&lt;a class="header-anchor" href="#%e5%9c%a8%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%ae%89%e8%a3%85ssh%e6%9c%8d%e5%8a%a1%e7%ab%af">&lt;/a>
+在服务器安装ssh服务端
+&lt;/h3>&lt;p>ssh服务由多个软件提供，其中Linux上openSSH是开源免费的，可以通过下列命令直接安装&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt install openssh-server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>
+&lt;p>上述命令的显示样式在markdown中被称为&amp;quot;代码块&amp;quot;，代码块中的代码会根据注释中指明的计算机语言被高亮与上色。不作说明的情况下，其中的shell命令都需要被执行。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在官方文档中，每行shell命令的开头往往会加上&lt;code>$&lt;/code>，从而将多个命令与对应的输出之间做区分。但是为了方便读者观看与直接复制使用命令，本文档约定命令的输出应当尽量以图片的形式进行展示，因循此例。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="获取服务器ip地址">
+&lt;a class="header-anchor" href="#%e8%8e%b7%e5%8f%96%e6%9c%8d%e5%8a%a1%e5%99%a8ip%e5%9c%b0%e5%9d%80">&lt;/a>
+获取服务器ip地址
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt install net-tools
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ifconfig
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="1.png" alt="output">&lt;/p>
+&lt;p>观察输出，其中第一项&lt;code>eth0&lt;/code>是一个以太网网关，本机地址为172.22.44.10(wsl2的默认地址)，第二项&lt;code>lo&lt;/code>是本地环回地址(localhost 127.0.0.1)。通过同样的方法，在其他网络中也可以分辨出你想通过哪一个网络访问该服务器，以及该服务器在网络中的ip地址是什么。&lt;/p>
+&lt;h3 id="登入">
+&lt;a class="header-anchor" href="#%e7%99%bb%e5%85%a5">&lt;/a>
+登入
+&lt;/h3>&lt;p>ssh支持两种最常见的登录方法，一是密码验证，另一种是利用数字签名算法进行身份验证。&lt;/p>
+&lt;h4 id="密码验证">
+&lt;a class="header-anchor" href="#%e5%af%86%e7%a0%81%e9%aa%8c%e8%af%81">&lt;/a>
+密码验证
+&lt;/h4>&lt;p>在终端(Bash或powershell)输入以下命令&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ssh &lt;span style="color:#e6db74">${&lt;/span>UserName&lt;span style="color:#e6db74">}&lt;/span>@&lt;span style="color:#e6db74">${&lt;/span>IPaddress&lt;span style="color:#e6db74">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
+&lt;ol>
+&lt;li>&lt;code>${UserName}&lt;/code>与&lt;code>${IPaddress}&lt;/code>是Bash中引用变量的方式，在此处分别指代：服务器上想要登录的账户的用户名，服务器地址。比如你需要访问的服务器的ip是172.22.44.10，用户名是rc，那么应该输入&lt;code>ssh rc@172.22.44.10&lt;/code>&lt;/li>
+&lt;li>实际上&lt;code>${IPaddress}&lt;/code>的位置还可以填写主机名&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>如果是第一次登录，成功进入登录验证阶段&lt;/p>
+&lt;p>&lt;img src="3.png" alt="verification messages">&lt;/p>
+&lt;p>此时输入&lt;code>yes&lt;/code>（注意不能是缩写&lt;code>y&lt;/code>,&lt;code>Y&lt;/code>,&lt;code>(Enter)&lt;/code>），会提示输入密码，正确与不正确均有反馈，遵循提示即可&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如果未成功进入登录验证阶段&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>ip地址/主机名输错，超时&lt;/p>
+&lt;p>&lt;img src="4.png" alt="alt text">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>登录的主机ip地址与之前登录过的不同主机的ip地址恰好相同&lt;/p>
+&lt;p>&lt;img src="2.png" alt="error messages">&lt;/p>
+&lt;p>参考解决方案：&lt;a href="https://blog.csdn.net/wangguchao/article/details/85614914">问题解决——SSH时出现WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="秘钥验证">
+&lt;a class="header-anchor" href="#%e7%a7%98%e9%92%a5%e9%aa%8c%e8%af%81">&lt;/a>
+秘钥验证
+&lt;/h4>&lt;h5 id="首先生成非对称加密算法的密钥对">
+&lt;a class="header-anchor" href="#%e9%a6%96%e5%85%88%e7%94%9f%e6%88%90%e9%9d%9e%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95%e7%9a%84%e5%af%86%e9%92%a5%e5%af%b9">&lt;/a>
+首先生成非对称加密算法的密钥对
+&lt;/h5>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ssh-keygen
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Ubuntu上的输出结果
+&lt;img src="5.png" alt="Ubuntu上的输出结果">&lt;/p>
+&lt;p>Windows上的输出结果
+&lt;img src="6.png" alt="Windows上的输出结果">&lt;/p>
+&lt;p>接下来会弹出一堆选项，要求你确认一堆东西或者设置密码之类的，为了方便，一直按&lt;code>Enter&lt;/code>直到完成设置。&lt;/p></description></item></channel></rss>

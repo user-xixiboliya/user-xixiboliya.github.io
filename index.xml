@@ -266,7 +266,93 @@ tar -xzvf clashpremium-release-linux-amd64.s1lSU-Ho.tar.gz.tar.gz
 &lt;h4 id="平日开启vpn的方法">
 &lt;a class="header-anchor" href="#%e5%b9%b3%e6%97%a5%e5%bc%80%e5%90%afvpn%e7%9a%84%e6%96%b9%e6%b3%95">&lt;/a>
 平日开启VPN的方法
-&lt;/h4>&lt;p>在终端中&lt;code>cd&lt;/code>到&lt;code>clash&lt;/code>的文件夹下，输入&lt;code>./clash -d .&lt;/code>启动clash，启动完之后一般不要使用&lt;code>ctrl+c&lt;/code>或&lt;code>ctrl+z&lt;/code>打断运行，否则再次输入&lt;code>./clash -d .&lt;/code>运行会出现端口占用，如果打断了就只能：&lt;/p></description></item><item><title>一种健康的现代斯多葛主义</title><link>https://user-xixiboliya.github.io/post/%E5%81%A5%E5%BA%B7%E7%9A%84%E6%96%AF%E5%A4%9A%E8%91%9B%E4%B8%BB%E4%B9%89/</link><pubDate>Thu, 23 May 2024 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E5%81%A5%E5%BA%B7%E7%9A%84%E6%96%AF%E5%A4%9A%E8%91%9B%E4%B8%BB%E4%B9%89/</guid><description>&lt;h3 id="一次最意外的考验">
+&lt;/h4>&lt;p>在终端中&lt;code>cd&lt;/code>到&lt;code>clash&lt;/code>的文件夹下，输入&lt;code>./clash -d .&lt;/code>启动clash，启动完之后一般不要使用&lt;code>ctrl+c&lt;/code>或&lt;code>ctrl+z&lt;/code>打断运行，否则再次输入&lt;code>./clash -d .&lt;/code>运行会出现端口占用，如果打断了就只能：&lt;/p></description></item><item><title>ssh与remote ssh的使用</title><link>https://user-xixiboliya.github.io/post/sshremotessh/</link><pubDate>Sat, 07 Sep 2024 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/sshremotessh/</guid><description>&lt;h2 id="ssh简介">
+&lt;a class="header-anchor" href="#ssh%e7%ae%80%e4%bb%8b">&lt;/a>
+ssh简介
+&lt;/h2>&lt;p>ssh是一个多义词。&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>SSH（Secure Shell，安全外壳）是一种&lt;strong>网络安全协议&lt;/strong>。SSH协议通过对网络数据进行加密和验证，在不安全的网络环境中提供了安全的网络服务。作为Telnet和其他不安全远程shell协议的安全替代方案，目前SSH协议已经被全世界广泛使用，大多数设备都支持SSH功能。&lt;a href="https://info.support.huawei.com/info-finder/encyclopedia/zh/SSH.html">关于ssh协议的更多内容&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ssh是通过SSH协议提供远程终端(壳shell)访问（远程命令行登入）的&lt;strong>计算机服务&lt;/strong>。其分为客户端与服务端，其中客户端预装在几乎每一台windows与linux上，而服务端需要手动安装，以防止被攻击破解。在客户端登录服务端后，默认情况下，客户端的命令行指令会被发送到服务端，服务端的指令执行结果也会发回客户端，其效果如同直接使用服务端的命令行一样（即远程终端）；通过重定向程序的输入输出流到ssh服务，也可以达到为明文流量加密的作用;ssh的其他应用还包括端口转发，代理等，堪称万能的网络工具。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Java三大框架。（显然不是这个）&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="ssh使用入门">
+&lt;a class="header-anchor" href="#ssh%e4%bd%bf%e7%94%a8%e5%85%a5%e9%97%a8">&lt;/a>
+ssh使用入门
+&lt;/h2>&lt;h3 id="在服务器安装ssh服务端">
+&lt;a class="header-anchor" href="#%e5%9c%a8%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%ae%89%e8%a3%85ssh%e6%9c%8d%e5%8a%a1%e7%ab%af">&lt;/a>
+在服务器安装ssh服务端
+&lt;/h3>&lt;p>ssh服务由多个软件提供，其中Linux上openSSH是开源免费的，可以通过下列命令直接安装&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt install openssh-server
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>
+&lt;p>上述命令的显示样式在markdown中被称为&amp;quot;代码块&amp;quot;，代码块中的代码会根据注释中指明的计算机语言被高亮与上色。不作说明的情况下，其中的shell命令都需要被执行。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在官方文档中，每行shell命令的开头往往会加上&lt;code>$&lt;/code>，从而将多个命令与对应的输出之间做区分。但是为了方便读者观看与直接复制使用命令，本文档约定命令的输出应当尽量以图片的形式进行展示，因循此例。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="获取服务器ip地址">
+&lt;a class="header-anchor" href="#%e8%8e%b7%e5%8f%96%e6%9c%8d%e5%8a%a1%e5%99%a8ip%e5%9c%b0%e5%9d%80">&lt;/a>
+获取服务器ip地址
+&lt;/h3>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt install net-tools
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ifconfig
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="1.png" alt="output">&lt;/p>
+&lt;p>观察输出，其中第一项&lt;code>eth0&lt;/code>是一个以太网网关，本机地址为172.22.44.10(wsl2的默认地址)，第二项&lt;code>lo&lt;/code>是本地环回地址(localhost 127.0.0.1)。通过同样的方法，在其他网络中也可以分辨出你想通过哪一个网络访问该服务器，以及该服务器在网络中的ip地址是什么。&lt;/p>
+&lt;h3 id="登入">
+&lt;a class="header-anchor" href="#%e7%99%bb%e5%85%a5">&lt;/a>
+登入
+&lt;/h3>&lt;p>ssh支持两种最常见的登录方法，一是密码验证，另一种是利用数字签名算法进行身份验证。&lt;/p>
+&lt;h4 id="密码验证">
+&lt;a class="header-anchor" href="#%e5%af%86%e7%a0%81%e9%aa%8c%e8%af%81">&lt;/a>
+密码验证
+&lt;/h4>&lt;p>在终端(Bash或powershell)输入以下命令&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ssh &lt;span style="color:#e6db74">${&lt;/span>UserName&lt;span style="color:#e6db74">}&lt;/span>@&lt;span style="color:#e6db74">${&lt;/span>IPaddress&lt;span style="color:#e6db74">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
+&lt;ol>
+&lt;li>&lt;code>${UserName}&lt;/code>与&lt;code>${IPaddress}&lt;/code>是Bash中引用变量的方式，在此处分别指代：服务器上想要登录的账户的用户名，服务器地址。比如你需要访问的服务器的ip是172.22.44.10，用户名是rc，那么应该输入&lt;code>ssh rc@172.22.44.10&lt;/code>&lt;/li>
+&lt;li>实际上&lt;code>${IPaddress}&lt;/code>的位置还可以填写主机名&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>如果是第一次登录，成功进入登录验证阶段&lt;/p>
+&lt;p>&lt;img src="3.png" alt="verification messages">&lt;/p>
+&lt;p>此时输入&lt;code>yes&lt;/code>（注意不能是缩写&lt;code>y&lt;/code>,&lt;code>Y&lt;/code>,&lt;code>(Enter)&lt;/code>），会提示输入密码，正确与不正确均有反馈，遵循提示即可&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如果未成功进入登录验证阶段&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>ip地址/主机名输错，超时&lt;/p>
+&lt;p>&lt;img src="4.png" alt="alt text">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>登录的主机ip地址与之前登录过的不同主机的ip地址恰好相同&lt;/p>
+&lt;p>&lt;img src="2.png" alt="error messages">&lt;/p>
+&lt;p>参考解决方案：&lt;a href="https://blog.csdn.net/wangguchao/article/details/85614914">问题解决——SSH时出现WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="秘钥验证">
+&lt;a class="header-anchor" href="#%e7%a7%98%e9%92%a5%e9%aa%8c%e8%af%81">&lt;/a>
+秘钥验证
+&lt;/h4>&lt;h5 id="首先生成非对称加密算法的密钥对">
+&lt;a class="header-anchor" href="#%e9%a6%96%e5%85%88%e7%94%9f%e6%88%90%e9%9d%9e%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86%e7%ae%97%e6%b3%95%e7%9a%84%e5%af%86%e9%92%a5%e5%af%b9">&lt;/a>
+首先生成非对称加密算法的密钥对
+&lt;/h5>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ssh-keygen
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Ubuntu上的输出结果
+&lt;img src="5.png" alt="Ubuntu上的输出结果">&lt;/p>
+&lt;p>Windows上的输出结果
+&lt;img src="6.png" alt="Windows上的输出结果">&lt;/p>
+&lt;p>接下来会弹出一堆选项，要求你确认一堆东西或者设置密码之类的，为了方便，一直按&lt;code>Enter&lt;/code>直到完成设置。&lt;/p></description></item><item><title>一种健康的现代斯多葛主义</title><link>https://user-xixiboliya.github.io/post/%E5%81%A5%E5%BA%B7%E7%9A%84%E6%96%AF%E5%A4%9A%E8%91%9B%E4%B8%BB%E4%B9%89/</link><pubDate>Thu, 23 May 2024 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E5%81%A5%E5%BA%B7%E7%9A%84%E6%96%AF%E5%A4%9A%E8%91%9B%E4%B8%BB%E4%B9%89/</guid><description>&lt;h3 id="一次最意外的考验">
 &lt;a class="header-anchor" href="#%e4%b8%80%e6%ac%a1%e6%9c%80%e6%84%8f%e5%a4%96%e7%9a%84%e8%80%83%e9%aa%8c">&lt;/a>
 一次最意外的考验
 &lt;/h3>&lt;p>“骑行者vs.小鹿”——这是护士递给我的医学报告的标题。在我正为这本书写结尾时，我迎来了一场最终的考验，而这恰是我未曾预演的事情。我先生马歇尔那时正在离家不远的岩溪公园（Rock Greek Park）骑车，他碰到了一只拿不定主意该如何过马路的鹿。它起初选择了一个方向，已经快要到达马路的另一边了，但是看到一辆车开过来，它立即转身返回，然后又再次尝试过马路。我先生和那只鹿发生了碰撞。那只鹿毫发无伤地逃走了，而留给我先生的是：七根断了的肋骨、肺萎陷和肩膀脱臼。急诊室医生告诉我，他“遭遇了惨烈的撞击”，我听到这个消息之后一度昏厥。“我们将不得不把他送到华盛顿特区的一家创伤中心。”医生说。&lt;/p>
@@ -353,28 +439,6 @@ tar -xzvf clashpremium-release-linux-amd64.s1lSU-Ho.tar.gz.tar.gz
 &lt;div class="friend-wrap" data-aos="zoom-in">
  
  &lt;div class="friend-item-wrap">
- &lt;a href="https://d-sketon.github.io/" rel="noopener external nofollow noreferrer" target="_blank">&lt;/a>
- &lt;div class="friend-icon-wrap">
- &lt;div class="friend-icon">
- &lt;img
- data-src="https://d-sketon.github.io/avatar/avatar.webp"
- data-sizes="auto"
- alt="D-Sketon"
- class="lazyload"
- />
- &lt;/div>
- &lt;/div>
- &lt;div class="friend-info-wrap">
- &lt;div class="friend-name">
- D-Sketon
- &lt;/div>
- &lt;div class="friend-desc">
- Hexo 建站
- &lt;/div>
- &lt;/div>
- &lt;/div>
- 
- &lt;div class="friend-item-wrap">
  &lt;a href="https://d-sketon.github.io/astro-theme-reimu/" rel="noopener external nofollow noreferrer" target="_blank">&lt;/a>
  &lt;div class="friend-icon-wrap">
  &lt;div class="friend-icon">
@@ -392,6 +456,50 @@ tar -xzvf clashpremium-release-linux-amd64.s1lSU-Ho.tar.gz.tar.gz
  &lt;/div>
  &lt;div class="friend-desc">
  Astro 建站
+ &lt;/div>
+ &lt;/div>
+ &lt;/div>
+ 
+ &lt;div class="friend-item-wrap">
+ &lt;a href="https://axi404.top/" rel="noopener external nofollow noreferrer" target="_blank">&lt;/a>
+ &lt;div class="friend-icon-wrap">
+ &lt;div class="friend-icon">
+ &lt;img
+ data-src="https://xjtu.app/user_avatar/xjtu.app/forever/288/592_2.png"
+ data-sizes="auto"
+ alt="阿汐"
+ class="lazyload"
+ />
+ &lt;/div>
+ &lt;/div>
+ &lt;div class="friend-info-wrap">
+ &lt;div class="friend-name">
+ 阿汐
+ &lt;/div>
+ &lt;div class="friend-desc">
+ 一位喵喵学长……
+ &lt;/div>
+ &lt;/div>
+ &lt;/div>
+ 
+ &lt;div class="friend-item-wrap">
+ &lt;a href="https://blog.juniortree.com/" rel="noopener external nofollow noreferrer" target="_blank">&lt;/a>
+ &lt;div class="friend-icon-wrap">
+ &lt;div class="friend-icon">
+ &lt;img
+ data-src="https://xjtu.app/uploads/default/optimized/2X/8/8a31a06c2abe0444c1ff21e975534d173ef3c88b_2_750x750.jpeg"
+ data-sizes="auto"
+ alt="小树"
+ class="lazyload"
+ />
+ &lt;/div>
+ &lt;/div>
+ &lt;div class="friend-info-wrap">
+ &lt;div class="friend-name">
+ 小树
+ &lt;/div>
+ &lt;div class="friend-desc">
+ 「妳突然對我説 七里香的名字很美」
  &lt;/div>
  &lt;/div>
  &lt;/div>
