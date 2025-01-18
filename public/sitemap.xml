@@ -20,10 +20,19 @@
     <loc>http://localhost:1313/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2024-12-29T16:00:00-07:20</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/doxygen/</loc>
+    <lastmod>2024-12-24T11:00:00-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/post/doxygencommit/</loc>
     <lastmod>2024-12-24T11:00:00-07:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2024-12-24T11:00:00-07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/post/%E7%BD%AE%E8%BA%AB%E4%BA%8B%E5%86%85/</loc>
+    <lastmod>2024-12-23T16:00:00-07:20</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/%E9%80%9A%E8%AF%86/</loc>
     <lastmod>2024-12-23T16:00:00-07:20</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/datalab/</loc>
@@ -43,7 +52,5 @@
   </url><url>
     <loc>http://localhost:1313/friend/</loc>
     <lastmod>2022-06-09T20:12:52+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>

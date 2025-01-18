@@ -3,6 +3,8 @@ title: Git 相关
 date: 2025-01-15
 description: 本文前半部分较为基础，后半部分对.git目录下进行了相关的解释。
 draft: false
+categories: 
+    - technology
 resources:
   - src: "**.{png,jpg}"
     title: "Image #:counter"

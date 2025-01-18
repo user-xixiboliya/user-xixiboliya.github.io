@@ -2,6 +2,8 @@
 title: 'Doxygen 与 commit规范'
 draft: false
 description: Doxygen 是一种**文档生成工具**，常用于整个项目的Doxyfile的生成，主要用于从源代码中提取注释，并生成技术文档。它广泛用于 C++、C、Java、Python 等多种编程语言中，帮助开发者自动生成文档，从而提高代码的可读性和维护性。
+tags: 
+    - Doxygen
 date: 2024-12-24T11:00:00-07:00
 lastmod: 2024-12-24T11:00:00-07:00
 ---

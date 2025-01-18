@@ -1,8 +1,12 @@
 - name: D-Sketon
-  url: https://d-sketon.github.io/
-  desc: Hexo 建站
-  image: https://d-sketon.github.io/avatar/avatar.webp
-- name: D-Sketon
   url: https://d-sketon.github.io/astro-theme-reimu/
   desc: Astro 建站
   image: https://d-sketon.github.io/avatar/avatar.webp
+- name: 阿汐
+  url: https://axi404.top/
+  desc: 一位喵喵学长……
+  image: https://xjtu.app/user_avatar/xjtu.app/forever/288/592_2.png
+- name: 小树
+  url: https://blog.juniortree.com/
+  desc: 「妳突然對我説 七里香的名字很美」
+  image: https://xjtu.app/uploads/default/optimized/2X/8/8a31a06c2abe0444c1ff21e975534d173ef3c88b_2_750x750.jpeg

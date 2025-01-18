@@ -10,6 +10,7 @@ resources:
       byline: ""
 categories:
   - backend
+  - technology
 ---
 存储系统分为四类：
 - 单机存储 File-system Key-Value

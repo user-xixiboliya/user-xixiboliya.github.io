@@ -3,6 +3,8 @@ title: Linux/ubuntu VPN教程
 date: 2024-11-14
 description: >
 draft: false
+categories:
+    - technology
 resources:
   - src: "**.{png,jpg}"
     title: "Image #:counter"

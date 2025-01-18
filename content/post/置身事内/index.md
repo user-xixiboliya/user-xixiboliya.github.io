@@ -2,6 +2,8 @@
 title: '《置身事内》读后记'
 description: 《置身事内》——一本关于中国政府的书
 draft: false
+categories: 
+    - 通识
 date: 2024-12-23T15:00:00-07:10
 lastmod: 2024-12-23T16:00:00-07:20
 ---
