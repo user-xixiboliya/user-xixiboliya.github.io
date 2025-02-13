@@ -1,6 +1,6 @@
 ---
 title: 'my 2024 summary'
-description: 先开一篇文章
+description: 笔者迟到的2024年终总结。
 draft: false
 categories:
     - life  
