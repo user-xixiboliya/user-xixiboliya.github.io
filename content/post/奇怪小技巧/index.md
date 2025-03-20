@@ -2,6 +2,8 @@
 title: '一些奇怪小技巧'
 description: 记录一下奇怪的东西。
 draft: false
+categories：
+  - common
 date: 2025-01-23T15:00:00-07:10
 lastmod: 2025-02-14T16:00:00-07:20
 ---
