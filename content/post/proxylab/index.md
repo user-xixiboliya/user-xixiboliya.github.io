@@ -146,7 +146,8 @@ void *thread(void *vargp)
     Close(connfd);
     return 0;
 }
-   ```
+```
+
 
 将上述`printf("Hello,world!\n");`替换成具体的实现`GET`方法的`void doit()`函数，在`void doit()`中，要求实现对`http://localhost:7778/`(`tiny`的访问路径)的解析，解析成`hostname`，`port`，`path='/'`三部分，`hostname , port`用于`Open_clientfd()`打开`server`的`<hostname,port>`，返回套接字描述符，准备读写。
 
@@ -160,6 +161,7 @@ void *thread(void *vargp)
 - **功能**：分配足够的内存来复制字符串 `s`，并将 `s` 的内容复制到新分配的内存中，然后返回指向新字符串的指针。如果内存分配失败，则返回 `NULL`。在代码中，`strdup("80")` 用于在没有明确指定端口号时，为 `url_data->port` 分配内存并复制默认端口号 `"80"`，`strdup(path_start)` 和 `strdup("/")` 用于为 `url_data->path` 分配内存并复制相应的路径字符串。
 - `char *strncpy(char *dest, const char *src, size_t n);`
 - **功能**：将字符串 `src` 的前 `n` 个字符复制到字符串 `dest` 中。如果 `src` 的长度小于 `n`，则 `dest` 会以 null 字符填充剩余位置；如果 `src` 的长度大于等于 `n`，则 `dest` 不会自动添加 null 字符，需要手动添加。在代码中，`strncpy(url_data->hostname, host_start, host_len)` 用于将提取的主机名字符串复制到 `url_data->hostname` 中，`strncpy(url_data->port,port_start + 1,port_len)` 用于将提取的端口号字符串复制到 `url_data->port` 中。
+
 ```c
 void parse_url(URL* url_data, const char* url) {
     if (!url_data || !url) return;
@@ -194,6 +196,7 @@ void parse_url(URL* url_data, const char* url) {
     printf("Path: %s\n", url_data->path);
 }
 ```
+
 ### 构建请求头
 要求构建的请求头格式：
 ```bash
@@ -518,7 +521,9 @@ void *thread(void *vargp)
 
  `Proxy` 中，当多个客户端或一个客户端多次访问同一个服务端的同一对象时，`Proxy` 每次都要从服务端请求，这是很耗费时间的。如果 `Proxy` 能把访问过的对象存储下来，那么再次遇到同样的请求时，就不需要再连接到服务端了，可以直接回复给客户端。而 `Cache` 的大小并不是无限的，所以就又要考虑替换策略，本实验要求使用 `LRU`，采用的是读者与写者的模型，读者的优先级高于写者。（见书上707页）
 
+
 [CSAPP | Lab9-Proxy Lab 深入解析 - 知乎](https://zhuanlan.zhihu.com/p/497982541)
+
 `cache`，包括`cache.c`和`cache.h`：
 ```c
 // cache.h
@@ -668,7 +673,7 @@ int query_cache(cache_header *cache, int connfd, const char *url)
 
 ## 修改makefile
 由于自行创建了`cache.c`和`cache.h`文件，需要按照如下修改`Makefile`：
-```c
+```bash
 # Makefile for Proxy Lab
 #
 # You may modify this file any way you like (except for the handin
