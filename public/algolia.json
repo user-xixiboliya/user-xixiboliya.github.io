@@ -15,6 +15,18 @@
   
   , 
   {
+    "objectID": "1737843480",
+    "permalink": "/post/proxylab/",
+    "title": "CMU Proxylab",
+    
+    "content": "本文的所有配置、指令均以 Ubuntu 环境为例，而且假设你不具有桌面环境，只有纯命令行环境。\nPre-start 在工作目录下解压proxylab - handout.tar：\ntar -xvf proxylab-handout.tar -x：表示提取文件，也就是解压操作。 -v：用于显示详细的解压过程，方便你了解解压的进度和具体文件。 -f：指定要处理的文件名，后面紧跟要解压的 .tar 文件的名称。 以下是简要介绍，本文的根工作空间是proxylab-handout：\nproxylab-handout ├── Makefile ├── README ├── csapp.c |—— cache.c //自行编写的cache |—— cache.h //自行编写的chche |—— proxy.h ├── csapp.h ├── driver.sh //简单自动评分程序。进行基本的合理性检查。 ├── free-port.sh ├── nop-server.py ├── port-for-user.pl //给出偶数端口号，以便和Tiny web server 进行 testing。 ├── proxy.c //打印出一个特定的 HTTP `User-Agent` 头部信息到标准输出。用于标识客户端软件的类型和版本，服务器可以根据这个信息来提供不同的服务或内容。 └── tiny //tiny服务器 环境配置 配置linux 版本的chrome 和 chrome driver 。两者版本需对应，还有自动化测试工具Selenium，参考[Arthals\u0026amp;rsquo;ink环境配置](更适合北大宝宝体质的 Proxy Lab 踩坑记 • Arthals\u0026amp;rsquo; ink)\nwget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb sudo dpkg -i google-chrome-stable_current_amd64.deb rm google-chrome-stable_current_amd64.deb wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/\u0026amp;lt;your …",
+    
+    "date": "2025-01-25 15:00:00",
+    "updated": "2025-02-16 16:00:00"
+  }
+  
+  , 
+  {
     "objectID": "1737670200",
     "permalink": "/post/%E5%A5%87%E6%80%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/",
     "title": "一些奇怪小技巧",
