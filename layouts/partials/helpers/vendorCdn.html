@@ -9,18 +9,22 @@
   {{ if reflect.IsMap . }}
     {{ $src = .src }}
   {{ end }}
-  {{ $contentToken := split $src "|" }}
-  {{ if ne (len $contentToken) 2 }}
-    {{ errorf "invalid vendor format: %s" $src }}
-  {{ end }}
+  {{ if strings.Contains $src "|" }}
+    {{ $contentToken := split $src "|" }}
+    {{ if ne (len $contentToken) 2 }}
+      {{ errorf "invalid vendor format: %s" $src }}
+    {{ end }}
 
-  {{ $cdn := index $contentToken 0 }}
-  {{ $path := index $contentToken 1 }}
+    {{ $cdn := index $contentToken 0 }}
+    {{ $path := index $contentToken 1 }}
 
-  {{ $vendorConfig := index $site.Data.vendor $cdn }}
-  {{ if not $vendorConfig }}
-    {{ errorf "invalid cdn: %s" $src }}
+    {{ $vendorConfig := index $site.Data.vendor $cdn }}
+    {{ if not $vendorConfig }}
+      {{ errorf "invalid cdn: %s" $src }}
+    {{ end }}
+    {{ $result = $result | append (printf "%s%s" $vendorConfig $path) }}
+  {{ else }}
+    {{ $result = $result | append ($src | absURL) }}
   {{ end }}
-  {{ $result = $result | append (printf "%s%s" $vendorConfig $path) }}
 {{ end }}
 {{ return $result }}

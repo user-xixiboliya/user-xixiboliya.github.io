@@ -16,7 +16,7 @@
 .article-inner {
   background: var(--color-wrap);
   border-radius: $post-radius;
-  overflow: hidden;
+  display: flow-root;
   transition: 0.3s;
 }
 
@@ -32,10 +32,10 @@
   font-size: 14px;
   color: var(--red-1);
   background: var(--red-5);
-  border-radius: 20px;
+  border-radius: $post-radius;
   padding: 10px 18px;
   margin: 0 12px 1em 0;
-  box-shadow: 0 0 5px 3px var(--color-meta-shadow);
+  box-shadow: 0 0 5px 2px var(--color-meta-shadow);
   transition: 0.3s;
 }
 
@@ -79,7 +79,7 @@
   p,
   table {
     line-height: $line-height;
-    margin: $line-height 0;
+    margin: ($line-height / 3 * 2) 0;
   }
 
   h1,
@@ -90,7 +90,7 @@
   h6 {
     font-weight: bold;
     line-height: $line-height-title;
-    margin: $line-height-title 0;
+    margin: $line-height-title 0 ($line-height-title / 3 * 2);
 
     @if $icon_font {
       &:before {
@@ -136,6 +136,7 @@
   a {
     color: var(--color-link);
     text-decoration: none;
+    word-break: break-word;
 
     &:hover {
       text-decoration: underline;
@@ -145,8 +146,8 @@
   ul,
   ol,
   dl {
-    margin-top: $line-height;
-    margin-bottom: $line-height;
+    margin-top: ($line-height / 3 * 2);
+    margin-bottom: ($line-height / 3 * 2);
   }
 
   li {
@@ -158,14 +159,17 @@
     }
   }
 
+  img {
+    opacity: 0;
+    transition: 0.3s;
+  }
+
   img,
   video {
     max-width: 100%;
     height: auto;
     display: block;
     margin: auto;
-    opacity: 0;
-    transition: 0.3s;
   }
 
   img.lazyloaded {
@@ -197,14 +201,14 @@
   blockquote {
     background: var(--red-5-5);
     border-left: 6px var(--red-4) solid;
-    margin: $line-height 0;
+    margin: ($line-height / 3 * 2) 0;
     border-radius: $post-radius;
     transition: 0.3s;
     padding: 1px 10px;
     box-shadow: 0 0 5px 2px var(--color-meta-shadow);
 
     &:hover {
-      box-shadow: 0 0 6px 6px var(--color-meta-shadow);
+      box-shadow: 0 0 6px 4px var(--color-meta-shadow);
     }
 
     footer {
@@ -218,6 +222,49 @@
         }
       }
     }
+  }
+
+  details {
+    margin: 1.8em 0px;
+    padding: 18px 12px;
+    border-radius: $post-radius;
+    background-color: var(--red-5-5);
+    box-shadow: 0 0 5px 2px var(--color-meta-shadow);
+    transition: 0.3s;
+
+    &:hover {
+      box-shadow: 0 0 6px 4px var(--color-meta-shadow);
+    }
+  }
+
+  summary {
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.3s;
+  }
+
+  summary:hover {
+    background-color: var(--red-5);
+  }
+
+  details[open] summary {
+    background-color: var(--red-5);
+  }
+
+  details[open] summary:hover {
+    background-color: var(--red-5);
+  }
+
+  details p {
+    margin: 20px 0 0;
+    padding: 10px;
+    background-color: var(--color-footer-background);
+    border-radius: 10px;
+    transition: 0.3s;
   }
 
   .caption {
@@ -253,11 +300,11 @@
   display: inline-block;
   line-height: 1em;
   padding: 10px 18px;
-  border-radius: 20px;
+  border-radius: $post-radius;
   background: var(--red-5);
   color: var(--red-1);
   text-decoration: none;
-  box-shadow: 0 0 5px 3px var(--color-meta-shadow);
+  box-shadow: 0 0 5px 2px var(--color-meta-shadow);
   transition: 0.3s;
 
   &:hover {
@@ -271,6 +318,10 @@
   @include clearfix;
   font-size: 14px;
   margin: 0 $article-padding + 15px $article-padding;
+
+  @media #{$mg-normal} {
+    margin: 0 $article-padding $article-padding;
+  }
 
   &:hover &:before {
     opacity: 0.5;
@@ -310,11 +361,11 @@
   text-decoration: none;
   text-transform: uppercase;
   background: var(--red-5);
-  border-radius: 20px;
-  padding: 10px 18px;
+  border-radius: $post-radius;
+  padding: 8px 15px;
   margin-top: $article-padding;
   margin-right: 10px;
-  box-shadow: 0 0 5px 3px var(--color-meta-shadow);
+  box-shadow: 0 0 5px 2px var(--color-meta-shadow);
 }
 
 .article-tag-list-link {
@@ -327,8 +378,8 @@
   float: right;
   background: var(--red-5);
   margin-left: 20px;
-  border-radius: 20px;
-  padding: 10px 18px;
+  border-radius: $post-radius;
+  padding: 8px 15px;
 
   &:before {
     margin-right: 10px;
@@ -339,8 +390,8 @@
   float: right;
   font-size: 14px;
   background: var(--red-5);
-  border-radius: 20px;
-  padding: 10px 18px;
+  border-radius: $post-radius;
+  padding: 8px 15px;
 }
 
 #article-nav {

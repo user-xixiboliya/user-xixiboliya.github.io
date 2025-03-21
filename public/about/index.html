@@ -1,9 +1,12 @@
 <!doctype html>
 <html
-  lang="en-us"
+  lang="en-us" 
+  
+    data-theme-mode="auto"
   
 >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
     <meta charset="utf-8" />
 <meta
   name="viewport"
@@ -204,8 +207,11 @@
 
 
 
+
+    
   </head>
   <body>
+    
     
   <div id='loader'>
     <div class="loading-left-bg loading-bg"></div>
@@ -315,7 +321,23 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/banner.webp" alt="一些记录">
+    
+      <picture>
+        
+          
+            <source media="(max-width: 479px)" srcset="/images/banner-600w.webp">
+          
+            <source media="(max-width: 799px)" srcset="/images/banner-800w.webp">
+          
+            <source media="(min-width: 800px)" srcset="/images/banner.webp">
+          
+          <img fetchpriority="high" src="/images/banner.webp" alt="一些记录">
+        
+      </picture>
+      
+        <img src="" alt="一些记录" style="visibility: hidden;">
+      
+    
   
 
   <div id="header-outer">
@@ -343,86 +365,13 @@
     </div>
   </div>
 </header>
-        <main id="content">
+        <div id="content"
           
-          <section id="main">
-  <article
-  class="h-entry article"
-  itemprop="blogPost"
-  itemscope
-  itemtype="https://schema.org/BlogPosting"
->
-  <div
-    class="article-inner"
-    data-aos="fade-up"
-  >
-    <div class="article-meta">
-      <div class="article-date">
-  <a
-    href="http://localhost:1313/about/"
-    class="article-date-link"
-    data-aos="zoom-in"
-  >
-    <time datetime="2022-06-09 20:12:52 &#43;0800 CST" itemprop="datePublished"
-      >2022-06-09</time
-    >
-    <time style="display: none;" id="post-update-time"
-      >2022-06-09</time
-    >
-  </a>
-</div>
-
-      <div class="article-category">
+          class="sidebar-right"  >
+          <aside id="sidebar">
   
-</div>
-
-    </div>
-    <div class="hr-line"></div>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-      
-        <h1 id="这里是还未开拓的荒原">
-<a class="header-anchor" href="#%e8%bf%99%e9%87%8c%e6%98%af%e8%bf%98%e6%9c%aa%e5%bc%80%e6%8b%93%e7%9a%84%e8%8d%92%e5%8e%9f"></a>
-这里是还未开拓的荒原
-</h1>
-      
-    </div>
-    <footer class="article-footer">
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-      <ul class="article-tag-list" itemprop="keywords">
   
-</ul>
-
-    </footer>
-  </div>
   
-</article>
-
-
-
-
-
-
-
-
-
-
-</section>
-          
-            <aside id="sidebar">
   <div class="sidebar-wrapper ">
     <div
       class="sidebar-wrap"
@@ -574,47 +523,67 @@
     </div>
   </div>
 
-  
+  <div class="sidebar-widget">
     
       
+        
   <div class="widget-wrapper">
     <div
       class="widget-wrap"
       data-aos="fade-up"
     >
-      <h3 class="widget-title">Categories</h3>
+      <div style="display: flex; justify-content: space-between;">
+        <h3 class="widget-title">Categories</h3>
+        
+      </div>
       <div class="widget">
         <ul class="category-list">
           
-            <li class="category-list-item">
-              <a class="category-list-link" href="/categories/backend/"
-                >Backend</a
-              >
-            </li>
           
-            <li class="category-list-item">
-              <a class="category-list-link" href="/categories/common/"
-                >Common</a
-              >
-            </li>
+            
+              <li class="category-list-item">
+                <a class="category-list-link" href="/categories/backend/"
+                  >Backend</a
+                >
+              </li>
+              
+            
           
-            <li class="category-list-item">
-              <a class="category-list-link" href="/categories/life/"
-                >Life</a
-              >
-            </li>
+            
+              <li class="category-list-item">
+                <a class="category-list-link" href="/categories/common/"
+                  >Common</a
+                >
+              </li>
+              
+            
           
-            <li class="category-list-item">
-              <a class="category-list-link" href="/categories/technology/"
-                >Technology</a
-              >
-            </li>
+            
+              <li class="category-list-item">
+                <a class="category-list-link" href="/categories/life/"
+                  >Life</a
+                >
+              </li>
+              
+            
           
-            <li class="category-list-item">
-              <a class="category-list-link" href="/categories/%E9%80%9A%E8%AF%86/"
-                >通识</a
-              >
-            </li>
+            
+              <li class="category-list-item">
+                <a class="category-list-link" href="/categories/technology/"
+                  >Technology</a
+                >
+              </li>
+              
+            
+          
+            
+              <li class="category-list-item">
+                <a class="category-list-link" href="/categories/%E9%80%9A%E8%AF%86/"
+                  >通识</a
+                >
+              </li>
+              
+            
           
         </ul>
       </div>
@@ -622,26 +591,33 @@
   </div>
 
 
-    
       
+        
   <div class="widget-wrapper">
     <div
       class="widget-wrap"
       data-aos="fade-up"
     >
-      <h3 class="widget-title">Tags</h3>
+      <div style="display: flex; justify-content: space-between;">
+        <h3 class="widget-title">Tags</h3>
+        
+      </div>
       <div class="widget">
         <ul class="tag-list" itemprop="keywords">
           
+          
+            
             <li class="tag-item">
-              <a
-                class="tag-link"
-                href="/tags/doxygen/"
-                aria-label="Tag: Doxygen"
-              >
-                Doxygen
-              </a>
-            </li>
+                <a
+                  class="tag-link"
+                  href="/tags/doxygen/"
+                  aria-label="Tag: Doxygen"
+                >
+                  Doxygen
+                </a>
+              </li>
+              
+            
           
         </ul>
       </div>
@@ -649,8 +625,8 @@
   </div>
 
 
-    
       
+        
 <div class="widget-wrapper">
   <div
     class="widget-wrap"
@@ -661,19 +637,23 @@
     <div class="widget tagcloud">
       
       
-        <a
-          style="font-size:10px"
-          href="/tags/doxygen/"
-          aria-label="Tag: Doxygen"
-          >Doxygen</a
-        >
+        
+          
+          <a
+            style="font-size:10px"
+            href="/tags/doxygen/"
+            aria-label="Tag: Doxygen"
+            >Doxygen</a
+          >
+          
+        
       
     </div>
   </div>
 </div>
 
-    
       
+        
   
   <div class="widget-wrapper">
     <div
@@ -710,12 +690,104 @@
   </div>
 
 
+      
     
+  </div>
   
 </aside>
 
-          
-        </main>
+          <section id="main">
+  <article
+  class="h-entry article"
+  itemprop="blogPost"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+>
+  <div
+    class="article-inner"
+    data-aos="fade-up"
+  >
+    <div class="article-meta">
+      <div class="article-date">
+  <span
+    class="article-date-link"
+    data-aos="zoom-in"
+  >
+    <time datetime="2022-06-09 20:12:52 &#43;0800 CST" itemprop="datePublished"
+      >2022-06-09</time
+    >
+    <time style="display: none;" id="post-update-time"
+      >2022-06-09</time
+    >
+  </span>
+</div>
+
+      <div class="article-category">
+  
+</div>
+
+    </div>
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+      
+        <h1 id="这里是还未开拓的荒原">
+<a class="header-anchor" href="#%e8%bf%99%e9%87%8c%e6%98%af%e8%bf%98%e6%9c%aa%e5%bc%80%e6%8b%93%e7%9a%84%e8%8d%92%e5%8e%9f"></a>
+这里是还未开拓的荒原
+</h1>
+      
+    </div>
+    <footer class="article-footer">
+      
+
+      
+
+      
+        
+
+<div class="share-wrapper">
+  
+    <a href="http://connect.qq.com/widget/shareqq/index.html?url=http://localhost:1313/about/&amp;title=%e4%b8%80%e4%ba%9b%e8%ae%b0%e5%bd%95&amp;desc=%e4%b8%80%e4%ba%9b%e8%ae%b0%e5%bd%95&amp;source=http://localhost:1313/" target="_blank" rel="noopener noreferrer" title="一些记录">
+      <div class="share-icon icon icon-qq">
+        
+      </div>
+    </a>
+  
+</div>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <ul class="article-tag-list" itemprop="keywords">
+  
+</ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+</section>
+        </div>
+        
+        
         
 
 
@@ -772,6 +844,7 @@
     <div class="footer-line"></div>
   </div>
   <div id="footer-info">
+    
     <div>
       <span class="icon-copyright"></span>
       2020 -
@@ -1167,7 +1240,15 @@
 
 
 
-  
+
+
+
+
+<script>
+  function initLive2d() {
+    live2d.init('https:\/\/fastly.jsdelivr.net\/gh\/D-Sketon\/plugin-live2d\/', {themeTipsPath: ""});
+  }
+</script> 
 
   
   
@@ -1176,25 +1257,13 @@
   
   
   <script
-    src="https://npm.webcache.cn/mouse-firework@0.0.6/dist/index.umd.js"
+    src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js"
     
+    async
     
+    onload="initLive2d()"
     
-    
-    integrity="sha384-vkGvf25gm1C1PbcoD5dNfc137HzNL/hr1RKA5HniJOaawtvUmH5lTVFgFAruE9Ge" crossorigin="anonymous"
   ></script>
-
-
-<script>
-  if (window.firework) {
-    const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"#ff5252\",\"#ff7c7c\",\"#ffafaf\",\"#ffd0d0\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"#ff0000\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
-    options.excludeElements = options.excludeelements;
-    delete options.excludeelements;
-    window.firework(options);
-  }
-</script>
-
-
 
 
 
@@ -1203,6 +1272,21 @@
 
 <div id="lazy-script">
   <div>
+    
+      
+      
+        
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Bertsin",
+          title: "一些记录",
+          url: "http:\/\/localhost:1313\/about\/",
+          description: "一些记录",
+          cover: "http:\/\/localhost:1313\/images\/banner.webp",
+        };
+      </script>
+    
     
     
       
@@ -1260,6 +1344,7 @@
 
 
 
+      
     
     
   </div>
@@ -1317,5 +1402,11 @@
   );
 </script>
 
+
+
+
+
+
+    
   </body>
 </html>

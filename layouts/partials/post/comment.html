@@ -13,25 +13,27 @@
     var highlight = JSON.parse('{{ $params.valine.highlight }}');
     var visitor = JSON.parse('{{ $params.valine.visitor }}');
 
-    new Valine({
-      el: '.vcomment',
-      appId: "{{ $params.valine.appId }}",
-      appKey: "{{ $params.valine.appKey }}",
-      placeholder: "{{ $params.valine.placeholder }}",
-      pageSize: '{{ $params.valine.pageSize }}',
-      avatar: '{{ $params.valine.avatar }}',
-      lang: '{{ $params.valine.lang }}',
-      recordIP: recordIP,
-      highlight: highlight,
-      visitor: visitor,
-      requiredFields: guest_info,
-      path: window.location.pathname
-    });
+    if (window.Valine) {
+      new Valine({
+        el: '.vcomment',
+        appId: "{{ $params.valine.appId }}",
+        appKey: "{{ $params.valine.appKey }}",
+        placeholder: "{{ $params.valine.placeholder }}",
+        pageSize: '{{ $params.valine.pageSize }}',
+        avatar: '{{ $params.valine.avatar }}',
+        lang: '{{ $params.valine.lang }}',
+        recordIP: recordIP,
+        highlight: highlight,
+        visitor: visitor,
+        requiredFields: guest_info,
+        path: window.location.pathname
+      });
+    }
   </script>
 {{ end }}
 
 {{ if and $params.waline.enable $params.waline.serverURL }}
-<script data-pjax  type="module">
+<script data-pjax type="module">
   const { init } = await safeImport('{{ index (partial "helpers/vendorCdn.html" (dict "item" $js.waline "ctx" $site)) 0 }}', '{{ index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.waline "ctx" $site)) 0 }}');
   if(_$('.wcomment')) {
     window.walineInstance = init({
@@ -47,7 +49,7 @@
       pageSize: {{ $params.waline.pageSize }},
       dark: 'html[data-theme="dark"]',
       pageview: {{ $params.waline.pageview }},
-  });
+    });
   }
 </script>
 {{ end }}
@@ -58,18 +60,20 @@
     {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.md5 "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.md5)) 0)) }}
   {{ end }}
   <script data-pjax>
-    var gitalkId = {{ if $params.gitalk.md5 }}'md5(location.pathname)'{{else }}'location.pathname'{{end}};
-    var gitalk = new Gitalk({
-      clientID: '{{ $params.gitalk.clientID }}',
-      clientSecret: '{{ $params.gitalk.clientSecret}}',
-      repo: '{{ $params.gitalk.repo }}',
-      owner: '{{ $params.gitalk.owner }}',
-      admin: JSON.parse({{ $params.gitalk.admin | jsonify }}),
-      id: gitalkId, // Ensure uniqueness and length less than 50
-      distractionFreeMode: false // Facebook-like distraction free mode
-    })
-    if (document.getElementById('comments')) {
-      gitalk.render('comments')
+    if (window.Gitalk) {
+      var gitalkId = {{ if $params.gitalk.md5 }}'window.md5 ? window.md5(location.pathname) : location.pathname'{{ else }}'location.pathname'{{ end }};
+      var gitalk = new Gitalk({
+        clientID: '{{ $params.gitalk.clientID }}',
+        clientSecret: '{{ $params.gitalk.clientSecret}}',
+        repo: '{{ $params.gitalk.repo }}',
+        owner: '{{ $params.gitalk.owner }}',
+        admin: JSON.parse({{ $params.gitalk.admin | jsonify }}),
+        id: gitalkId, // Ensure uniqueness and length less than 50
+        distractionFreeMode: false // Facebook-like distraction free mode
+      })
+      if (document.getElementById('comments')) {
+        gitalk.render('comments')
+      }
     }
   </script>
 {{ end }}
@@ -77,11 +81,13 @@
 {{ if and $params.twikoo.enable $params.twikoo.envId }}
   {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.twikoo "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.twikoo)) 0)) }}
   <script data-pjax>
-    twikoo.init({
-      envId: '{{ $params.twikoo.envId }}',
-      el: '.tcomment',
-      region: '{{ $params.twikoo.region }}',
-    })
+    if (window.twikoo) {
+      twikoo.init({
+        envId: '{{ $params.twikoo.envId }}',
+        el: '.tcomment',
+        region: '{{ $params.twikoo.region }}',
+      })
+    }
   </script>
 {{ end }}
 

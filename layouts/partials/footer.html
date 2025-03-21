@@ -12,6 +12,9 @@
     <div class="footer-line"></div>
   </div>
   <div id="footer-info">
+    {{ if .Site.Params.copyright }}
+      {{ .Site.Params.copyright | safeHTML }}
+    {{ end }}
     <div>
       <span class="icon-copyright"></span>
       {{ .Site.Params.footer.since }} -

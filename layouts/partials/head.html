@@ -34,10 +34,10 @@
   content="{{ .Params.description | default .Site.Params.description | safeHTML }}"
 />
 {{ $site := .Site }}
-{{ partial "head/analytics.html" . }}
-{{ partial "head/config.html" . }}
+{{ partialCached "head/analytics.html" . }}
+{{ partialCached "head/config.html" . }}
 
-{{ partial "helpers/vendorFont.html" . }}
+{{ partialCached "helpers/vendorFont.html" . }}
 
 {{ $js := .Site.Data.vendor.js }}
 {{ $css := .Site.Data.vendor.css }}
@@ -126,4 +126,8 @@
 <!-- aos -->
 {{ if .Site.Params.animation.enable }}
   {{ partial "helpers/css.html" (partial "helpers/vendorCdn.html" (dict "item" $css.aos "ctx" $site)) }}
+{{ end }}
+
+{{ if .Site.Params.player.aplayer.enable }}
+{{ partial "helpers/css.html" (partial "helpers/vendorCdn.html" (dict "item" $css.aplayer "ctx" $site)) }}
 {{ end }}

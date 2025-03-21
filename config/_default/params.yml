@@ -35,9 +35,9 @@ banner: "images/banner.webp"
 # You can also write it in the form of the following url
 # banner: "https://example.com"
 
-# If you want to use the srcset attribute, please enable it
+# If you want to use the srcset attribute, please enable itddd
 banner_srcset:
-  enable: false
+  enable: true
   srcset:
     - src: "images/banner-600w.webp"
       media: "(max-width: 479px)"
@@ -47,6 +47,16 @@ banner_srcset:
       media: "(min-width: 800px)"
 
 avatar: "avatar.webp"
+
+# Control the display of the post cover
+# If not set, the banner image will be displayed by default
+# Its priority is lower than the cover in the Front-matter
+cover: https://upload-bbs.miyoushe.com/upload/2025/03/21/289087756/d8d66b065a55de1b7773fe0efade787e_8488321437057429952.jpg?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg
+
+
+# Control the display of the post toc
+# Its priority is lower than the toc in the Front-matter
+toc: true
 
 # Open Graph
 open_graph:
@@ -62,6 +72,16 @@ open_graph:
 
 # Content
 excerpt_link: Read More
+
+# Inject code snippet
+# Make sure your code snippet is safeHTML
+injector:
+  head_begin: # Inject code snippet right after <head>
+  head_end: # Inject code snippet right before </head>
+  body_begin: # Inject code snippet right after <body>
+  body_end: # Inject code snippet right before </body>
+  sidebar_begin: # Inject code snippet right after <aside>
+  sidebar_end: # Inject code snippet right before </aside>
 
 footer:
   since: 2020 # 2020-current year
@@ -110,7 +130,14 @@ widgets:
   - recent_posts
 
 # Widget behavior
+category_limits: 10
+tag_limits: 10
 recent_posts_limits: 5
+tagcloud_limits: 20
+
+# Archive behavior
+only_show_capsule_in_index: false # If you have hugo amounts of tags and categories, you can set this to true to only show the capsule in the index page for better performance
+
 
 ########################################
 # CSS
@@ -119,6 +146,7 @@ recent_posts_limits: 5
 anchor_icon: # default use '#' icon, you can use a hexadecimal representation of fontawesome or icon_font, like 'f0c1'
 
 reimu_cursor: true
+
 
 icon_font: 4552607_tq6stt6tcg
 
@@ -147,7 +175,10 @@ local_font:
     - monospace
 
 dark_mode:
-  enable: false # set to true to make your website default to dark mode
+  # true means that the dark mode is enabled by default
+  # false means that the dark mode is disabled by default
+  # auto means that the dark mode is automatically switched according to the system settings
+  enable: auto # true | false | auto
 
 ########################################
 # Analytics
@@ -207,7 +238,7 @@ math:
 # version 1.5.1
 # notify and verify have been deprecated
 valine:
-  enable: false # if you want to use valine,please set this value is true
+  enable: true # if you want to use valine,please set this value is true
   appId: # leancloud application app id
   appKey: # leancloud application app key
   pageSize: 10 # comment list page size
@@ -221,7 +252,7 @@ valine:
 
 # https://waline.js.org/
 waline:
-  enable: false
+  enable: true
   serverURL:
   lang: zh-CN
   locale: {} # https://waline.js.org/guide/features/i18n.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80
@@ -251,7 +282,7 @@ twikoo:
 
 # https://github.com/gitalk/gitalk/blob/master/readme-cn.md
 gitalk:
-  enable: false
+  enable: true
   clientID:
   clientSecret:
   repo:
@@ -327,7 +358,7 @@ animation:
 
 # see https://github.com/D-Sketon/mouse-firework
 firework:
-  enable: true
+  enable: false
   options:
     excludeElements: ["a", "button"]
     particles:
@@ -378,6 +409,7 @@ clipboard:
 # Back To Top
 top:
   enable: true
+  position: right
   icon:
     url: "../images/taichi.png" # this path is relative to the css/style.css, so it needs to go up one level to reach the images folder
     rotate: true
@@ -409,6 +441,25 @@ sponsor:
     # - name: 微信
     #   src: "sponsor/wechat.png"
 
+# Share
+share:
+  # - facebook
+  # - twitter
+  # - linkedin
+  # - reddit
+  # - weibo
+   - qq
+  # - weixin
+
+# show categories card on home page
+home_categories:
+  enable: true
+  content:
+    - categories: # string (single-layer category) or array (multi-layer category)
+      cover: # empty means random cover
+    - categories:
+      cover:
+
 ########################################
 # Experimental features
 ########################################
@@ -436,8 +487,51 @@ service_worker:
 
 # Experimental
 live2d:
-  enable: false
+  enable: true
+  position: right
+
+# Experimental
+live2d_widgets:
+  enable: true
+  position: right # left or right
 
 # https://github.com/CodeByZach/pace
 pace:
   enable: true
+
+# Experimental
+# Please turn on pjax to use this feature
+player:
+  # if you enable meting, you must enable aplayer first
+  aplayer:
+    # https://github.com/DIYgod/APlayer
+    enable: false
+    options:
+      audio: []
+      fixed: true
+      autoplay:
+      loop:
+      order:
+      preload:
+      volume:
+      mutex:
+      listFolded:
+      lrcType:
+  meting:
+    # https://github.com/metowolf/MetingJS
+    # if you want to use meting, please enable aplayer first
+    enable: false
+    meting_api: # custom api
+    options:
+      id: 2265921590
+      server: netease
+      type: playlist
+      auto:
+
+########################################
+# pangu.js
+########################################
+
+pangu:
+  # more information: https://github.com/vinta/pangu.js 
+  enable: false  # enable pangu.js to add space between Chinese and English

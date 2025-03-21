@@ -99,13 +99,17 @@
   background: var(--red-5-5);
   border-left: 6px var(--red-4) solid;
   margin: 1.8em 0;
-  border-radius: 5px;
+  border-radius: $post-radius;
   transition: 0.3s;
   padding: 5px 10px;
   box-shadow: 0 0 5px 2px var(--color-meta-shadow);
   position: relative;
   overflow: hidden;
   word-break: break-all;
+
+  .icon {
+    margin: 0 4px;
+  }
 
   p {
     font-size: 14px;

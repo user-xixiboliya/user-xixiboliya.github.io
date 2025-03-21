@@ -19,6 +19,7 @@ rss_feed: RSS 订阅
 category: 目录
 tag: 标签
 toc: 文章目录
+more: 查看更多
 
 home: 首页
 about: 关于
@@ -55,3 +56,17 @@ service_worker:
   cancel: 取消
 
 sponsor: 赞助
+
+home_categories:
+  count:
+    one: "{{- . }} 篇文章"
+    other: "{{- . }} 篇文章"
+
+article_copyright:
+  author: 本文作者：
+  permalink: 本文链接：
+  title: 本文标题：
+  date: 本文发布时间：
+  updated: 本文更新时间：
+  license: 本文版权：
+  license_content: 本博客所有文章除特别声明外，均采用 {{ . }} 许可协议。转载请注明出处！

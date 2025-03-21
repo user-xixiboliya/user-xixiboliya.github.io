@@ -39,38 +39,24 @@
     });
     window._$ = (selector) => document.querySelector(selector);
     window._$$ = (selector) => document.querySelectorAll(selector);
-    let mode = window.localStorage.getItem("dark_mode");
-    const setDarkMode = (isDark) => {
-      if (isDark) {
-        document.documentElement.setAttribute("data-theme", "dark");
-      } else {
-        document.documentElement.removeAttribute("data-theme");
-      }
-      const iconHtml = `<a id="nav-${isDark ? "sun" : "moon"}-btn" class="nav-icon dark-mode-btn"></a>`;
-      _$("#sub-nav")?.insertAdjacentHTML("beforeend", iconHtml);
-      document.body.dispatchEvent(
-        new CustomEvent(isDark ? "dark-theme-set" : "light-theme-set")
-      );
-    };
-    if (mode === null) {
-      const domMode = document.documentElement.getAttribute("data-theme");
-      mode = domMode === "dark" ? "true" : "false";
-      window.localStorage.setItem("dark_mode", mode);
+    const themeButton = document.createElement("a");
+    themeButton.className = "nav-icon dark-mode-btn";
+    _$("#sub-nav").append(themeButton);
+    const osMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    function setTheme(config) {
+      const isAuto = config === "auto";
+      const isDark = config === "true" || isAuto && osMode;
+      document.documentElement.setAttribute("data-theme", isDark ? "dark" : null);
+      localStorage.setItem("dark_mode", config);
+      themeButton.id = `nav-${config === "true" ? "moon" : config === "false" ? "sun" : "circle-half-stroke"}-btn`;
+      document.body.dispatchEvent(new CustomEvent(`${isDark ? "dark" : "light"}-theme-set`));
     }
-    setDarkMode(mode === "true");
-    _$(".dark-mode-btn")?.addEventListener("click", function() {
-      const id = this.id;
-      if (id == "nav-sun-btn") {
-        window.localStorage.setItem("dark_mode", "false");
-        document.body.dispatchEvent(new CustomEvent("light-theme-set"));
-        document.documentElement.removeAttribute("data-theme");
-        this.id = "nav-moon-btn";
-      } else {
-        window.localStorage.setItem("dark_mode", "true");
-        document.body.dispatchEvent(new CustomEvent("dark-theme-set"));
-        document.documentElement.setAttribute("data-theme", "dark");
-        this.id = "nav-sun-btn";
-      }
+    const savedMode = localStorage.getItem("dark_mode") || document.documentElement.getAttribute("data-theme-mode") || "auto";
+    setTheme(savedMode);
+    themeButton.addEventListener("click", () => {
+      const modes = ["auto", "false", "true"];
+      const nextMode = modes[(modes.indexOf(localStorage.getItem("dark_mode")) + 1) % 3];
+      setTheme(nextMode);
     });
     let oldScrollTop = 0;
     document.addEventListener("scroll", () => {

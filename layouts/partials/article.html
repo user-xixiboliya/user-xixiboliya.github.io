@@ -40,6 +40,10 @@
         {{ partial "post/sponsor.html" . }}
       {{ end }}
 
+      {{ if reflect.IsSlice .Site.Params.share }}
+        {{ partial "post/share.html" . }}
+      {{ end }}
+
       {{ if and (not (eq .Params.comments false)) .Site.Params.valine.enable .Site.Params.valine.appId .Site.Params.valine.appKey }}
         <a
           data-aos="{{ .Site.Params.animation.options.article.comment }}"

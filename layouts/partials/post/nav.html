@@ -5,7 +5,7 @@
   >
     {{ if .PrevInSection }}
       <div class="article-nav-link-wrap article-nav-link-left">
-        {{ if .PrevInSection.Params.cover }}
+        {{ if and .PrevInSection.Params.cover (not (strings.HasPrefix .PrevInSection.Params.cover "rgb")) }}
           <img
             data-src="{{ .PrevInSection.Params.cover }}"
             data-sizes="auto"
@@ -44,7 +44,7 @@
 
     {{ if .NextInSection }}
       <div class="article-nav-link-wrap article-nav-link-right">
-        {{ if .NextInSection.Params.cover }}
+        {{ if and .NextInSection.Params.cover (not (strings.HasPrefix .NextInSection.Params.cover "rgb")) }}
           <img
             data-src="{{ .NextInSection.Params.cover }}"
             data-sizes="auto"

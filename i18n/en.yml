@@ -19,6 +19,7 @@ rss_feed: RSS Feed
 category: Category
 tag: Tag
 toc: Contents
+more: More
 
 home: Home
 about: About
@@ -55,3 +56,17 @@ service_worker:
   cancel: Cancel
 
 sponsor: Sponsor
+
+home_categories:
+  count: 
+    one: "{{- . }} post"
+    other: "{{- . }} posts"
+
+article_copyright:
+  author: "Author: "
+  permalink: "Permalink: "
+  title: "Title: "
+  date: "Published: "
+  updated: "Updated: "
+  license: "License: "
+  license_content: "All articles on this blog are licensed under the {{ . }} license agreement unless otherwise stated. Please indicate the source when reprinting!"

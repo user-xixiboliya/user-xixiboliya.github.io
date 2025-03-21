@@ -146,7 +146,7 @@
     }
   };
   window.on("scroll", __sidebarTopScrollHandler);
-  _$$("#TableOfContents li").forEach((element) => {
+  _$$("#mobile-nav #TableOfContents li").forEach((element) => {
     element.off("click").on("click", () => {
       if (isMobileNavAnim || !document.body.classList.contains("mobile-nav-on"))
         return;
@@ -154,7 +154,7 @@
       _$("#mask").classList.add("hide");
     });
   });
-  _$$(".sidebar-menu-link-dummy").forEach((element) => {
+  _$$("#mobile-nav .sidebar-menu-link-dummy").forEach((element) => {
     element.off("click").on("click", () => {
       if (isMobileNavAnim || !document.body.classList.contains("mobile-nav-on"))
         return;
@@ -171,7 +171,9 @@
     let activeLock = null;
     const anchorScroll = (event, index) => {
       event.preventDefault();
-      const target = _$(decodeURI(event.currentTarget.getAttribute("href")));
+      const target = document.getElementById(
+        decodeURI(event.currentTarget.getAttribute("href")).slice(1)
+      );
       activeLock = index;
       scrollIntoViewAndWait(target).then(() => {
         activateNavByIndex(index);
@@ -181,7 +183,9 @@
     const sections = [...navItems].map((element, index) => {
       const link = element.querySelector("a");
       link.off("click").on("click", (e) => anchorScroll(e, index));
-      const anchor = _$(decodeURI(link.getAttribute("href")));
+      const anchor = document.getElementById(
+        decodeURI(link.getAttribute("href")).slice(1)
+      );
       if (!anchor) return null;
       const alink = anchor.querySelector("a");
       alink?.off("click").on("click", (e) => anchorScroll(e, index));
@@ -202,7 +206,9 @@
       while (!parent.matches(".sidebar-toc")) {
         if (parent.matches("li")) {
           parent.classList.add("active");
-          const t = _$(decodeURI(parent.querySelector("a").getAttribute("href")));
+          const t = document.getElementById(
+            decodeURI(parent.querySelector("a").getAttribute("href").slice(1))
+          );
           if (t) {
             t.classList.add("active");
           }
@@ -254,5 +260,56 @@
     _$(".sponsor-button-wrapper")?.classList.toggle("active");
     _$(".sponsor-tip")?.classList.toggle("active");
     _$(".sponsor-qr")?.classList.toggle("active");
+  });
+  _$(".share-icon.icon-weixin")?.off("click").on("click", function(e) {
+    const iconPosition = this.getBoundingClientRect();
+    const shareWeixin = this.querySelector("#share-weixin");
+    if (iconPosition.x - 148 < 0) {
+      shareWeixin.style.left = `-${iconPosition.x - 10}px`;
+    } else if (iconPosition.x + 172 > window.innerWidth) {
+      shareWeixin.style.left = `-${310 - window.innerWidth + iconPosition.x}px`;
+    } else {
+      shareWeixin.style.left = "-138px";
+    }
+    if (e.target === this) {
+      shareWeixin.classList.toggle("active");
+    }
+    if (_$(".share-weixin-canvas").children.length) {
+      return;
+    }
+    const { cover, description, title, author } = window.REIMU_POST;
+    _$("#share-weixin-banner").src = cover;
+    _$("#share-weixin-title").innerText = title;
+    _$("#share-weixin-desc").innerText = description.replace(/\s/g, " ");
+    _$("#share-weixin-author").innerText = "By: " + author;
+    QRCode.toDataURL(window.REIMU_POST.url, function(error, dataUrl) {
+      if (error) {
+        console.error(error);
+        return;
+      }
+      _$("#share-weixin-qr").src = dataUrl;
+      htmlToImage.toPng(_$(".share-weixin-dom"), {
+        skipFonts: true,
+        preferredFontFormat: "woff2",
+        backgroundColor: "white"
+      }).then((dataUrl2) => {
+        const img = new Image();
+        img.src = dataUrl2;
+        _$(".share-weixin-canvas").appendChild(img);
+      }).catch(() => {
+        _$("#share-weixin-banner").remove();
+        htmlToImage.toPng(_$(".share-weixin-dom"), {
+          skipFonts: true,
+          preferredFontFormat: "woff2",
+          backgroundColor: "white"
+        }).then((dataUrl2) => {
+          const img = new Image();
+          img.src = dataUrl2;
+          _$(".share-weixin-canvas").appendChild(img);
+        }).catch(() => {
+          console.error("Failed to generate weixin share image.");
+        });
+      });
+    });
   });
 })();

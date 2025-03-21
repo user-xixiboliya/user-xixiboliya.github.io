@@ -18,6 +18,7 @@
     font-family: $font-code;
     font-size: 95%;
     transition: 0.3s;
+    word-break: break-word;
   }
   code,
   kbd {
@@ -41,14 +42,24 @@
 
   div.highlight {
     @include code-block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
+    margin-block-start: ($line-height / 3 * 2);
+    margin-block-end: ($line-height / 3 * 2);
     margin-inline-start: 0;
     margin-inline-end: 0;
     transition: 0.3s;
+    interpolate-size: allow-keywords;
+    box-shadow: 0 0 10px 2px var(--color-hover-shadow);
+
+    &.code-closed {
+      pre {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+      }
+    }
 
     &:hover {
-      box-shadow: 0 0.3125rem 0.625rem -0.125rem var(--highlight-scrollbar);
+      box-shadow: 0 0 10px 4px var(--color-hover-shadow);
     }
 
     ::-webkit-scrollbar {
@@ -88,6 +99,7 @@
     tr td:first-of-type {
       width: 30px;
       padding-right: 10px;
+      vertical-align: top;
 
       pre code {
         color: #666;
@@ -185,12 +197,6 @@
 .code-closed .code-expand {
   transform: rotate(-180deg) !important;
   transition: 0.3s;
-}
-
-.code-closed {
-  pre {
-    display: none;
-  }
 }
 
 .chroma {

@@ -71,55 +71,62 @@
     function loadScripts(scripts, index) {
       if (index < scripts.length) {
         const script = scripts[index];
-        const src = script.getAttribute("src");
+        const src = script.getAttribute('src');
 
         const loadScript = (scriptContent) => {
-          const scriptElement = document.createElement('script');
-          if (script.type) {
-            scriptElement.type = script.type;
-          }
-          scriptElement.text = scriptContent;
-          document.head.appendChild(scriptElement);
-          loadScripts(scripts, index + 1);
+          return new Promise((resolve, reject) => {
+            const scriptElement = document.createElement('script');
+            if (script.type) {
+              scriptElement.type = script.type;
+            }
+            if (script.src) {
+              scriptElement.src = script.src;
+              scriptElement.onload = resolve;
+              scriptElement.onerror = reject;
+            }
+            if (scriptContent) {
+              scriptElement.text = scriptContent;
+            }
+            document.head.appendChild(scriptElement);
+            if (!script.src) {
+              resolve();
+            }
+          })
+          
         }
 
-        if (src) {
-          fetch(src)
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error(
-                  "Network response was not ok " + response.statusText,
-                );
-              }
-              return response.text();
-            })
-            .then((scriptContent) => {
-              loadScript(scriptContent);
-            })
-            .catch((error) => {
-              console.error("Failed to load script:", src, error);
-            });
-        } else {
-          loadScript(script.text);
-        }
+        ;(src ? loadScript() : loadScript(script.text))
+          .then(() => loadScripts(scripts, index + 1))
+          .catch(error => {
+            console.error(`Failed to load script: ${src || 'inline script'}`, error);
+            loadScripts(scripts, index + 1);
+          });
       }
     }
     window.Pjax &&
       new window.Pjax({
         selectors: [
-          "#header img",
-          "#header picture",
+          "#header>img",
+          "#header>picture",
           "head title",
           "#header-title",
           "#subtitle-wrap",
+          "#main",
           "#content",
+          ".sidebar-widget",
+          ".sidebar-wrapper",
           "#mobile-nav",
           "#lazy-script",
         ],
         switches: {
+          "#content": function(oldEl, newEl) {
+            // for sidebar change
+            oldEl.className = newEl.className;
+            this.onSwitch();
+          },
           "#header-title": Pjax.switches.outerHTML,
           "#subtitle-wrap": Pjax.switches.outerHTML,
-          "#content": function (oldEl, newEl) {
+          "#main": function (oldEl, newEl) {
             const scripts = [...newEl.querySelectorAll("script")];
             loadScripts(scripts, 0);
             oldEl.outerHTML = newEl.outerHTML;
@@ -145,6 +152,8 @@
     live2d.init('{{ index (partial "helpers/vendorCdn.html" (dict "item" $js.live2d.base "ctx" $site)) 0 }}', {themeTipsPath: ""});
   }
 </script> {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.live2d.js "ctx" $site)) 0) "async" true "onload" "initLive2d()") }}
+{{ else if $params.live2d_widgets.enable }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.live2d_widgets "ctx" $site)) 0) "defer" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.live2d_widgets)) 0)) }}
 {{ end }}
 
 {{ if $params.quicklink.enable }}
@@ -160,8 +169,28 @@
 
 <div id="lazy-script">
   <div>
+    {{ if .Permalink }}
+      {{ $desc := "" }}
+      {{ if .Params.description }}
+        {{ $desc = .Params.description | plainify | truncate 300 }}
+      {{ else if .Summary }}
+        {{ $desc = .Summary  | plainify | truncate 300 }}
+      {{ else }}
+        {{ $desc = .RawContent | truncate 300 }}
+      {{ end }}
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "{{ $params.author }}",
+          title: "{{ .Title }}",
+          url: "{{ .Permalink }}",
+          description: "{{ $desc }}",
+          cover: {{ if and .Params.cover (not (strings.HasPrefix .Params.cover "rgb")) }}"{{ .Params.cover | absURL }}"{{ else }}"{{ .Site.Params.banner | absURL }}"{{ end }},
+        };
+      </script>
+    {{ end }}
     {{ if and (.Store.Get "hasMermaid") .Params.mermaid }}
       {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.mermaid "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.mermaid)) 0)) }}
+      {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.dompurify "ctx" $site)) 0) "pjax" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.dompurify)) 0)) }}
       <script data-pjax>
         if (window.mermaid) {
           // https://github.com/mermaid-js/mermaid/issues/1945
@@ -196,8 +225,7 @@
                 els.forEach((element) => {
                   if (element.getAttribute("data-original-code") != null) {
                     element.removeAttribute("data-processed");
-                    element.innerHTML =
-                      element.getAttribute("data-original-code");
+                    element.innerHTML = DOMPurify.sanitize(element.getAttribute("data-original-code"));
                   }
                   count--;
                   if (count == 0) {
@@ -272,7 +300,11 @@
           window.addEventListener('lightbox:ready', pswp);
         }
       </script>
-      {{ partial "post/comment.html" . }}
+      {{ partialCached "post/comment.html" . }}
+      {{ if and (reflect.IsSlice .Site.Params.share) (in .Site.Params.share "weixin") }}
+        {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.qrcode "ctx" $site)) 0) "pjax" true "defer" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.qrcode)) 0)) }}
+        {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.html2image "ctx" $site)) 0) "pjax" true "defer" true "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.html2image)) 0)) }}
+      {{ end }}
     {{ end }}
     {{ if .Params.math }}
       {{ if .Site.Params.math.katex.enable }}
@@ -281,7 +313,7 @@
         <script data-pjax>
           var renderMath = () => {
             if (!window.renderMathInElement) return;
-            window.renderMathInElement(document.body, {
+            window.renderMathInElement(_$("article"), {
               delimiters: [
                 { left: "$$", right: "$$", display: true },
                 { left: "\\[", right: "\\]", display: true },
@@ -364,3 +396,47 @@
     "padding:4px;border:1px solid #ff5252;",
   );
 </script>
+
+{{ if $params.player.aplayer.enable }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.aplayer "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.aplayer)) 0)) }}
+  {{ if not $params.player.meting.enable }}
+    <script>
+      const ap = new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: JSON.parse({{ $params.player.aplayer.options.audio | jsonify }}) || [],
+          fixed: {{ $params.player.aplayer.options.fixed }} || false,
+          autoplay: {{ $params.player.aplayer.options.autoplay }} || false,
+          loop: '{{ $params.player.aplayer.options.loop }}' || 'all',
+          order: '{{ $params.player.aplayer.options.order }}' || 'list',
+          preload: '{{ $params.player.aplayer.options.preload }}' || 'auto',
+          volume: {{ $params.player.aplayer.options.volume }} || 0.7,
+          mutex: {{ $params.player.aplayer.options.mutex }} || true,
+          listFolded: {{ $params.player.aplayer.options.listFolded }} || false,
+          lrcType: {{ $params.player.aplayer.options.lrcType }} || 0,
+      });
+    </script>
+  {{ end }}
+{{ end }}
+
+{{ if $params.player.meting.enable }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.meting "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.meting)) 0)) }}
+  {{ if $params.player.meting.meting_api }}
+    <script>
+      var meting_api = '{{ $params.player.meting.meting_api }}';
+    </script>
+  {{ end }}
+{{ end }}
+
+{{ if .Site.Params.pangu.enable }}
+  {{ partial "helpers/js.html" (dict "src" (index (partial "helpers/vendorCdn.html" (dict "item" $js.pangu "ctx" $site)) 0) "integrity" (index (partial "helpers/vendorCdnIntegrity.html" (dict "item" $js.pangu)) 0)) }}
+  <script data-pjax>
+    if (document.readyState === "loading") {
+      document.addEventListener('DOMContentLoaded', () => {
+        pangu?.spacingPage();
+      });
+    } else {
+      pangu?.spacingPage();
+    }
+  </script>
+{{ end }}

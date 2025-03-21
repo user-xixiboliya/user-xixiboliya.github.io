@@ -98,6 +98,8 @@ declare global {
   var walineInstance: any;
   var ClipboardJS: any;
   var Pjax: any;
+  var QRCode: any;
+  var htmlToImage: any;
   /**
    * Lightbox status
    */
@@ -133,6 +135,14 @@ declare global {
       expand?: boolean;
     }
   };
+
+  var REIMU_POST: {
+    author: string;
+    title: string;
+    url: string;
+    description: string;
+    cover: string;
+  }
 
   var safeImport: (url: string, integrity?: string) => Promise<any>;
 

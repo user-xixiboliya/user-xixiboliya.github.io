@@ -9,14 +9,14 @@
       {{ range .Pages }}
         <li class="archive-article">
           <div class="archive-article-date-wrap">
-            <a href="{{ .Permalink }}">
+            <span>
               <time
                 class="dt-published"
                 datetime="{{ .Date }}"
                 itemprop="datePublished"
                 >{{ .Date.Format $ctx.Site.Params.monthFormat }}</time
               >
-            </a>
+            </span>
           </div>
           {{ if .Params.link }}
             <a

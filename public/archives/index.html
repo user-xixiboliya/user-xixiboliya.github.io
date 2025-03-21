@@ -1,9 +1,12 @@
 <!doctype html>
 <html
-  lang="en-us"
+  lang="en-us" 
+  
+    data-theme-mode="auto"
   
 >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
     <meta charset="utf-8" />
 <meta
   name="viewport"
@@ -205,8 +208,11 @@
 
 
 
+
+    
   </head>
   <body>
+    
     
   <div id='loader'>
     <div class="loading-left-bg loading-bg"></div>
@@ -317,7 +323,23 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/banner.webp" alt="">
+    
+      <picture>
+        
+          
+            <source media="(max-width: 479px)" srcset="/images/banner-600w.webp">
+          
+            <source media="(max-width: 799px)" srcset="/images/banner-800w.webp">
+          
+            <source media="(min-width: 800px)" srcset="/images/banner.webp">
+          
+          <img fetchpriority="high" src="/images/banner.webp" alt="">
+        
+      </picture>
+      
+        <img src="" alt="" style="visibility: hidden;">
+      
+    
   
 
   <div id="header-outer">
@@ -345,316 +367,13 @@
     </div>
   </div>
 </header>
-        <main id="content">
+        <div id="content"
           
-          <section id="main">
-  <div
-    class="archives-outer-wrap"
-    data-aos="fade-up"
-  >
-    <div class="tag-wrap">
-      
-        <div
-          class="archives-tag-list-item"
-          data-aos="zoom-in"
-        >
-          <a class="archives-tag-list-link" href="/tags/doxygen/"
-            >Doxygen</a
-          >
-        </div>
-      
-    </div>
-    <div class="category-wrap">
-      
-        <div
-          class="archives-category-list-item"
-          data-aos="zoom-in"
-        >
-          <a class="archives-category-list-link" href="/categories/backend/"
-            >Backend</a
-          >
-        </div>
-      
-        <div
-          class="archives-category-list-item"
-          data-aos="zoom-in"
-        >
-          <a class="archives-category-list-link" href="/categories/common/"
-            >Common</a
-          >
-        </div>
-      
-        <div
-          class="archives-category-list-item"
-          data-aos="zoom-in"
-        >
-          <a class="archives-category-list-link" href="/categories/life/"
-            >Life</a
-          >
-        </div>
-      
-        <div
-          class="archives-category-list-item"
-          data-aos="zoom-in"
-        >
-          <a class="archives-category-list-link" href="/categories/technology/"
-            >Technology</a
-          >
-        </div>
-      
-        <div
-          class="archives-category-list-item"
-          data-aos="zoom-in"
-        >
-          <a class="archives-category-list-link" href="/categories/%E9%80%9A%E8%AF%86/"
-            >通识</a
-          >
-        </div>
-      
-    </div>
-    
-
-
-
-  <section class="archives-wrap" data-aos="fade-up">
-    <div class="archive-year-wrap">
-      <a href="" class="archive-year">2025</a>
-    </div>
-    <ul>
-      
-        <li class="archive-article">
-          <div class="archive-article-date-wrap">
-            <a href="http://localhost:1313/post/%E8%AE%A4%E7%9F%A5%E5%BF%83%E7%90%86%E5%AD%A6/">
-              <time
-                class="dt-published"
-                datetime="2025-02-23 15:00:00 -0710 -0710"
-                itemprop="datePublished"
-                >2025-02</time
-              >
-            </a>
-          </div>
-          
-            <a class="archive-article-title" href="http://localhost:1313/post/%E8%AE%A4%E7%9F%A5%E5%BF%83%E7%90%86%E5%AD%A6/"
-              >认知心理学复习纲要</a
-            >
-          
-        </li>
-      
-        <li class="archive-article">
-          <div class="archive-article-date-wrap">
-            <a href="http://localhost:1313/post/proxylab/">
-              <time
-                class="dt-published"
-                datetime="2025-01-25 15:00:00 -0718 -0718"
-                itemprop="datePublished"
-                >2025-01</time
-              >
-            </a>
-          </div>
-          
-            <a class="archive-article-title" href="http://localhost:1313/post/proxylab/"
-              >CMU Proxylab</a
-            >
-          
-        </li>
-      
-        <li class="archive-article">
-          <div class="archive-article-date-wrap">
-            <a href="http://localhost:1313/post/%E5%A5%87%E6%80%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/">
-              <time
-                class="dt-published"
-                datetime="2025-01-23 15:00:00 -0710 -0710"
-                itemprop="datePublished"
-                >2025-01</time
-              >
-            </a>
-          </div>
-          
-            <a class="archive-article-title" href="http://localhost:1313/post/%E5%A5%87%E6%80%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/"
-              >一些奇怪小技巧</a
-            >
-          
-        </li>
-      
-        <li class="archive-article">
-          <div class="archive-article-date-wrap">
-            <a href="http://localhost:1313/post/docker/">
-              <time
-                class="dt-published"
-                datetime="2025-01-20 00:00:00 &#43;0000 UTC"
-                itemprop="datePublished"
-                >2025-01</time
-              >
-            </a>
-          </div>
-          
-            <a class="archive-article-title" href="http://localhost:1313/post/docker/"
-              >docker与dev container插件的使用</a
-            >
-          
-        </li>
-      
-        <li class="archive-article">
-          <div class="archive-article-date-wrap">
-            <a href="http://localhost:1313/post/bomblab/">
-              <time
-                class="dt-published"
-                datetime="2025-01-20 00:00:00 &#43;0000 UTC"
-                itemprop="datePublished"
-                >2025-01</time
-              >
-            </a>
-          </div>
-          
-            <a class="archive-article-title" href="http://localhost:1313/post/bomblab/"
-              >CMU CSAPP bomblab phase1 ~ phase5 解答</a
-            >
-          
-        </li>
-      
-        <li class="archive-article">
-          <div class="archive-article-date-wrap">
-            <a href="http://localhost:1313/post/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80/">
-              <time
-                class="dt-published"
-                datetime="2025-01-17 00:00:00 &#43;0000 UTC"
-                itemprop="datePublished"
-                >2025-01</time
-              >
-            </a>
-          </div>
-          
-            <a class="archive-article-title" href="http://localhost:1313/post/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80/"
-              >存储系统基础</a
-            >
-          
-        </li>
-      
-        <li class="archive-article">
-          <div class="archive-article-date-wrap">
-            <a href="http://localhost:1313/post/git%E7%9B%B8%E5%85%B3/">
-              <time
-                class="dt-published"
-                datetime="2025-01-15 00:00:00 &#43;0000 UTC"
-                itemprop="datePublished"
-                >2025-01</time
-              >
-            </a>
-          </div>
-          
-            <a class="archive-article-title" href="http://localhost:1313/post/git%E7%9B%B8%E5%85%B3/"
-              >Git 相关</a
-            >
-          
-        </li>
-      
-    </ul>
-  </section>
-
-  <section class="archives-wrap" data-aos="fade-up">
-    <div class="archive-year-wrap">
-      <a href="" class="archive-year">2024</a>
-    </div>
-    <ul>
-      
-        <li class="archive-article">
-          <div class="archive-article-date-wrap">
-            <a href="http://localhost:1313/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/">
-              <time
-                class="dt-published"
-                datetime="2024-12-29 15:00:00 -0710 -0710"
-                itemprop="datePublished"
-                >2024-12</time
-              >
-            </a>
-          </div>
-          
-            <a class="archive-article-title" href="http://localhost:1313/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/"
-              >my 2024 summary</a
-            >
-          
-        </li>
-      
-        <li class="archive-article">
-          <div class="archive-article-date-wrap">
-            <a href="http://localhost:1313/post/doxygencommit/">
-              <time
-                class="dt-published"
-                datetime="2024-12-24 11:00:00 -0700 -0700"
-                itemprop="datePublished"
-                >2024-12</time
-              >
-            </a>
-          </div>
-          
-            <a class="archive-article-title" href="http://localhost:1313/post/doxygencommit/"
-              >Doxygen 与 commit规范</a
-            >
-          
-        </li>
-      
-        <li class="archive-article">
-          <div class="archive-article-date-wrap">
-            <a href="http://localhost:1313/post/%E7%BD%AE%E8%BA%AB%E4%BA%8B%E5%86%85/">
-              <time
-                class="dt-published"
-                datetime="2024-12-23 15:00:00 -0710 -0710"
-                itemprop="datePublished"
-                >2024-12</time
-              >
-            </a>
-          </div>
-          
-            <a class="archive-article-title" href="http://localhost:1313/post/%E7%BD%AE%E8%BA%AB%E4%BA%8B%E5%86%85/"
-              >《置身事内》读后记</a
-            >
-          
-        </li>
-      
-    </ul>
-  </section>
-
-
-  </div>
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-<nav id="page-nav" data-aos="fade-up">
+          class="sidebar-right"  >
+          <aside id="sidebar">
   
   
-    
-      
-        <span class="page-number current">1</span>
-      
-    
   
-    
-      
-        <a class="page-number" href="/archives/page/2/">2</a>
-      
-    
-  
-  
-    <a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;
-    </a>
-  
-</nav>
-
-</section>
-          
-            <aside id="sidebar">
   <div class="sidebar-wrapper ">
     <div
       class="sidebar-wrap"
@@ -806,47 +525,67 @@
     </div>
   </div>
 
-  
+  <div class="sidebar-widget">
     
       
+        
   <div class="widget-wrapper">
     <div
       class="widget-wrap"
       data-aos="fade-up"
     >
-      <h3 class="widget-title">Categories</h3>
+      <div style="display: flex; justify-content: space-between;">
+        <h3 class="widget-title">Categories</h3>
+        
+      </div>
       <div class="widget">
         <ul class="category-list">
           
-            <li class="category-list-item">
-              <a class="category-list-link" href="/categories/backend/"
-                >Backend</a
-              >
-            </li>
           
-            <li class="category-list-item">
-              <a class="category-list-link" href="/categories/common/"
-                >Common</a
-              >
-            </li>
+            
+              <li class="category-list-item">
+                <a class="category-list-link" href="/categories/backend/"
+                  >Backend</a
+                >
+              </li>
+              
+            
           
-            <li class="category-list-item">
-              <a class="category-list-link" href="/categories/life/"
-                >Life</a
-              >
-            </li>
+            
+              <li class="category-list-item">
+                <a class="category-list-link" href="/categories/common/"
+                  >Common</a
+                >
+              </li>
+              
+            
           
-            <li class="category-list-item">
-              <a class="category-list-link" href="/categories/technology/"
-                >Technology</a
-              >
-            </li>
+            
+              <li class="category-list-item">
+                <a class="category-list-link" href="/categories/life/"
+                  >Life</a
+                >
+              </li>
+              
+            
           
-            <li class="category-list-item">
-              <a class="category-list-link" href="/categories/%E9%80%9A%E8%AF%86/"
-                >通识</a
-              >
-            </li>
+            
+              <li class="category-list-item">
+                <a class="category-list-link" href="/categories/technology/"
+                  >Technology</a
+                >
+              </li>
+              
+            
+          
+            
+              <li class="category-list-item">
+                <a class="category-list-link" href="/categories/%E9%80%9A%E8%AF%86/"
+                  >通识</a
+                >
+              </li>
+              
+            
           
         </ul>
       </div>
@@ -854,26 +593,33 @@
   </div>
 
 
-    
       
+        
   <div class="widget-wrapper">
     <div
       class="widget-wrap"
       data-aos="fade-up"
     >
-      <h3 class="widget-title">Tags</h3>
+      <div style="display: flex; justify-content: space-between;">
+        <h3 class="widget-title">Tags</h3>
+        
+      </div>
       <div class="widget">
         <ul class="tag-list" itemprop="keywords">
           
+          
+            
             <li class="tag-item">
-              <a
-                class="tag-link"
-                href="/tags/doxygen/"
-                aria-label="Tag: Doxygen"
-              >
-                Doxygen
-              </a>
-            </li>
+                <a
+                  class="tag-link"
+                  href="/tags/doxygen/"
+                  aria-label="Tag: Doxygen"
+                >
+                  Doxygen
+                </a>
+              </li>
+              
+            
           
         </ul>
       </div>
@@ -881,8 +627,8 @@
   </div>
 
 
-    
       
+        
 <div class="widget-wrapper">
   <div
     class="widget-wrap"
@@ -893,19 +639,23 @@
     <div class="widget tagcloud">
       
       
-        <a
-          style="font-size:10px"
-          href="/tags/doxygen/"
-          aria-label="Tag: Doxygen"
-          >Doxygen</a
-        >
+        
+          
+          <a
+            style="font-size:10px"
+            href="/tags/doxygen/"
+            aria-label="Tag: Doxygen"
+            >Doxygen</a
+          >
+          
+        
       
     </div>
   </div>
 </div>
 
-    
       
+        
   
   <div class="widget-wrapper">
     <div
@@ -942,12 +692,321 @@
   </div>
 
 
+      
     
+  </div>
   
 </aside>
 
+          <section id="main">
+  <div
+    class="archives-outer-wrap"
+    data-aos="fade-up"
+  >
+    <div class="tag-wrap">
+  
+    <div
+      class="archives-tag-list-item"
+      data-aos="zoom-in"
+    >
+      <a class="archives-tag-list-link" href="/tags/doxygen/"
+        >Doxygen</a
+      >
+    </div>
+  
+</div>
+<div class="category-wrap">
+  
+    <div
+      class="archives-category-list-item"
+      data-aos="zoom-in"
+    >
+      <a class="archives-category-list-link" href="/categories/backend/"
+        >Backend</a
+      >
+    </div>
+  
+    <div
+      class="archives-category-list-item"
+      data-aos="zoom-in"
+    >
+      <a class="archives-category-list-link" href="/categories/common/"
+        >Common</a
+      >
+    </div>
+  
+    <div
+      class="archives-category-list-item"
+      data-aos="zoom-in"
+    >
+      <a class="archives-category-list-link" href="/categories/life/"
+        >Life</a
+      >
+    </div>
+  
+    <div
+      class="archives-category-list-item"
+      data-aos="zoom-in"
+    >
+      <a class="archives-category-list-link" href="/categories/technology/"
+        >Technology</a
+      >
+    </div>
+  
+    <div
+      class="archives-category-list-item"
+      data-aos="zoom-in"
+    >
+      <a class="archives-category-list-link" href="/categories/%E9%80%9A%E8%AF%86/"
+        >通识</a
+      >
+    </div>
+  
+</div>
+    
+
+
+
+  <section class="archives-wrap" data-aos="fade-up">
+    <div class="archive-year-wrap">
+      <a href="" class="archive-year">2025</a>
+    </div>
+    <ul>
+      
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <span>
+              <time
+                class="dt-published"
+                datetime="2025-02-23 15:00:00 -0710 -0710"
+                itemprop="datePublished"
+                >2025-02</time
+              >
+            </span>
+          </div>
           
-        </main>
+            <a class="archive-article-title" href="http://localhost:1313/post/%E8%AE%A4%E7%9F%A5%E5%BF%83%E7%90%86%E5%AD%A6/"
+              >认知心理学复习纲要</a
+            >
+          
+        </li>
+      
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <span>
+              <time
+                class="dt-published"
+                datetime="2025-01-25 15:00:00 -0718 -0718"
+                itemprop="datePublished"
+                >2025-01</time
+              >
+            </span>
+          </div>
+          
+            <a class="archive-article-title" href="http://localhost:1313/post/proxylab/"
+              >CMU Proxylab</a
+            >
+          
+        </li>
+      
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <span>
+              <time
+                class="dt-published"
+                datetime="2025-01-23 15:00:00 -0710 -0710"
+                itemprop="datePublished"
+                >2025-01</time
+              >
+            </span>
+          </div>
+          
+            <a class="archive-article-title" href="http://localhost:1313/post/%E5%A5%87%E6%80%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/"
+              >一些奇怪小技巧</a
+            >
+          
+        </li>
+      
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <span>
+              <time
+                class="dt-published"
+                datetime="2025-01-20 00:00:00 &#43;0000 UTC"
+                itemprop="datePublished"
+                >2025-01</time
+              >
+            </span>
+          </div>
+          
+            <a class="archive-article-title" href="http://localhost:1313/post/docker/"
+              >docker与dev container插件的使用</a
+            >
+          
+        </li>
+      
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <span>
+              <time
+                class="dt-published"
+                datetime="2025-01-20 00:00:00 &#43;0000 UTC"
+                itemprop="datePublished"
+                >2025-01</time
+              >
+            </span>
+          </div>
+          
+            <a class="archive-article-title" href="http://localhost:1313/post/bomblab/"
+              >CMU CSAPP bomblab phase1 ~ phase5 解答</a
+            >
+          
+        </li>
+      
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <span>
+              <time
+                class="dt-published"
+                datetime="2025-01-17 00:00:00 &#43;0000 UTC"
+                itemprop="datePublished"
+                >2025-01</time
+              >
+            </span>
+          </div>
+          
+            <a class="archive-article-title" href="http://localhost:1313/post/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80/"
+              >存储系统基础</a
+            >
+          
+        </li>
+      
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <span>
+              <time
+                class="dt-published"
+                datetime="2025-01-15 00:00:00 &#43;0000 UTC"
+                itemprop="datePublished"
+                >2025-01</time
+              >
+            </span>
+          </div>
+          
+            <a class="archive-article-title" href="http://localhost:1313/post/git%E7%9B%B8%E5%85%B3/"
+              >Git 相关</a
+            >
+          
+        </li>
+      
+    </ul>
+  </section>
+
+  <section class="archives-wrap" data-aos="fade-up">
+    <div class="archive-year-wrap">
+      <a href="" class="archive-year">2024</a>
+    </div>
+    <ul>
+      
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <span>
+              <time
+                class="dt-published"
+                datetime="2024-12-29 15:00:00 -0710 -0710"
+                itemprop="datePublished"
+                >2024-12</time
+              >
+            </span>
+          </div>
+          
+            <a class="archive-article-title" href="http://localhost:1313/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/"
+              >my 2024 summary</a
+            >
+          
+        </li>
+      
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <span>
+              <time
+                class="dt-published"
+                datetime="2024-12-24 11:00:00 -0700 -0700"
+                itemprop="datePublished"
+                >2024-12</time
+              >
+            </span>
+          </div>
+          
+            <a class="archive-article-title" href="http://localhost:1313/post/doxygencommit/"
+              >Doxygen 与 commit规范</a
+            >
+          
+        </li>
+      
+        <li class="archive-article">
+          <div class="archive-article-date-wrap">
+            <span>
+              <time
+                class="dt-published"
+                datetime="2024-12-23 15:00:00 -0710 -0710"
+                itemprop="datePublished"
+                >2024-12</time
+              >
+            </span>
+          </div>
+          
+            <a class="archive-article-title" href="http://localhost:1313/post/%E7%BD%AE%E8%BA%AB%E4%BA%8B%E5%86%85/"
+              >《置身事内》读后记</a
+            >
+          
+        </li>
+      
+    </ul>
+  </section>
+
+
+  </div>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+<nav id="page-nav" data-aos="fade-up">
+  
+  
+    
+      
+        <span class="page-number current">1</span>
+      
+    
+  
+    
+      
+        <a class="page-number" href="/archives/page/2/">2</a>
+      
+    
+  
+  
+    <a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;
+    </a>
+  
+</nav>
+
+</section>
+        </div>
+        
+        
         
 
 
@@ -1004,6 +1063,7 @@
     <div class="footer-line"></div>
   </div>
   <div id="footer-info">
+    
     <div>
       <span class="icon-copyright"></span>
       2020 -
@@ -1399,7 +1459,15 @@
 
 
 
-  
+
+
+
+
+<script>
+  function initLive2d() {
+    live2d.init('https:\/\/fastly.jsdelivr.net\/gh\/D-Sketon\/plugin-live2d\/', {themeTipsPath: ""});
+  }
+</script> 
 
   
   
@@ -1408,25 +1476,13 @@
   
   
   <script
-    src="https://npm.webcache.cn/mouse-firework@0.0.6/dist/index.umd.js"
+    src="https://fastly.jsdelivr.net/gh/D-Sketon/plugin-live2d/js/live2d-autoload.js"
     
+    async
     
+    onload="initLive2d()"
     
-    
-    integrity="sha384-vkGvf25gm1C1PbcoD5dNfc137HzNL/hr1RKA5HniJOaawtvUmH5lTVFgFAruE9Ge" crossorigin="anonymous"
   ></script>
-
-
-<script>
-  if (window.firework) {
-    const options = JSON.parse("{\"excludeelements\":[\"a\",\"button\"],\"particles\":[{\"colors\":[\"#ff5252\",\"#ff7c7c\",\"#ffafaf\",\"#ffd0d0\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"emit\"],\"number\":20,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.3,0.5],\"radius\":[16,32]}},{\"colors\":[\"#ff0000\"],\"duration\":[1200,1800],\"easing\":\"easeOutExpo\",\"move\":[\"diffuse\"],\"number\":1,\"shape\":\"circle\",\"shapeOptions\":{\"alpha\":[0.2,0.5],\"lineWidth\":6,\"radius\":20}}]}");
-    options.excludeElements = options.excludeelements;
-    delete options.excludeelements;
-    window.firework(options);
-  }
-</script>
-
-
 
 
 
@@ -1435,6 +1491,21 @@
 
 <div id="lazy-script">
   <div>
+    
+      
+      
+        
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Bertsin",
+          title: "",
+          url: "http:\/\/localhost:1313\/archives\/",
+          description: "",
+          cover: "http:\/\/localhost:1313\/images\/banner.webp",
+        };
+      </script>
+    
     
     
       
@@ -1492,6 +1563,7 @@
 
 
 
+      
     
     
   </div>
@@ -1549,5 +1621,11 @@
   );
 </script>
 
+
+
+
+
+
+    
   </body>
 </html>

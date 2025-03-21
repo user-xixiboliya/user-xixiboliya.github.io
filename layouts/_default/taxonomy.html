@@ -3,30 +3,9 @@
     class="archives-outer-wrap"
     data-aos="{{ .Site.Params.animation.options.archive.whole }}"
   >
-    <div class="tag-wrap">
-      {{ range .Site.Taxonomies.tags }}
-        <div
-          class="archives-tag-list-item"
-          data-aos="{{ $.Site.Params.animation.options.archive.tag }}"
-        >
-          <a class="archives-tag-list-link" href="{{ .Page.RelPermalink }}"
-            >{{ .Page.Title }}</a
-          >
-        </div>
-      {{ end }}
-    </div>
-    <div class="category-wrap">
-      {{ range .Site.Taxonomies.categories }}
-        <div
-          class="archives-category-list-item"
-          data-aos="{{ $.Site.Params.animation.options.archive.category }}"
-        >
-          <a class="archives-category-list-link" href="{{ .Page.RelPermalink }}"
-            >{{ .Page.Title }}</a
-          >
-        </div>
-      {{ end }}
-    </div>
+    {{ if not .Site.Params.only_show_capsule_in_index }}
+      {{ partialCached "partials/archives.html" . }}
+    {{ end }}
     {{ .Render "list" }}
   </div>
   {{ partial "partials/pagination.html" . }}

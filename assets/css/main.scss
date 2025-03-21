@@ -3,7 +3,7 @@
 {{ $local_code_families := default "" (delimit (apply (default slice $params.local_font.code) "printf" "'%s'" ".") ",") }}
 
 $icon_font: {{ $params.icon_font }};
-$reimu_cursor: {{ $params.reimu_cursor }};
+$reimu_cursor: {{ if reflect.IsMap $params.reimu_cursor }}{{ $params.reimu_cursor.enable }}{{ else }}{{ $params.reimu_cursor }}{{ end }};
 $basic-families: {{ default $local_basic_families (delimit (apply (default slice $params.font.article) "printf" "'%s'" ".") ",") }};
 $code-families: {{ default $local_code_families (delimit (apply (default slice $params.font.code) "printf" "'%s'" "." ) ",") }};
 $local-basic-families: {{ $local_basic_families }};
@@ -12,6 +12,13 @@ $local-code-families: {{ $local_code_families }};
 $footer_icon_mask: {{  $params.footer.icon.mask }};
 $top_icon_mask: {{  $params.top.icon.mask }};
 $sponsor_icon_mask: {{  $params.sponsor.icon.mask }};
+$live2d_position: {{ $params.live2d.position }};
+$live2d_widgets_position: {{ $params.live2d_widgets.position }};
+$top_position: {{ $params.top.position }};
+
+$cursor-default: {{ if reflect.IsMap $params.reimu_cursor }}"{{ $params.reimu_cursor.cursor.default }}"{{ else }}"../images/cursor/reimu-cursor-default.png"{{ end }};
+$cursor-pointer: {{ if reflect.IsMap $params.reimu_cursor }}"{{ $params.reimu_cursor.cursor.pointer }}"{{ else }}"../images/cursor/reimu-cursor-pointer.png"{{ end }};
+$cursor-text: {{ if reflect.IsMap $params.reimu_cursor }}"{{ $params.reimu_cursor.cursor.text }}"{{ else }}"../images/cursor/reimu-cursor-text.png"{{ end }};
 
 {{ $social := $params.social }}
 {{ $social_keys := slice }}
@@ -20,6 +27,10 @@ $sponsor_icon_mask: {{  $params.sponsor.icon.mask }};
 {{ end }}
 {{ $social_keys = $social_keys | append "__dummy__" }}
 $social-keys: {{ delimit (apply $social_keys "printf" "'%s'" "." ) "," }};
+
+{{ $share_keys := default slice $params.share }}
+{{ $share_keys = $share_keys | append "__dummy__" }}
+$share-keys: {{ delimit (apply $share_keys "printf" "'%s'" "." ) "," }};
 
 :root {
   --footer-icon: url({{ $params.footer.icon.url }});
@@ -35,7 +46,7 @@ $social-keys: {{ delimit (apply $social_keys "printf" "'%s'" "." ) "," }};
 {{ if $params.icon_font }}
   @import "iconfont";
 {{ else }}
-  @import "frontawesome";
+  @import "fontawesome";
 {{ end }}
 
 @include global-reset;
@@ -58,9 +69,9 @@ input, button {
 html, body, #container {
   height: 100%;
   scroll-behavior: smooth;
-  {{ if $params.reimu_cursor }}
-  cursor: var(--cursor-default);
-  {{ end }}
+  @if $reimu_cursor {
+    cursor: var(--cursor-default);
+  }
 }
 
 body {
@@ -78,45 +89,45 @@ body {
   }
 }
 
-{{ if $params.reimu_cursor }}
-a, .main-nav-icon, .popup-btn-close {
-  cursor: var(--cursor-pointer) !important;
-}
-
-.site-search {
-  input {
-    cursor: var(--cursor-text) !important;
-  }
-}
-
-#main {
-  span, p, code, kbd, input, textarea {
-    cursor: var(--cursor-text) !important;
+@if $reimu_cursor {
+  a, .main-nav-icon, .popup-btn-close {
+    cursor: var(--cursor-pointer) !important;
   }
 
-  nav {
-    span {
-      cursor: var(--cursor-default) !important;
+  .site-search {
+    input {
+      cursor: var(--cursor-text) !important;
     }
   }
-}
 
-.code-copy, .code-lang, .code-expand {
-  cursor: var(--cursor-pointer) !important;
-}
+  #main {
+    span, p, code, kbd, input, textarea {
+      cursor: var(--cursor-text) !important;
+    }
 
-.reimu-powered {
-  cursor: var(--cursor-default) !important;
-}
-{{ else }}
-.code-copy, .code-lang, .code-expand {
-  cursor: pointer !important;
-}
+    nav {
+      span {
+        cursor: var(--cursor-default) !important;
+      }
+    }
+  }
 
-.main-nav-icon, .popup-btn-close {
-  cursor: pointer !important;
+  .code-copy, .code-lang, .code-expand {
+    cursor: var(--cursor-pointer) !important;
+  }
+
+  .reimu-powered {
+    cursor: var(--cursor-default) !important;
+  }
+} @else {
+  .code-copy, .code-lang, .code-expand {
+    cursor: pointer !important;
+  }
+
+  .main-nav-icon, .popup-btn-close {
+    cursor: pointer !important;
+  }
 }
-{{ end }}
 
 #container {
   position: relative;
@@ -138,6 +149,7 @@ a, .main-nav-icon, .popup-btn-close {
 }
 
 #main {
+  flex: 1;
   padding: 0 10px;
   max-width: 100%;
   box-sizing: border-box;
@@ -157,15 +169,20 @@ a, .main-nav-icon, .popup-btn-close {
   overflow: visible;
 }
 
-{{ if $params.sidebar }}
-#main {
-  @media #{$mq-large} {
-    padding: 0;
-    width: 73%;
-    margin: 0 1%;
+.sidebar-left,
+.sidebar-right {
+  #main {
+    @media #{$mq-large} {
+      padding: 0;
+      width: 73%;
+      margin: 0 1%;
+    }
   }
 }
-{{ end }}
+
+#content.sidebar-right {
+  flex-direction: row-reverse;
+}
 
 #mask {
   z-index: 1000;
@@ -198,6 +215,7 @@ a, .main-nav-icon, .popup-btn-close {
 @import "partials/mobile";
 @import "partials/friend";
 @import "partials/card";
+@import "partials/sidebar";
 
 {{ if $params.top.enable }}
 @import "partials/top";
@@ -211,12 +229,28 @@ a, .main-nav-icon, .popup-btn-close {
 @import "partials/widget";
 {{ end }}
 
-{{ if $params.sidebar }}
-@import "partials/sidebar";
-{{ end }}
-
 {{ if $params.service_worker.enable }}
 @import "partials/notification";
+{{ end }}
+
+{{ if $params.player.aplayer.enable }}
+@import "partials/aplayer";
+{{ end }}
+
+{{ if $params.live2d.enable }}
+@import "partials/live2d";
+{{ end }}
+
+{{ if $params.live2d_widgets.enable }}
+@import "partials/live2d-widgets";
+{{ end }}
+
+{{ if $params.home_categories.enable }}
+@import "partials/home-categories";
+{{ end }}
+
+{{ if reflect.IsSlice $params.share }}
+@import "partials/share";
 {{ end }}
 
 [data-theme="dark"] {
