@@ -346,6 +346,11 @@ body [data-aos="zoom-in"] {
   content: "\e62b";
 }
 
+.icon-weixin:before {
+  font-family: "iconfont";
+  content: "\e640";
+}
+
 .icon-qq:before {
   font-family: "iconfont";
   content: "\e63e";

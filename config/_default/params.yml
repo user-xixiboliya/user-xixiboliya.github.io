@@ -10,13 +10,13 @@ menu:
     icon: # default use taichi icon, you can use a hexadecimal representation of fontawesome or icon_font, like 'f0c1'
   - name: archives
     url: "archives"
-    icon:
+    icon: e633
   - name: about
     url: "about"
-    icon:
+    icon: e63d
   - name: friend
     url: "friend"
-    icon:
+    icon: e639
 
 
 mainSections: ["post"]
@@ -35,7 +35,7 @@ banner: "images/banner.webp"
 # You can also write it in the form of the following url
 # banner: "https://example.com"
 
-# If you want to use the srcset attribute, please enable itddd
+# If you want to use the srcset attribute, please enable it
 banner_srcset:
   enable: true
   srcset:
@@ -51,7 +51,7 @@ avatar: "avatar.webp"
 # Control the display of the post cover
 # If not set, the banner image will be displayed by default
 # Its priority is lower than the cover in the Front-matter
-cover: 
+cover: images/liyue-default.png
 
 # Control the display of the post toc
 # Its priority is lower than the toc in the Front-matter
@@ -284,7 +284,7 @@ gitalk:
   enable: true
   clientID:
   clientSecret:
-  repo:
+  repo: 
   owner:
   admin:
   md5: false
@@ -448,7 +448,7 @@ share:
   # - reddit
   # - weibo
    - qq
-  # - weixin
+   - weixin
 
 # show categories card on home page
 home_categories:
