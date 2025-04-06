@@ -51,8 +51,7 @@ avatar: "avatar.webp"
 # Control the display of the post cover
 # If not set, the banner image will be displayed by default
 # Its priority is lower than the cover in the Front-matter
-cover: https://upload-bbs.miyoushe.com/upload/2025/03/21/289087756/d8d66b065a55de1b7773fe0efade787e_8488321437057429952.jpg?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg
-
+cover: 
 
 # Control the display of the post toc
 # Its priority is lower than the toc in the Front-matter
