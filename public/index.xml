@@ -6,8 +6,15 @@
     <description>Recent content on Welcome to Bertsin Homepage!</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Mar 2025 16:00:00 -0720</lastBuildDate>
+    <lastBuildDate>Wed, 02 Apr 2025 16:00:00 -0720</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025XJTU AI系统实验</title>
+      <link>http://localhost:1313/post/ai_system/</link>
+      <pubDate>Tue, 01 Apr 2025 15:00:00 -0710</pubDate>
+      <guid>http://localhost:1313/post/ai_system/</guid>
+      <description>&lt;h1 id=&#34;xjtu-ai-system-experiments-2025&#34;&gt;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#xjtu-ai-system-experiments-2025&#34;&gt;&lt;/a&gt;&#xA;XJTU AI system Experiments 2025&#xA;&lt;/h1&gt;&lt;p&gt;本仓库内容与Microsoft的AI System融合紧密，为其附属作业。这里有基本的作业项目Microsoft AI System Github、课程概述&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;详情请见代码仓库&lt;/strong&gt;&lt;a href=&#34;https://github.com/user-xixiboliya/ai_system_HW&#34;&gt;AI System&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;menu&#34;&gt;&#xA;&lt;a class=&#34;header-anchor&#34; href=&#34;#menu&#34;&gt;&lt;/a&gt;&#xA;Menu&#xA;&lt;/h2&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;./ai%20system%20assignment1/README.md&#34;&gt;assignment1 深度学习框架入门&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;./ai%20system%20assignment2/README.md&#34;&gt;assignment2 自定义pytorch算子&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;./ai%20system%20assignment3/README.md&#34;&gt;assignment3 NNI自动调参&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;TODO&amp;hellip;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>认知心理学复习纲要</title>
       <link>http://localhost:1313/post/%E8%AE%A4%E7%9F%A5%E5%BF%83%E7%90%86%E5%AD%A6/</link>

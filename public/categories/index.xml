@@ -6,20 +6,20 @@
     <description>Recent content in Categories on Welcome to Bertsin Homepage!</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Mar 2025 16:00:00 -0720</lastBuildDate>
+    <lastBuildDate>Wed, 02 Apr 2025 16:00:00 -0720</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Technology</title>
+      <link>http://localhost:1313/categories/technology/</link>
+      <pubDate>Tue, 01 Apr 2025 15:00:00 -0710</pubDate>
+      <guid>http://localhost:1313/categories/technology/</guid>
+      <description></description>
+    </item>
     <item>
       <title>通识</title>
       <link>http://localhost:1313/categories/%E9%80%9A%E8%AF%86/</link>
       <pubDate>Sun, 23 Feb 2025 15:00:00 -0710</pubDate>
       <guid>http://localhost:1313/categories/%E9%80%9A%E8%AF%86/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Technology</title>
-      <link>http://localhost:1313/categories/technology/</link>
-      <pubDate>Sat, 25 Jan 2025 15:00:00 -0718</pubDate>
-      <guid>http://localhost:1313/categories/technology/</guid>
       <description></description>
     </item>
     <item>
