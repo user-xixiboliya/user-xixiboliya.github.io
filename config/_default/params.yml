@@ -198,38 +198,56 @@ code_block:
   # number means collapse the code block by default when the number of lines exceeds the specified value
   expand: true
 
+# math:
+#   katex:
+#   dddmathjax:
+#     enable: true
+#     options: # see https://docs.mathjax.org/en/latest/web/configuration.html
+#     # we need to put the configuration in an array, because hugo will automatically convert the key to lowercase
+#       [
+#         {
+#           tex:
+#             {
+#               tags: "ams",
+#               useLabelIds: true,
+#               inlineMath: [["$", "$"], ['\\(', '\\)']],
+#               displayMath: [["$$", "$$"], ['\\[', '\\]']],
+#               processEscapes: true,
+#               processEnvironments: true,
+#               autoload: { color: [], colorv2: ["color"] },
+#               packages: { "[+]": ["noerrors"] },
+#             },
+#           options:
+#             {
+#               skipHtmlTags:
+#                 ["script", "noscript", "style", "textarea", "pre", "code"],
+#               ignoreHtmlClass: "tex2jax_ignore",
+#               processHtmlClass: "tex2jax_process",
+#             },
+#           loader: { load: ["input/asciimath", "[tex]/noerrors"] },
+#         },
+#       ]
 math:
   katex:
-    enable: true
-  mathjax:
     enable: false
-    options: # see https://docs.mathjax.org/en/latest/web/configuration.html
-    # we need to put the configuration in an array, because hugo will automatically convert the key to lowercase
-      [
-        {
-          tex:
-            {
-              tags: "ams",
-              useLabelIds: true,
-              inlineMath: [["$", "$"], ['\\(', '\\)']],
-              displayMath: [["$$", "$$"], ['\\[', '\\]']],
-              processEscapes: true,
-              processEnvironments: true,
-              autoload: { color: [], colorv2: ["color"] },
-              packages: { "[+]": ["noerrors"] },
-            },
-          options:
-            {
-              skipHtmlTags:
-                ["script", "noscript", "style", "textarea", "pre", "code"],
-              ignoreHtmlClass: "tex2jax_ignore",
-              processHtmlClass: "tex2jax_process",
-            },
-          loader: { load: ["input/asciimath", "[tex]/noerrors"] },
-        },
-      ]
-
-########################################
+  mathjax:
+    enable: true
+    options: 
+      tex:
+        inlineMath: [ ["$","$"], ["\\(","\\)"] ]
+        displayMath: [ ["$$","$$"], ["\\[","\\]"] ]
+        processEscapes: true
+        packages: { '[+]': ['ams'] }
+      loader: { load: ['input/asciimath', '[tex]/ams'] }
+      options:
+        processHtmlClass: 'tex2jax_process'
+      options:
+        skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+        ignoreHtmlClass: "tex2jax_ignore"
+        processHtmlClass: "tex2jax_process"
+      loader: 
+        load: ["input/asciimath", "[tex]/noerrors"]
+#################d#######################
 # Comment system
 ########################################
 
@@ -486,13 +504,13 @@ service_worker:
 
 # Experimental
 live2d:
-  enable: true
+  enable: false
   position: right
 
 # Experimental
 live2d_widgets:
-  enable: true
-  position: right # left or right
+  enable: false
+  position: left # left or right
 
 # https://github.com/CodeByZach/pace
 pace:

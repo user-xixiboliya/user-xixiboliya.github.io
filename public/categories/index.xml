@@ -23,6 +23,13 @@
       <description></description>
     </item>
     <item>
+      <title>CourseNote</title>
+      <link>http://localhost:1313/categories/coursenote/</link>
+      <pubDate>Fri, 24 Jan 2025 15:20:00 -0810</pubDate>
+      <guid>http://localhost:1313/categories/coursenote/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Common</title>
       <link>http://localhost:1313/categories/common/</link>
       <pubDate>Thu, 23 Jan 2025 15:00:00 -0710</pubDate>

@@ -1,5 +1,5 @@
 ---
-title: 'Datalab'
+title: 'CMU Datalab'
 draft: false
 description: 本人关于CMU Datalab的答案。 
 date: 2024-11-22T11:00:00-07:00
