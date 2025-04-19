@@ -15,8 +15,8 @@ lastmod: 2025-04-02T16:00:00-07:20
 **详情请见代码仓库**[AI System](https://github.com/user-xixiboliya/ai_system_HW)
 
 ## Menu
-- [assignment1 深度学习框架入门](./ai%20system%20assignment1/README.md)
-- [assignment2 自定义pytorch算子](./ai%20system%20assignment2/README.md)
-- [assignment3 NNI自动调参](./ai%20system%20assignment3/README.md)
-
+- [assignment1 深度学习框架入门](https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment1/README.md)
+- [assignment2 自定义pytorch算子](https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment2/README.md)
+- [assignment3 NNI自动调参](https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment3/README.md)
+- assignment4 
 TODO...

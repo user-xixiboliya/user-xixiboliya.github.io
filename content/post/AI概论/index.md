@@ -2,7 +2,7 @@
 title: '人工智能概论复习笔记'
 description: 2024 XJTU 人工智能概论复习笔记。
 draft: false
-math: trued
+math: true
 categories:
   - CourseNote
 date: 2025-01-24T15:20:00-08:10
