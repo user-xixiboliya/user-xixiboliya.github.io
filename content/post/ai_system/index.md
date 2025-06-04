@@ -18,5 +18,6 @@ lastmod: 2025-04-02T16:00:00-07:20
 - [assignment1 深度学习框架入门](https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment1/README.md)
 - [assignment2 自定义pytorch算子](https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment2/README.md)
 - [assignment3 NNI自动调参](https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment3/README.md)
-- assignment4 
+- [assignment4 分布式训练](https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment4/README.md) 
+- [assignment5 容器化部署](https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment5/README.md) 
 TODO...
