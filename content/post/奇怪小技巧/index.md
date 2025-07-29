@@ -5,7 +5,7 @@ draft: false
 categories:
   - common
 date: 2025-01-23T15:00:00-07:10
-lastmod: 2025-02-14T16:00:00-07:20
+lastmod: 2025-07-14T16:00:00-07:10
 ---
 #  Shields.io徽章制作
 在浏览 GitHub 时，你可能发现很多项目都有很漂亮的徽章。这些徽章可以用来显示项目版本、进度条、star 数量、fork 数量....，那么这些徽章是如何生成的呢？
@@ -29,8 +29,9 @@ lastmod: 2025-02-14T16:00:00-07:20
 在下图中，logo需要严格按照[simple icon](https://simpleicons.org/)中的名字规定，`#FCC624`规定了徽章的背景色。比如，我找到了微信的图标，只需在simple icon的“logo”栏输入“WeChat”，即可让微信的图标出现在徽章上。
 ![](output_image/c2f35a1675ef8efaa27699e46202329b.png)
 
-在badgeContent中，一般的输入可以是`label-(optional)message-color`，即【第一段内容】-【第二段内容】-【颜色】 ，中间使用`-`隔离。在badgeContent要输入空格或者下划线等内容可以参考下面：
+在badgeContent中，一般的输入可以是`label-(optional)message-color`，即【第一段内容】-【第二段内容】-【颜色】 ，中间使用`-`隔离。
 
+在badgeContent要输入空格或者下划线等内容可以参考下面：
 |URL input|Badge output|
 |---|---|
 |Underscore `_` or `%20`|Space|
@@ -44,3 +45,9 @@ lastmod: 2025-02-14T16:00:00-07:20
 ```
 ![](https://img.shields.io/badge/vitepress-5C73E7?style=for-the-badge&logo=vitepress&logoColor=FFFFFF)
 ```
+
+## 应用举例
+例如，我需要obsidian的图标：
+![](output_image/image1.png)
+其中，#7C3AED来自[simple icon](https://simpleicons.org/)的obsidian图标,复制之后填在badgeContent中的`color`字段中即可。
+![](output_image/image2.png)
