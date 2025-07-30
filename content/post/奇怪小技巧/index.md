@@ -51,3 +51,41 @@ lastmod: 2025-07-14T16:00:00-07:10
 ![](output_image/image1.png)
 其中，#7C3AED来自[simple icon](https://simpleicons.org/)的obsidian图标,复制之后填在badgeContent中的`color`字段中即可。
 ![](output_image/image2.png)
+
+
+# windows 中需要管理员权限才能删除文件夹
+遇到错误：
+![](output_image/image3.png)
+在 Windows 中以管理员权限删除文件夹时，若遇到 “你需要管理员权限” 或 “Access denied” 等提示，通常是因为当前用户或 UAC 权限不足、或目标文件夹仍归系统/TrustedInstaller 所有。以下是建议操作步骤和对应命令方法：
+
+实际上意思是：即便你当前账号是管理员，但 Windows 判断你缺少对该文件夹的所有权或控制权（ownership/control），导致即便是你本人也无法删除。这类问题非常常见，以下是解决方案。
+## 1. 以管理员身份打开命令提示符或 PowerShell
+在开始菜单搜索 cmd 或 PowerShell，右键选择 以管理员身份运行，确保具有足够权限 
+
+## 2. 接管文件夹所有权与权限控制
+若文件夹归 TrustedInstaller 或非当前用户所有，需先接管其所有权并授权：
+
+运行以下命令：
+```bash
+takeown /F "C:\路径\目标文件夹" /R /D Y
+icacls "C:\路径\目标文件夹" /grant administrators:F /T
+icacls "C:\路径\目标文件夹" /reset /T
+```
+
+- takeown 用于接管目标资源的所有权
+
+- icacls /grant 将管理员组授予完全控制权限
+
+- icacls /reset 重置访问控制列表使权限生效 
+
+## 3. 删除文件夹
+
+```bash
+Remove-Item -LiteralPath "E:\mywebsite2\目标文件夹" -Recurse -Force
+```
+
+- Recurse：递归删除所有子项；
+
+- Force：删除只读文件、隐藏文件等；
+
+- LiteralPath：处理路径中存在特殊字符或空格的文件夹名称
