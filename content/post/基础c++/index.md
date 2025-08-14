@@ -1,7 +1,7 @@
 ---
 title: 基础c++
 date: 2025-08-14
-description: >
+description: robocon 培训供预备队员扫盲用。它不应该出现在这个博客里。
 draft: false
 categories:
     - technology
