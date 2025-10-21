@@ -1,14 +1,12 @@
 ---
 title: Paper Reading 1
-date: 2025-10-21
+draft:false
 categories:
   - Emboieded AI 
+math: true
 description: 快速的从一些论文中扫过，您真的要dive into 它们吗？
-resources:
-  - src: "**.{png,jpg}"
-    title: "Image #:counter"
-    params:
-      byline: ""
+date: 2025-10-21T15:00:00-07:10
+lastmod: 2025-10-21T16:00:00-07:20
 ---
 # pi0
 如你所见，pi 0 的flow match model VLA包括一个大的VLM backbone 以及一个较小的 action expert组成，VLM backbone有权重初始化。输入为第$t$时刻的1到$n$张image（每个机器人2-3张）加上language，image encoder(是ViT吗？)将图像投影到与text embedding相同的空间中。$q_{t}$是关节角度的向量，也需要encoder和linear projection到text embedding的空间中。$a_{t}^{\tau}$是加噪的动作，$\tau$是流匹配的时间步（？），$\tau$范围是$[0,1]$。
