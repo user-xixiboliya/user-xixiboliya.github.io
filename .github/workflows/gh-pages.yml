@@ -40,7 +40,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
-          PERSONAL_TOKEN: ${{ secrets.ACTION_TOKEN_NEW }}
+          PERSONAL_TOKEN: ${{ secrets.ACTION_TOKEN }}
           PUBLISH_DIR: ./public # 注意修改成你使用hugo创建的项目名称
           EXTERNAL_REPOSITORY: user-xixiboliya/user-xixiboliya.github.io # 你的Github Pages远程仓库名
           # PUBLISH_BRANCH: gh-pages #如果不想推送到gh-pages分支，可以添加这一行
