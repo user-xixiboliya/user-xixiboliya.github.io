@@ -1,6 +1,6 @@
 ---
 title: Paper Reading 1
-draft:false
+draft: false
 categories:
   - Emboieded AI 
 math: true
