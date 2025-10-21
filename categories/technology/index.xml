@@ -1,4 +1,214 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Technology on Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/categories/technology/</link><description>Recent content in Technology on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 20 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/categories/technology/index.xml" rel="self" type="application/rss+xml"/><item><title>docker与dev container插件的使用</title><link>https://user-xixiboliya.github.io/post/docker/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/docker/</guid><description>&lt;blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Technology on Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/categories/technology/</link><description>Recent content in Technology on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 25 Jun 2025 16:00:00 -0723</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/categories/technology/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows-cpp-clang 环境搭建</title><link>https://user-xixiboliya.github.io/post/windows-cpp/</link><pubDate>Wed, 25 Jun 2025 15:00:00 -0718</pubDate><guid>https://user-xixiboliya.github.io/post/windows-cpp/</guid><description>&lt;blockquote>
+&lt;p>本文初版参照RM视觉组的msys2-windows-cpp环境搭建教程，并在一定程度上进行了补充。&lt;/p>
+&lt;/blockquote>
+&lt;p>让我们开始吧。&lt;/p>
+&lt;p>首先，欢迎大家了解RC视觉组并学习一些相关知识。在往期培训过程中，我们一般使用linux进行环境配置，但是由于需要了解的知识过于硬核，导致培训效果不太理想。&lt;/p>
+&lt;p>因此我们打算先使用windows配置环境并学习核心知识，之后再进行linux/ubuntu22.04环境的过渡。&lt;/p>
+&lt;h1 id="环境基础知识">
+&lt;a class="header-anchor" href="#%e7%8e%af%e5%a2%83%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86">&lt;/a>
+环境基础知识
+&lt;/h1>&lt;h2 id="集成开发环境ide">
+&lt;a class="header-anchor" href="#%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83ide">&lt;/a>
+集成开发环境（IDE）
+&lt;/h2>&lt;p>集成开发环境本质上是把编写、构建、调试、测试、重构与版本控制等开发工作流所需的工具整合到一个统一界面中，减少来回切换工具的成本，让开发更高效、更可控。对于 C++ 这种语言，IDE 不仅要提供语法高亮和自动补全，还需要与编译器、构建系统和调试器深度集成，以便处理头文件搜索、宏展开、模板实例化和平台相关的差异等复杂问题。&lt;/p>
+&lt;p>从功能角度看，一个适合 C++ 的 IDE 通常包含智能补全（基于 language server）、跳转定义/查找引用、重构支持、集成构建与任务系统、强大的调试器（断点、单步、变量/内存查看、核心转储分析）、静态分析与代码格式化（例如 clang-tidy、clang-format）、以及测试框架和版本控制的可视化支持。对于大型或跨平台项目，还希望 IDE 能处理 CMake/meson/bazel 等构建系统的配置，方便在不同平台和不同编译器间切换。&lt;/p>
+&lt;p>目前常见的选项各有侧重点：Visual Studio（Windows）在与 MSVC、Windows SDK、性能分析器和图形化调试方面最为成熟，适合开发 Windows 原生应用和大型企业项目；CLion（JetBrains）对 CMake 支持出色，提供强力的重构与代码分析，跨平台但为付费软件；Visual Studio Code（VSCode）则以轻量、免费与扩展生态见长，通过安装插件可以把它变成功能接近传统 IDE 的开发环境，适合希望高度定制或在 Linux/WSL/macOS 上开发的用户。&lt;/p>
+&lt;p>推荐把 &lt;strong>VSCode&lt;/strong>当作 C++ 开发工具的原因在于其灵活性：你可以按需安装 language server（如 clangd 或 Microsoft 的 C/C++ 扩展）、CMake Tools、调试适配器（gdb/LLDB 或 Windows 的 cppvsdbg）、以及格式化/静态检查扩展。配合 Remote-WSL、Remote-Containers 或 Dev Containers，可以在容器或 WSL2 中运行实际的构建工具链和调试器，同时在宿主机上享受轻快的编辑体验，这对跨平台开发和保持一致的开发环境特别有益。&lt;/p>
+&lt;h1 id="环境变量">
+&lt;a class="header-anchor" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f">&lt;/a>
+环境变量
+&lt;/h1>&lt;p>环境变量是操作系统中用于存储有关系统运行环境的信息的特定名称对象。它们对于指定程序运行的方式和位置至关重要，因为它们可以告诉系统在哪里查找必要的文件和程序。环境变量分为用户变量和系统变量，用户变量仅对当前登录的用户有效，而系统变量对所有用户都有效。一个关于windows环境变量介绍的博客是：&lt;a href="https://zhuanlan.zhihu.com/p/82011100">看懂什么是环境变量! - 知乎&lt;/a>&lt;/p>
+&lt;h2 id="搭建环境">
+&lt;a class="header-anchor" href="#%e6%90%ad%e5%bb%ba%e7%8e%af%e5%a2%83">&lt;/a>
+搭建环境
+&lt;/h2>&lt;p>对于c++开发环境，windows下可选择的环境还有visual studio (vs)，dev-c++等，然而vs使用的编译器为MinGW，是linux中使用的gcc编译器的windows移植版。目前mingw-w64位项目目前的状况比较复杂，有多个发行分支，具体可以参看&lt;a href="https://link.zhihu.com/?target=https%3A//www.mingw-w64.org/downloads/">官网的下载页&lt;/a>。目前在windows上最新、最靠谱的发行分支就是&lt;strong>MSYS2&lt;/strong>。&lt;/p></description></item><item><title>RC 网络仓库服务器</title><link>https://user-xixiboliya.github.io/post/rcserver/</link><pubDate>Sun, 25 May 2025 15:00:00 -0718</pubDate><guid>https://user-xixiboliya.github.io/post/rcserver/</guid><description>&lt;h1 id="rc-网络仓库服务介绍">
+&lt;a class="header-anchor" href="#rc-%e7%bd%91%e7%bb%9c%e4%bb%93%e5%ba%93%e6%9c%8d%e5%8a%a1%e4%bb%8b%e7%bb%8d">&lt;/a>
+RC 网络仓库服务介绍
+&lt;/h1>&lt;h2 id="intro-服务是什么">
+&lt;a class="header-anchor" href="#intro-%e6%9c%8d%e5%8a%a1%e6%98%af%e4%bb%80%e4%b9%88">&lt;/a>
+Intro 服务是什么
+&lt;/h2>&lt;p>本文档介绍的对象是一组部署在服务器上，用于RC视觉组共享与传承工作成果的Web服务。主要提供了私有远程git仓库服务(gogs)，文档与博客分享服务(hugo)，与文件下载服务，并最终通过 nginx (读作 Engine X) 集成到服务器的一个端口上。目前，该服务仅通过端口转发的形式，将运行在ROBOCON局域网下的服务器服务端口借由路由器（校园网域）暴露到一个校园网ip，每次路由器重启，校园网中的服务ip都会变化。&lt;/p>
+&lt;h2 id="aim-部署目的">
+&lt;a class="header-anchor" href="#aim-%e9%83%a8%e7%bd%b2%e7%9b%ae%e7%9a%84">&lt;/a>
+Aim 部署目的
+&lt;/h2>&lt;ul>
+&lt;li>私有远程git仓库服务（以下以 git-service 代称）：核心目的是用于收集视觉组各年工作项目，防止之前的方案随时间丢失。由于github，gitcode等网站的“组织”功能往往需要按时间付费，并且具有人数限制，因此采用 &lt;a href="https://github.com/gogs/gogs/">gogs&lt;/a> 作为队内专用的git仓库。这个服务能够帮助团队协作开发（需要有git使用能力），跟踪各个组员进度。&lt;/li>
+&lt;li>文档与博客分享（以下以 doc-service 代称）：鼓励记录分享自己的经验，以及阅读他人的经验。采用 &lt;a href="https://github.com/google/docsy">Docs&lt;/a> 这一仓库，其可以将简单的markdown 文档生成美观的静态网站。&lt;/li>
+&lt;li>文件下载服务(以下以 file-service 代称)：除了保存资源文件，还可以把配置好的系统镜像，docker镜像放在里面，这样就可以免去配置环境的烦恼。现在采用的FileBrowser是一个充满bug的程序，打算换其他的。&lt;/li>
+&lt;/ul>
+&lt;h2 id="description-详细介绍">
+&lt;a class="header-anchor" href="#description-%e8%af%a6%e7%bb%86%e4%bb%8b%e7%bb%8d">&lt;/a>
+Description 详细介绍
+&lt;/h2>&lt;h3 id="ssh-登录">
+&lt;a class="header-anchor" href="#ssh-%e7%99%bb%e5%bd%95">&lt;/a>
+ssh 登录
+&lt;/h3>&lt;p>&lt;img src="image/ip.png" alt="">&lt;/p>
+&lt;p>从队里华为路由器登录界面（华为路由器默认局域网ip为192.168.3.1）可以看到，通过有线方式连接的 rc-server 记录其 ip 地址，可以在连接 ROBOCON 局域网的情况下访问服务器。主用户用户名是robocon，密码是qingchun，服务均部署在git用户下，git用户无法直接通过ssh登录，需要登录后切换。ssh 端口经过路由器转发到 22 端口，为了防止枚举用户名与密码破解，通过端口转发方式访问的连接都只能通过 public-key 方式进行登录认证，而无法使用密码登录。使用robocon和git用户登录服务器均需要公钥。&lt;/p>
+&lt;p>另外，如果您想从校园网登上服务器，您可以在局域网条件下先查看路由器在校园网下的WAN IP，然后通过该IP登录服务器。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 从robocon用户切换到git用户&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>su git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="git-service">
+&lt;a class="header-anchor" href="#git-service">&lt;/a>
+git-service
+&lt;/h3>&lt;p>SOURCE:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/gogs/gogs/">&lt;!-- raw HTML omitted -->github 仓库地址&lt;!-- raw HTML omitted -->&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://gogs.io/docs/">&lt;!-- raw HTML omitted -->中文文档&lt;!-- raw HTML omitted -->&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.bookstack.cn/read/gogs_zh/advanced-configuration_cheat_sheet.md">&lt;!-- raw HTML omitted -->custom/conf/app.ini配置文件解释&lt;!-- raw HTML omitted -->&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://blog.csdn.net/helloxiaozhe/article/details/134348522">&lt;!-- raw HTML omitted -->简单CSDN安装教程&lt;!-- raw HTML omitted -->&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://blog.csdn.net/qq_36025814/article/details/122272936">&lt;!-- raw HTML omitted -->详细CSDN安装教程&lt;!-- raw HTML omitted -->&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h4 id="下载安装与首次配置">
+&lt;a class="header-anchor" href="#%e4%b8%8b%e8%bd%bd%e5%ae%89%e8%a3%85%e4%b8%8e%e9%a6%96%e6%ac%a1%e9%85%8d%e7%bd%ae">&lt;/a>
+下载安装与首次配置
+&lt;/h4>&lt;p>按照 &lt;em>中文文档&lt;/em> 中的 &lt;a href="https://gogs.io/docs/installation">&lt;!-- raw HTML omitted -->下载安装-环境要求&lt;!-- raw HTML omitted -->&lt;/a> 配置依赖后，按照 &lt;a href="https://gogs.io/docs/installation/install_from_binary">&lt;!-- raw HTML omitted -->下载安装-二进制安装/源码安装/包管理安装&lt;!-- raw HTML omitted -->&lt;/a> 中的任意一种方式进行安装(推荐使用压缩包安装)，然后使用命令行运行&amp;quot;./gogs web&amp;quot;(压缩包安装)，第一次启动服务，会在&lt;a href="http://localhost:3000/install">http://localhost:3000/install&lt;/a>上启动配置安装界面，类似如下：&lt;/p></description></item><item><title>2025XJTU AI系统复习</title><link>https://user-xixiboliya.github.io/post/ai_system%E5%A4%8D%E4%B9%A0/</link><pubDate>Thu, 01 May 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/ai_system%E5%A4%8D%E4%B9%A0/</guid><description>&lt;h1 id="深度神经网络基础">
+&lt;a class="header-anchor" href="#%e6%b7%b1%e5%ba%a6%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80">&lt;/a>
+深度神经网络基础
+&lt;/h1>&lt;h2 id="早期的深度学习框架">
+&lt;a class="header-anchor" href="#%e6%97%a9%e6%9c%9f%e7%9a%84%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%e6%a1%86%e6%9e%b6">&lt;/a>
+早期的深度学习框架
+&lt;/h2>&lt;p>主要用来CNN网络图像识别，由一些常用的layers组成。
+主要特点就是通过.yaml这样的配置文件定义神经网络，可由一些常用的layer构成一个简单的图，支持多设备加速，代表框架是由UCB提出的Caffe。&lt;/p>
+&lt;h3 id="基于数据流图dag的计算框架">
+&lt;a class="header-anchor" href="#%e5%9f%ba%e4%ba%8e%e6%95%b0%e6%8d%ae%e6%b5%81%e5%9b%bedag%e7%9a%84%e8%ae%a1%e7%ae%97%e6%a1%86%e6%9e%b6">&lt;/a>
+基于数据流图DAG的计算框架
+&lt;/h3>&lt;ul>
+&lt;li>基本数据结构是tensor&lt;/li>
+&lt;li>基本运算单元接收N个输入tensor，输出M个tensor。 tensorflow中有大于400个基本的operator
+在数据流图中，&lt;strong>节点&lt;/strong>表示&lt;code>operator&lt;/code>，&lt;strong>边&lt;/strong>表示&lt;code>tensor&lt;/code>。有一些特殊的节点用来构建控制流，控制边用来表示节点之间的依赖关系。&lt;/li>
+&lt;/ul>
+&lt;h4 id="静态数据流图tensorflow">
+&lt;a class="header-anchor" href="#%e9%9d%99%e6%80%81%e6%95%b0%e6%8d%ae%e6%b5%81%e5%9b%betensorflow">&lt;/a>
+静态数据流图TensorFlow
+&lt;/h4>&lt;p>先定义后执行，静态图表示在编译时首先生成神经网络的结构，然后再执行对应的操作。&lt;/p>
+&lt;ul>
+&lt;li>静态图定义图后可以全局图优化&lt;/li>
+&lt;/ul>
+&lt;h4 id="动态数据流图pytorch">
+&lt;a class="header-anchor" href="#%e5%8a%a8%e6%80%81%e6%95%b0%e6%8d%ae%e6%b5%81%e5%9b%bepytorch">&lt;/a>
+动态数据流图pytorch
+&lt;/h4>&lt;p>边定义边运行，每次编译时都需要构建一个新的计算图。&lt;/p>
+&lt;p>&lt;strong>计算流图&lt;/strong>：引入中间变量将复杂的函数分解成一系列基本函数，构成计算流图。&lt;/p>
+&lt;h3 id="自动求导">
+&lt;a class="header-anchor" href="#%e8%87%aa%e5%8a%a8%e6%b1%82%e5%af%bc">&lt;/a>
+自动求导
+&lt;/h3>&lt;p>前向计算并且保留计算结果，有个主要问题是需要保存大量的计算结果。在导数的计算也可以表示成数据流图。方便全局图优化与节省内存。&lt;/p>
+&lt;p>现代大部分框架同时提供：&lt;/p>
+&lt;ul>
+&lt;li>自动求导系统，针对常见函数的组合&lt;/li>
+&lt;li>大量内置的Operators和与之对应的反向函数&lt;/li>
+&lt;li>为用户提供接口，自己提供反向函数。&lt;/li>
+&lt;/ul>
+&lt;h3 id="图优化">
+&lt;a class="header-anchor" href="#%e5%9b%be%e4%bc%98%e5%8c%96">&lt;/a>
+图优化
+&lt;/h3>&lt;p>先定义后执行的模式允许框架在计算前看到全图信息。数据流图作为深度学习框架中的高层中间表示，可以允许任何等价图优化Pass去化简计算流图或提高执行效率。&lt;/p>
+&lt;h4 id="图优化demm自动融合">
+&lt;a class="header-anchor" href="#%e5%9b%be%e4%bc%98%e5%8c%96demm%e8%87%aa%e5%8a%a8%e8%9e%8d%e5%90%88">&lt;/a>
+图优化：DEMM自动融合
+&lt;/h4>&lt;p>参考文章：&lt;a href="https://zhuanlan.zhihu.com/p/435908830">深入浅出GPU优化系列：GEMM优化（一） - 知乎&lt;/a>&lt;/p>
+&lt;h4 id="计算内核与多硬件支持">
+&lt;a class="header-anchor" href="#%e8%ae%a1%e7%ae%97%e5%86%85%e6%a0%b8%e4%b8%8e%e5%a4%9a%e7%a1%ac%e4%bb%b6%e6%94%af%e6%8c%81">&lt;/a>
+计算内核与多硬件支持
+&lt;/h4>&lt;p>&lt;code>kernel&lt;/code>定义了一个算子在某种具体设备的计算实现。&lt;/p>
+&lt;p>每个operator都可以注册多个kernel，取决于数据类型、计算设备不同。runtime框架会自动根据operator的设备类型，数据类型和属性选择对应的kernel来执行。&lt;/p>
+&lt;p>一段反向传播代码：
+$\sum({x}*{y})+{z} = c$&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#66d9ef">as&lt;/span> np
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>N,D &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>,&lt;span style="color:#ae81ff">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>x &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>randn(N,D)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>y &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>randn(N,D)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>z &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>randn(N,D)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>a &lt;span style="color:#f92672">=&lt;/span> x &lt;span style="color:#f92672">*&lt;/span> y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>b &lt;span style="color:#f92672">=&lt;/span> a &lt;span style="color:#f92672">+&lt;/span> z
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>c &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>sum(b)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_c &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1.0&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_b &lt;span style="color:#f92672">=&lt;/span> grad_c &lt;span style="color:#f92672">*&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>ones((N,D))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_a &lt;span style="color:#f92672">=&lt;/span> grad_b&lt;span style="color:#f92672">.&lt;/span>copy()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_z &lt;span style="color:#f92672">=&lt;/span> grad_b&lt;span style="color:#f92672">.&lt;/span>copy()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_x &lt;span style="color:#f92672">=&lt;/span> grad_a &lt;span style="color:#f92672">*&lt;/span> y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_y &lt;span style="color:#f92672">=&lt;/span> grad_a &lt;span style="color:#f92672">*&lt;/span> x
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这里给出$grad_{x}$和$grad_{y}$的求解:
+&lt;img src="output_image/e54e60ea41b6c5166c8077b3778e51a1.png" alt="">&lt;/p></description></item><item><title>2025XJTU AI系统实验</title><link>https://user-xixiboliya.github.io/post/ai_system/</link><pubDate>Tue, 01 Apr 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/ai_system/</guid><description>&lt;h1 id="xjtu-ai-system-experiments-2025">
+&lt;a class="header-anchor" href="#xjtu-ai-system-experiments-2025">&lt;/a>
+XJTU AI system Experiments 2025
+&lt;/h1>&lt;p>本仓库内容与Microsoft的AI System融合紧密，为其附属作业。这里有基本的作业项目Microsoft AI System Github、课程概述&lt;/p>
+&lt;p>&lt;strong>详情请见代码仓库&lt;/strong>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW">AI System&lt;/a>&lt;/p>
+&lt;h2 id="menu">
+&lt;a class="header-anchor" href="#menu">&lt;/a>
+Menu
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment1/README.md">assignment1 深度学习框架入门&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment2/README.md">assignment2 自定义pytorch算子&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment3/README.md">assignment3 NNI自动调参&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment4/README.md">assignment4 分布式训练&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment5/README.md">assignment5 容器化部署&lt;/a>
+TODO&amp;hellip;&lt;/li>
+&lt;/ul></description></item><item><title>daemon 与 服务</title><link>https://user-xixiboliya.github.io/post/daemon%E5%B0%8F%E8%AE%B0/</link><pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/daemon%E5%B0%8F%E8%AE%B0/</guid><description>&lt;blockquote>
+&lt;p>本文内容有待完善。&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>daemon，字面上意思为“守护神、恶魔”，通常没有 GUI 界面，是 Unix/Linux 环境的典型产物。具体表现为后台运行、不与终端交互的单个进程，是一种技术实现方式。&lt;/li>
+&lt;li>service，简单来说是系统为了实现某些功能必须要提供的一些服务，由系统服务管理器定义和管理的 entity，可以包含 daemon，具备依赖、失败处理等高级特性。&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>简言之：&lt;strong>“所有 service 都有 daemon，但不一定所有 daemon 都是 service”&lt;/strong>。&lt;/p>
+&lt;/blockquote>
+&lt;p>当然， 读者并不需要将daemon与service区分得如此细致。一般来说，在一个服务被建立之后，linux使用时，通常会在服务的名称之后加上&lt;code>d&lt;/code>，例如&lt;code>atd&lt;/code>，这个&lt;code>d&lt;/code>代表&lt;code>daemon&lt;/code>的意思。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>xixiboliya@laptop-tex4-of-boxing:~$ systemctl list-units --type&lt;span style="color:#f92672">=&lt;/span>service --state&lt;span style="color:#f92672">=&lt;/span>active --no-pager | grep &lt;span style="color:#e6db74">&amp;#39;d\.service&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> snapd.seeded.service loaded active exited Wait &lt;span style="color:#66d9ef">until&lt;/span> snapd is fully seeded
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> snapd.service loaded active running Snap Daemon
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> systemd-journald.service loaded active running Journal Service
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> systemd-logind.service loaded active running User Login Management
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> systemd-resolved.service loaded active running Network Name Resolution
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> systemd-udevd.service loaded active running Rule-based Manager &lt;span style="color:#66d9ef">for&lt;/span> Device Events and Files
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="通过systemctl-查看单一服务">
+&lt;a class="header-anchor" href="#%e9%80%9a%e8%bf%87systemctl-%e6%9f%a5%e7%9c%8b%e5%8d%95%e4%b8%80%e6%9c%8d%e5%8a%a1">&lt;/a>
+通过systemctl 查看单一服务
+&lt;/h2>&lt;p>一般来说服务的启动有两个阶段，一个是开机的时候设置要不要启动这个服务，以及你现在要不要启动这个服务。查看服务树：&lt;code>systemctl status&lt;/code>，找到其中一个服务进行解析：&lt;/p></description></item><item><title>CMU Proxylab</title><link>https://user-xixiboliya.github.io/post/proxylab/</link><pubDate>Sat, 25 Jan 2025 15:00:00 -0718</pubDate><guid>https://user-xixiboliya.github.io/post/proxylab/</guid><description>&lt;p>本文的所有配置、指令均以 Ubuntu 环境为例，而且假设你不具有桌面环境，只有纯命令行环境。&lt;/p>
+&lt;h1 id="pre-start">
+&lt;a class="header-anchor" href="#pre-start">&lt;/a>
+Pre-start
+&lt;/h1>&lt;p>在工作目录下解压&lt;code>proxylab - handout.tar&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>tar -xvf proxylab-handout.tar 
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>-x&lt;/code>：表示提取文件，也就是解压操作。&lt;/li>
+&lt;li>&lt;code>-v&lt;/code>：用于显示详细的解压过程，方便你了解解压的进度和具体文件。&lt;/li>
+&lt;li>&lt;code>-f&lt;/code>：指定要处理的文件名，后面紧跟要解压的 &lt;code>.tar&lt;/code> 文件的名称。&lt;/li>
+&lt;/ul>
+&lt;p>以下是简要介绍，本文的根工作空间是&lt;code>proxylab-handout&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>proxylab-handout
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── Makefile
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── README
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── csapp.c
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|—— cache.c //自行编写的cache
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|—— cache.h //自行编写的chche
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|—— proxy.h
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── csapp.h
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── driver.sh //简单自动评分程序。进行基本的合理性检查。
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── free-port.sh
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── nop-server.py
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── port-for-user.pl //给出偶数端口号，以便和Tiny web server 进行 testing。
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── proxy.c //打印出一个特定的 HTTP &lt;span style="color:#e6db74">`&lt;/span>User-Agent&lt;span style="color:#e6db74">`&lt;/span> 头部信息到标准输出。用于标识客户端软件的类型和版本，服务器可以根据这个信息来提供不同的服务或内容。
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>└── tiny //tiny服务器
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="环境配置">
+&lt;a class="header-anchor" href="#%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">&lt;/a>
+环境配置
+&lt;/h2>&lt;p>配置linux 版本的chrome 和 chrome driver 。两者版本需对应，还有自动化测试工具Selenium，参考[Arthals&amp;rsquo;ink环境配置](&lt;a href="https://arthals.ink/blog/proxy-lab#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">更适合北大宝宝体质的 Proxy Lab 踩坑记 • Arthals&amp;rsquo; ink&lt;/a>)&lt;/p></description></item><item><title>CMU CSAPP bomblab phase1 ~ phase5 解答</title><link>https://user-xixiboliya.github.io/post/bomblab/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/bomblab/</guid><description>&lt;h1 id="写在前面">
+&lt;a class="header-anchor" href="#%e5%86%99%e5%9c%a8%e5%89%8d%e9%9d%a2">&lt;/a>
+写在前面
+&lt;/h1>&lt;p>贴一个下载链接&lt;a href="https://csapp.cs.cmu.edu/3e/labs.html">CS:APP3e, Bryant and O&amp;rsquo;Hallaron (cmu.edu)&lt;/a>，点击&lt;a href="https://csapp.cs.cmu.edu/3e/bomb.tar">Self-Study Handout&lt;/a>下载lab。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/* Do all sorts of secret stuff that makes the bomb harder to defuse. */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">initialize_bomb&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Welcome to my fiendish little bomb. You have 6 phases with&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;which to blow yourself up. Have a nice day!&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/* Hmm... Six phases must be more secure than one phase! */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> input &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">read_line&lt;/span>(); &lt;span style="color:#75715e">/* Get input */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">phase_1&lt;/span>(input); &lt;span style="color:#75715e">/* Run the phase */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">phase_defused&lt;/span>(); &lt;span style="color:#75715e">/* Drat! They figured it out!
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在进入到&lt;code>phase_1&lt;/code>之前，对于&lt;code>input = read_line()&lt;/code>函数，我们查看一下input变量的地址，使用&lt;code>gdb bomb&lt;/code>命令进入gdb调试阶段，再通过查看反汇编代码确定&lt;code>input = read_line()&lt;/code>函数return时的栈顶指针&lt;code>%rsp&lt;/code>所指向的内容，先设置断点，为了方便，使用&lt;code>touch ~/.gdbinit&lt;/code>命令创建一个默认配置，具体可以参考&lt;a href="https://arthals.ink/blog/bomb-lab">这个链接&lt;/a>。&lt;/p></description></item><item><title>docker与dev container插件的使用</title><link>https://user-xixiboliya.github.io/post/docker/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/docker/</guid><description>&lt;blockquote>
 &lt;p>本文侧重1.讲解docker的插件使用。2.视觉consimulation项目的跨环境迁移&lt;/p>
 &lt;/blockquote>
 &lt;h1 id="基础配置">

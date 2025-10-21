@@ -1,4 +1,461 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/algolia.json</link><description>Recent content on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 20 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>docker与dev container插件的使用</title><link>https://user-xixiboliya.github.io/post/docker/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/docker/</guid><description>&lt;blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/algolia.json</link><description>Recent content on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 14 Jul 2025 16:00:00 -0710</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows-cpp-clang 环境搭建</title><link>https://user-xixiboliya.github.io/post/windows-cpp/</link><pubDate>Wed, 25 Jun 2025 15:00:00 -0718</pubDate><guid>https://user-xixiboliya.github.io/post/windows-cpp/</guid><description>&lt;blockquote>
+&lt;p>本文初版参照RM视觉组的msys2-windows-cpp环境搭建教程，并在一定程度上进行了补充。&lt;/p>
+&lt;/blockquote>
+&lt;p>让我们开始吧。&lt;/p>
+&lt;p>首先，欢迎大家了解RC视觉组并学习一些相关知识。在往期培训过程中，我们一般使用linux进行环境配置，但是由于需要了解的知识过于硬核，导致培训效果不太理想。&lt;/p>
+&lt;p>因此我们打算先使用windows配置环境并学习核心知识，之后再进行linux/ubuntu22.04环境的过渡。&lt;/p>
+&lt;h1 id="环境基础知识">
+&lt;a class="header-anchor" href="#%e7%8e%af%e5%a2%83%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86">&lt;/a>
+环境基础知识
+&lt;/h1>&lt;h2 id="集成开发环境ide">
+&lt;a class="header-anchor" href="#%e9%9b%86%e6%88%90%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83ide">&lt;/a>
+集成开发环境（IDE）
+&lt;/h2>&lt;p>集成开发环境本质上是把编写、构建、调试、测试、重构与版本控制等开发工作流所需的工具整合到一个统一界面中，减少来回切换工具的成本，让开发更高效、更可控。对于 C++ 这种语言，IDE 不仅要提供语法高亮和自动补全，还需要与编译器、构建系统和调试器深度集成，以便处理头文件搜索、宏展开、模板实例化和平台相关的差异等复杂问题。&lt;/p>
+&lt;p>从功能角度看，一个适合 C++ 的 IDE 通常包含智能补全（基于 language server）、跳转定义/查找引用、重构支持、集成构建与任务系统、强大的调试器（断点、单步、变量/内存查看、核心转储分析）、静态分析与代码格式化（例如 clang-tidy、clang-format）、以及测试框架和版本控制的可视化支持。对于大型或跨平台项目，还希望 IDE 能处理 CMake/meson/bazel 等构建系统的配置，方便在不同平台和不同编译器间切换。&lt;/p>
+&lt;p>目前常见的选项各有侧重点：Visual Studio（Windows）在与 MSVC、Windows SDK、性能分析器和图形化调试方面最为成熟，适合开发 Windows 原生应用和大型企业项目；CLion（JetBrains）对 CMake 支持出色，提供强力的重构与代码分析，跨平台但为付费软件；Visual Studio Code（VSCode）则以轻量、免费与扩展生态见长，通过安装插件可以把它变成功能接近传统 IDE 的开发环境，适合希望高度定制或在 Linux/WSL/macOS 上开发的用户。&lt;/p>
+&lt;p>推荐把 &lt;strong>VSCode&lt;/strong>当作 C++ 开发工具的原因在于其灵活性：你可以按需安装 language server（如 clangd 或 Microsoft 的 C/C++ 扩展）、CMake Tools、调试适配器（gdb/LLDB 或 Windows 的 cppvsdbg）、以及格式化/静态检查扩展。配合 Remote-WSL、Remote-Containers 或 Dev Containers，可以在容器或 WSL2 中运行实际的构建工具链和调试器，同时在宿主机上享受轻快的编辑体验，这对跨平台开发和保持一致的开发环境特别有益。&lt;/p>
+&lt;h1 id="环境变量">
+&lt;a class="header-anchor" href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f">&lt;/a>
+环境变量
+&lt;/h1>&lt;p>环境变量是操作系统中用于存储有关系统运行环境的信息的特定名称对象。它们对于指定程序运行的方式和位置至关重要，因为它们可以告诉系统在哪里查找必要的文件和程序。环境变量分为用户变量和系统变量，用户变量仅对当前登录的用户有效，而系统变量对所有用户都有效。一个关于windows环境变量介绍的博客是：&lt;a href="https://zhuanlan.zhihu.com/p/82011100">看懂什么是环境变量! - 知乎&lt;/a>&lt;/p>
+&lt;h2 id="搭建环境">
+&lt;a class="header-anchor" href="#%e6%90%ad%e5%bb%ba%e7%8e%af%e5%a2%83">&lt;/a>
+搭建环境
+&lt;/h2>&lt;p>对于c++开发环境，windows下可选择的环境还有visual studio (vs)，dev-c++等，然而vs使用的编译器为MinGW，是linux中使用的gcc编译器的windows移植版。目前mingw-w64位项目目前的状况比较复杂，有多个发行分支，具体可以参看&lt;a href="https://link.zhihu.com/?target=https%3A//www.mingw-w64.org/downloads/">官网的下载页&lt;/a>。目前在windows上最新、最靠谱的发行分支就是&lt;strong>MSYS2&lt;/strong>。&lt;/p></description></item><item><title>RC 网络仓库服务器</title><link>https://user-xixiboliya.github.io/post/rcserver/</link><pubDate>Sun, 25 May 2025 15:00:00 -0718</pubDate><guid>https://user-xixiboliya.github.io/post/rcserver/</guid><description>&lt;h1 id="rc-网络仓库服务介绍">
+&lt;a class="header-anchor" href="#rc-%e7%bd%91%e7%bb%9c%e4%bb%93%e5%ba%93%e6%9c%8d%e5%8a%a1%e4%bb%8b%e7%bb%8d">&lt;/a>
+RC 网络仓库服务介绍
+&lt;/h1>&lt;h2 id="intro-服务是什么">
+&lt;a class="header-anchor" href="#intro-%e6%9c%8d%e5%8a%a1%e6%98%af%e4%bb%80%e4%b9%88">&lt;/a>
+Intro 服务是什么
+&lt;/h2>&lt;p>本文档介绍的对象是一组部署在服务器上，用于RC视觉组共享与传承工作成果的Web服务。主要提供了私有远程git仓库服务(gogs)，文档与博客分享服务(hugo)，与文件下载服务，并最终通过 nginx (读作 Engine X) 集成到服务器的一个端口上。目前，该服务仅通过端口转发的形式，将运行在ROBOCON局域网下的服务器服务端口借由路由器（校园网域）暴露到一个校园网ip，每次路由器重启，校园网中的服务ip都会变化。&lt;/p>
+&lt;h2 id="aim-部署目的">
+&lt;a class="header-anchor" href="#aim-%e9%83%a8%e7%bd%b2%e7%9b%ae%e7%9a%84">&lt;/a>
+Aim 部署目的
+&lt;/h2>&lt;ul>
+&lt;li>私有远程git仓库服务（以下以 git-service 代称）：核心目的是用于收集视觉组各年工作项目，防止之前的方案随时间丢失。由于github，gitcode等网站的“组织”功能往往需要按时间付费，并且具有人数限制，因此采用 &lt;a href="https://github.com/gogs/gogs/">gogs&lt;/a> 作为队内专用的git仓库。这个服务能够帮助团队协作开发（需要有git使用能力），跟踪各个组员进度。&lt;/li>
+&lt;li>文档与博客分享（以下以 doc-service 代称）：鼓励记录分享自己的经验，以及阅读他人的经验。采用 &lt;a href="https://github.com/google/docsy">Docs&lt;/a> 这一仓库，其可以将简单的markdown 文档生成美观的静态网站。&lt;/li>
+&lt;li>文件下载服务(以下以 file-service 代称)：除了保存资源文件，还可以把配置好的系统镜像，docker镜像放在里面，这样就可以免去配置环境的烦恼。现在采用的FileBrowser是一个充满bug的程序，打算换其他的。&lt;/li>
+&lt;/ul>
+&lt;h2 id="description-详细介绍">
+&lt;a class="header-anchor" href="#description-%e8%af%a6%e7%bb%86%e4%bb%8b%e7%bb%8d">&lt;/a>
+Description 详细介绍
+&lt;/h2>&lt;h3 id="ssh-登录">
+&lt;a class="header-anchor" href="#ssh-%e7%99%bb%e5%bd%95">&lt;/a>
+ssh 登录
+&lt;/h3>&lt;p>&lt;img src="image/ip.png" alt="">&lt;/p>
+&lt;p>从队里华为路由器登录界面（华为路由器默认局域网ip为192.168.3.1）可以看到，通过有线方式连接的 rc-server 记录其 ip 地址，可以在连接 ROBOCON 局域网的情况下访问服务器。主用户用户名是robocon，密码是qingchun，服务均部署在git用户下，git用户无法直接通过ssh登录，需要登录后切换。ssh 端口经过路由器转发到 22 端口，为了防止枚举用户名与密码破解，通过端口转发方式访问的连接都只能通过 public-key 方式进行登录认证，而无法使用密码登录。使用robocon和git用户登录服务器均需要公钥。&lt;/p>
+&lt;p>另外，如果您想从校园网登上服务器，您可以在局域网条件下先查看路由器在校园网下的WAN IP，然后通过该IP登录服务器。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"># 从robocon用户切换到git用户&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>su git
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="git-service">
+&lt;a class="header-anchor" href="#git-service">&lt;/a>
+git-service
+&lt;/h3>&lt;p>SOURCE:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/gogs/gogs/">&lt;!-- raw HTML omitted -->github 仓库地址&lt;!-- raw HTML omitted -->&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://gogs.io/docs/">&lt;!-- raw HTML omitted -->中文文档&lt;!-- raw HTML omitted -->&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.bookstack.cn/read/gogs_zh/advanced-configuration_cheat_sheet.md">&lt;!-- raw HTML omitted -->custom/conf/app.ini配置文件解释&lt;!-- raw HTML omitted -->&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://blog.csdn.net/helloxiaozhe/article/details/134348522">&lt;!-- raw HTML omitted -->简单CSDN安装教程&lt;!-- raw HTML omitted -->&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://blog.csdn.net/qq_36025814/article/details/122272936">&lt;!-- raw HTML omitted -->详细CSDN安装教程&lt;!-- raw HTML omitted -->&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h4 id="下载安装与首次配置">
+&lt;a class="header-anchor" href="#%e4%b8%8b%e8%bd%bd%e5%ae%89%e8%a3%85%e4%b8%8e%e9%a6%96%e6%ac%a1%e9%85%8d%e7%bd%ae">&lt;/a>
+下载安装与首次配置
+&lt;/h4>&lt;p>按照 &lt;em>中文文档&lt;/em> 中的 &lt;a href="https://gogs.io/docs/installation">&lt;!-- raw HTML omitted -->下载安装-环境要求&lt;!-- raw HTML omitted -->&lt;/a> 配置依赖后，按照 &lt;a href="https://gogs.io/docs/installation/install_from_binary">&lt;!-- raw HTML omitted -->下载安装-二进制安装/源码安装/包管理安装&lt;!-- raw HTML omitted -->&lt;/a> 中的任意一种方式进行安装(推荐使用压缩包安装)，然后使用命令行运行&amp;quot;./gogs web&amp;quot;(压缩包安装)，第一次启动服务，会在&lt;a href="http://localhost:3000/install">http://localhost:3000/install&lt;/a>上启动配置安装界面，类似如下：&lt;/p></description></item><item><title>2025XJTU AI系统复习</title><link>https://user-xixiboliya.github.io/post/ai_system%E5%A4%8D%E4%B9%A0/</link><pubDate>Thu, 01 May 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/ai_system%E5%A4%8D%E4%B9%A0/</guid><description>&lt;h1 id="深度神经网络基础">
+&lt;a class="header-anchor" href="#%e6%b7%b1%e5%ba%a6%e7%a5%9e%e7%bb%8f%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80">&lt;/a>
+深度神经网络基础
+&lt;/h1>&lt;h2 id="早期的深度学习框架">
+&lt;a class="header-anchor" href="#%e6%97%a9%e6%9c%9f%e7%9a%84%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0%e6%a1%86%e6%9e%b6">&lt;/a>
+早期的深度学习框架
+&lt;/h2>&lt;p>主要用来CNN网络图像识别，由一些常用的layers组成。
+主要特点就是通过.yaml这样的配置文件定义神经网络，可由一些常用的layer构成一个简单的图，支持多设备加速，代表框架是由UCB提出的Caffe。&lt;/p>
+&lt;h3 id="基于数据流图dag的计算框架">
+&lt;a class="header-anchor" href="#%e5%9f%ba%e4%ba%8e%e6%95%b0%e6%8d%ae%e6%b5%81%e5%9b%bedag%e7%9a%84%e8%ae%a1%e7%ae%97%e6%a1%86%e6%9e%b6">&lt;/a>
+基于数据流图DAG的计算框架
+&lt;/h3>&lt;ul>
+&lt;li>基本数据结构是tensor&lt;/li>
+&lt;li>基本运算单元接收N个输入tensor，输出M个tensor。 tensorflow中有大于400个基本的operator
+在数据流图中，&lt;strong>节点&lt;/strong>表示&lt;code>operator&lt;/code>，&lt;strong>边&lt;/strong>表示&lt;code>tensor&lt;/code>。有一些特殊的节点用来构建控制流，控制边用来表示节点之间的依赖关系。&lt;/li>
+&lt;/ul>
+&lt;h4 id="静态数据流图tensorflow">
+&lt;a class="header-anchor" href="#%e9%9d%99%e6%80%81%e6%95%b0%e6%8d%ae%e6%b5%81%e5%9b%betensorflow">&lt;/a>
+静态数据流图TensorFlow
+&lt;/h4>&lt;p>先定义后执行，静态图表示在编译时首先生成神经网络的结构，然后再执行对应的操作。&lt;/p>
+&lt;ul>
+&lt;li>静态图定义图后可以全局图优化&lt;/li>
+&lt;/ul>
+&lt;h4 id="动态数据流图pytorch">
+&lt;a class="header-anchor" href="#%e5%8a%a8%e6%80%81%e6%95%b0%e6%8d%ae%e6%b5%81%e5%9b%bepytorch">&lt;/a>
+动态数据流图pytorch
+&lt;/h4>&lt;p>边定义边运行，每次编译时都需要构建一个新的计算图。&lt;/p>
+&lt;p>&lt;strong>计算流图&lt;/strong>：引入中间变量将复杂的函数分解成一系列基本函数，构成计算流图。&lt;/p>
+&lt;h3 id="自动求导">
+&lt;a class="header-anchor" href="#%e8%87%aa%e5%8a%a8%e6%b1%82%e5%af%bc">&lt;/a>
+自动求导
+&lt;/h3>&lt;p>前向计算并且保留计算结果，有个主要问题是需要保存大量的计算结果。在导数的计算也可以表示成数据流图。方便全局图优化与节省内存。&lt;/p>
+&lt;p>现代大部分框架同时提供：&lt;/p>
+&lt;ul>
+&lt;li>自动求导系统，针对常见函数的组合&lt;/li>
+&lt;li>大量内置的Operators和与之对应的反向函数&lt;/li>
+&lt;li>为用户提供接口，自己提供反向函数。&lt;/li>
+&lt;/ul>
+&lt;h3 id="图优化">
+&lt;a class="header-anchor" href="#%e5%9b%be%e4%bc%98%e5%8c%96">&lt;/a>
+图优化
+&lt;/h3>&lt;p>先定义后执行的模式允许框架在计算前看到全图信息。数据流图作为深度学习框架中的高层中间表示，可以允许任何等价图优化Pass去化简计算流图或提高执行效率。&lt;/p>
+&lt;h4 id="图优化demm自动融合">
+&lt;a class="header-anchor" href="#%e5%9b%be%e4%bc%98%e5%8c%96demm%e8%87%aa%e5%8a%a8%e8%9e%8d%e5%90%88">&lt;/a>
+图优化：DEMM自动融合
+&lt;/h4>&lt;p>参考文章：&lt;a href="https://zhuanlan.zhihu.com/p/435908830">深入浅出GPU优化系列：GEMM优化（一） - 知乎&lt;/a>&lt;/p>
+&lt;h4 id="计算内核与多硬件支持">
+&lt;a class="header-anchor" href="#%e8%ae%a1%e7%ae%97%e5%86%85%e6%a0%b8%e4%b8%8e%e5%a4%9a%e7%a1%ac%e4%bb%b6%e6%94%af%e6%8c%81">&lt;/a>
+计算内核与多硬件支持
+&lt;/h4>&lt;p>&lt;code>kernel&lt;/code>定义了一个算子在某种具体设备的计算实现。&lt;/p>
+&lt;p>每个operator都可以注册多个kernel，取决于数据类型、计算设备不同。runtime框架会自动根据operator的设备类型，数据类型和属性选择对应的kernel来执行。&lt;/p>
+&lt;p>一段反向传播代码：
+$\sum({x}*{y})+{z} = c$&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> numpy &lt;span style="color:#66d9ef">as&lt;/span> np
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>N,D &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>,&lt;span style="color:#ae81ff">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>x &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>randn(N,D)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>y &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>randn(N,D)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>z &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>random&lt;span style="color:#f92672">.&lt;/span>randn(N,D)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>a &lt;span style="color:#f92672">=&lt;/span> x &lt;span style="color:#f92672">*&lt;/span> y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>b &lt;span style="color:#f92672">=&lt;/span> a &lt;span style="color:#f92672">+&lt;/span> z
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>c &lt;span style="color:#f92672">=&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>sum(b)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_c &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1.0&lt;/span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_b &lt;span style="color:#f92672">=&lt;/span> grad_c &lt;span style="color:#f92672">*&lt;/span> np&lt;span style="color:#f92672">.&lt;/span>ones((N,D))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_a &lt;span style="color:#f92672">=&lt;/span> grad_b&lt;span style="color:#f92672">.&lt;/span>copy()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_z &lt;span style="color:#f92672">=&lt;/span> grad_b&lt;span style="color:#f92672">.&lt;/span>copy()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_x &lt;span style="color:#f92672">=&lt;/span> grad_a &lt;span style="color:#f92672">*&lt;/span> y
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>grad_y &lt;span style="color:#f92672">=&lt;/span> grad_a &lt;span style="color:#f92672">*&lt;/span> x
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这里给出$grad_{x}$和$grad_{y}$的求解:
+&lt;img src="output_image/e54e60ea41b6c5166c8077b3778e51a1.png" alt="">&lt;/p></description></item><item><title>2025XJTU AI系统实验</title><link>https://user-xixiboliya.github.io/post/ai_system/</link><pubDate>Tue, 01 Apr 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/ai_system/</guid><description>&lt;h1 id="xjtu-ai-system-experiments-2025">
+&lt;a class="header-anchor" href="#xjtu-ai-system-experiments-2025">&lt;/a>
+XJTU AI system Experiments 2025
+&lt;/h1>&lt;p>本仓库内容与Microsoft的AI System融合紧密，为其附属作业。这里有基本的作业项目Microsoft AI System Github、课程概述&lt;/p>
+&lt;p>&lt;strong>详情请见代码仓库&lt;/strong>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW">AI System&lt;/a>&lt;/p>
+&lt;h2 id="menu">
+&lt;a class="header-anchor" href="#menu">&lt;/a>
+Menu
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment1/README.md">assignment1 深度学习框架入门&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment2/README.md">assignment2 自定义pytorch算子&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment3/README.md">assignment3 NNI自动调参&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment4/README.md">assignment4 分布式训练&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/user-xixiboliya/ai_system_HW/ai%20system%20assignment5/README.md">assignment5 容器化部署&lt;/a>
+TODO&amp;hellip;&lt;/li>
+&lt;/ul></description></item><item><title>认知心理学复习纲要</title><link>https://user-xixiboliya.github.io/post/%E8%AE%A4%E7%9F%A5%E5%BF%83%E7%90%86%E5%AD%A6/</link><pubDate>Sun, 23 Feb 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E8%AE%A4%E7%9F%A5%E5%BF%83%E7%90%86%E5%AD%A6/</guid><description>&lt;blockquote>
+&lt;p>“出题极其阴险。给人留下很不好的印象。”&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;code>题型有 名词解释、成对概念分析、填空、判断对错、匹配连线、填图、实验分析、psychopy。&lt;/code>&lt;/p>
+&lt;p>认知心理学以研究黑箱方法为主，神经生物学以白箱研究为主，二者均启发计算神经工程。神经生物学为认知心理学提供了机理与证据。&lt;/p>
+&lt;p>&lt;em>Mental progress: Private psychological activities that include thinking, perceiving, and feeling.&lt;/em>&lt;/p>
+&lt;p>&lt;strong>认知心理学研究的基本问题&lt;/strong>：
+心理表征问题——心理表征的形成与对心理表征的加工。表征是指&lt;strong>信息&lt;/strong>或&lt;strong>知识&lt;/strong>在心理活动中的表现和记载的方式，是外部事物在心理活动中的内部表现。&lt;/p>
+&lt;p>认知活动（心理表征及其加工）的意识水平：意识和无意识&lt;/p>
+&lt;p>身心关系问题&lt;/p>
+&lt;h1 id="认知心理学的研究范式">
+&lt;a class="header-anchor" href="#%e8%ae%a4%e7%9f%a5%e5%bf%83%e7%90%86%e5%ad%a6%e7%9a%84%e7%a0%94%e7%a9%b6%e8%8c%83%e5%bc%8f">&lt;/a>
+认知心理学的研究范式
+&lt;/h1>&lt;h2 id="信息加工范式">
+&lt;a class="header-anchor" href="#%e4%bf%a1%e6%81%af%e5%8a%a0%e5%b7%a5%e8%8c%83%e5%bc%8f">&lt;/a>
+信息加工范式
+&lt;/h2>&lt;p>研究目的是确定认知操作的过程和结构，将外部信息转换为可操作的离散符号——心理表征 对信息的加工范式是序列(sequential)进行的 该模式可以回答自下而上的加工过程，却忽视了自上而下的加工过程。&lt;/p>
+&lt;p>[信息加工的一般原理图] 感受器、效应器、信息加工系统
+&lt;img src="output_image/5285b0ce23fe3aaed99e50f1b3b02f24.png" alt="">
+[对信息加工观点的批评图] 认知系统、调节系统、情绪系统、物理信号、运动和声音
+&lt;img src="output_image/a031756f06a1fd7d9603eb336c328a79.png" alt="">&lt;/p>
+&lt;h2 id="联结主义范式">
+&lt;a class="header-anchor" href="#%e8%81%94%e7%bb%93%e4%b8%bb%e4%b9%89%e8%8c%83%e5%bc%8f">&lt;/a>
+联结主义范式
+&lt;/h2>&lt;p>模拟神经网络的集成&lt;strong>平行加工&lt;/strong>方式。&lt;/p>
+&lt;ol>
+&lt;li>信息表征是以&lt;strong>神经网络的激活模式&lt;/strong>实现的，不同的激活模式表征&lt;strong>不同信息&lt;/strong>，一个网络当中可以存储和表征不同的信息（一个网络有不同的激活模式）。信息是以&lt;strong>非符号的分布式&lt;/strong>存储于神经网络中，存储具有&lt;strong>非局部性&lt;/strong>；信息加工就是以一定模式在网络当中&lt;strong>激活扩散&lt;/strong>，在空间上是平行分布式加工。&lt;/li>
+&lt;li>这种网络具有学习能力。&lt;/li>
+&lt;/ol>
+&lt;p>联结主义范式图他敢考？&lt;/p>
+&lt;p>此外，认知心理学研究的生态学取向也日趋明显，强调人与环境的动态交互过程，从更为整体的观点认识人的认知过程。&lt;/p>
+&lt;h2 id="认知心理学的产生基础">
+&lt;a class="header-anchor" href="#%e8%ae%a4%e7%9f%a5%e5%bf%83%e7%90%86%e5%ad%a6%e7%9a%84%e4%ba%a7%e7%94%9f%e5%9f%ba%e7%a1%80">&lt;/a>
+认知心理学的产生基础
+&lt;/h2>&lt;p>&lt;strong>哲学：&lt;/strong>&lt;/p>
+&lt;p>柏拉图的理性主义（知识的基础是大脑的先天特征） VS 亚里士多德的经验主义（一切皆学习所得）&lt;/p>
+&lt;p>认知心理学既依赖于理性主义研究，也依赖于经验主义研究。&lt;/p>
+&lt;p>&lt;strong>心理学：&lt;/strong>&lt;/p>
+&lt;p>实验内省法：冯特主张以&lt;strong>意识作为研究对象&lt;/strong>。&lt;/p>
+&lt;p>行为主义：华生主张用纯粹客观的自然科学方法来研究，认为心理学应该研究similate-react。&lt;/p>
+&lt;p>早期注重于研究行为主义，而托尔曼、班杜拉等行为主义者已开始注意行为的认知过程。&lt;/p>
+&lt;p>格式塔学派也反对冯特的观点，但强调心理活动的整体性。“整体大于部分之和。”&lt;/p>
+&lt;h2 id="控制论">
+&lt;a class="header-anchor" href="#%e6%8e%a7%e5%88%b6%e8%ae%ba">&lt;/a>
+控制论
+&lt;/h2>&lt;p>冯诺依曼提出自复制自动机理论，构造出了一种基于29状态的二维元胞自动机模型的自复制自动机的理论原型&lt;/p>
+&lt;p>1948年，维纳发表的控制论《控制论——关于在动物和机器中控制和通讯的科学》提出核心思想——&lt;strong>控制、反馈和人机交互&lt;/strong>。&lt;/p>
+&lt;p>1956年，认知心理学正式诞生，1967年出版史上第一部《认知心理学》专著。&lt;/p>
+&lt;p>&lt;img src="output_image/44135b1d2581429bb14fb1b1d9075397.png" alt="">
+&lt;img src="output_image/55c4692391c5c40eb0e1389038a82f9a.png" alt="">&lt;/p>
+&lt;h1 id="感觉">
+&lt;a class="header-anchor" href="#%e6%84%9f%e8%a7%89">&lt;/a>
+感觉
+&lt;/h1>&lt;p>什么是absolute threshold？ 能够被感知到的最小强度的刺激。在50%的时间里可以检测到的最小能量。
+&lt;img src="output_image/35b1ad15dcb33147f36caa9eb9989418.png" alt="">
+sensory adaptation？&lt;/p>
+&lt;p>[感觉适应图]&lt;/p>
+&lt;ul>
+&lt;li>长时间暴露于&lt;strong>不变&lt;/strong>的刺激下感觉能力的调整。&lt;/li>
+&lt;li>在大多数情况下，我们的感官会适应他们所经历的刺激水平。&lt;/li>
+&lt;li>敏感性的明显下降是由于感觉神经受体无法无限期地向大脑发送信息。&lt;/li>
+&lt;/ul>
+$$Z = \frac{{f \times d}}{{{x_{right}} - {x_{left}}}}$$&lt;h2 id="对立过程理论">
+&lt;a class="header-anchor" href="#%e5%af%b9%e7%ab%8b%e8%bf%87%e7%a8%8b%e7%90%86%e8%ae%ba">&lt;/a>
+对立过程理论
+&lt;/h2>&lt;p>三套颜色感受器：黄Y-蓝B 红R-绿G 黑B-白W ，非此即彼。
+虽然视网膜中有三种颜色受体，但他们传递的信息被视觉系统中的其他神经元编码为对手过程形式。&lt;/p></description></item><item><title>daemon 与 服务</title><link>https://user-xixiboliya.github.io/post/daemon%E5%B0%8F%E8%AE%B0/</link><pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/daemon%E5%B0%8F%E8%AE%B0/</guid><description>&lt;blockquote>
+&lt;p>本文内容有待完善。&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>daemon，字面上意思为“守护神、恶魔”，通常没有 GUI 界面，是 Unix/Linux 环境的典型产物。具体表现为后台运行、不与终端交互的单个进程，是一种技术实现方式。&lt;/li>
+&lt;li>service，简单来说是系统为了实现某些功能必须要提供的一些服务，由系统服务管理器定义和管理的 entity，可以包含 daemon，具备依赖、失败处理等高级特性。&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>简言之：&lt;strong>“所有 service 都有 daemon，但不一定所有 daemon 都是 service”&lt;/strong>。&lt;/p>
+&lt;/blockquote>
+&lt;p>当然， 读者并不需要将daemon与service区分得如此细致。一般来说，在一个服务被建立之后，linux使用时，通常会在服务的名称之后加上&lt;code>d&lt;/code>，例如&lt;code>atd&lt;/code>，这个&lt;code>d&lt;/code>代表&lt;code>daemon&lt;/code>的意思。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>xixiboliya@laptop-tex4-of-boxing:~$ systemctl list-units --type&lt;span style="color:#f92672">=&lt;/span>service --state&lt;span style="color:#f92672">=&lt;/span>active --no-pager | grep &lt;span style="color:#e6db74">&amp;#39;d\.service&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> snapd.seeded.service loaded active exited Wait &lt;span style="color:#66d9ef">until&lt;/span> snapd is fully seeded
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> snapd.service loaded active running Snap Daemon
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> systemd-journald.service loaded active running Journal Service
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> systemd-logind.service loaded active running User Login Management
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> systemd-resolved.service loaded active running Network Name Resolution
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> systemd-udevd.service loaded active running Rule-based Manager &lt;span style="color:#66d9ef">for&lt;/span> Device Events and Files
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="通过systemctl-查看单一服务">
+&lt;a class="header-anchor" href="#%e9%80%9a%e8%bf%87systemctl-%e6%9f%a5%e7%9c%8b%e5%8d%95%e4%b8%80%e6%9c%8d%e5%8a%a1">&lt;/a>
+通过systemctl 查看单一服务
+&lt;/h2>&lt;p>一般来说服务的启动有两个阶段，一个是开机的时候设置要不要启动这个服务，以及你现在要不要启动这个服务。查看服务树：&lt;code>systemctl status&lt;/code>，找到其中一个服务进行解析：&lt;/p></description></item><item><title>CMU Proxylab</title><link>https://user-xixiboliya.github.io/post/proxylab/</link><pubDate>Sat, 25 Jan 2025 15:00:00 -0718</pubDate><guid>https://user-xixiboliya.github.io/post/proxylab/</guid><description>&lt;p>本文的所有配置、指令均以 Ubuntu 环境为例，而且假设你不具有桌面环境，只有纯命令行环境。&lt;/p>
+&lt;h1 id="pre-start">
+&lt;a class="header-anchor" href="#pre-start">&lt;/a>
+Pre-start
+&lt;/h1>&lt;p>在工作目录下解压&lt;code>proxylab - handout.tar&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>tar -xvf proxylab-handout.tar 
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>-x&lt;/code>：表示提取文件，也就是解压操作。&lt;/li>
+&lt;li>&lt;code>-v&lt;/code>：用于显示详细的解压过程，方便你了解解压的进度和具体文件。&lt;/li>
+&lt;li>&lt;code>-f&lt;/code>：指定要处理的文件名，后面紧跟要解压的 &lt;code>.tar&lt;/code> 文件的名称。&lt;/li>
+&lt;/ul>
+&lt;p>以下是简要介绍，本文的根工作空间是&lt;code>proxylab-handout&lt;/code>：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>proxylab-handout
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── Makefile
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── README
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── csapp.c
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|—— cache.c //自行编写的cache
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|—— cache.h //自行编写的chche
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>|—— proxy.h
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── csapp.h
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── driver.sh //简单自动评分程序。进行基本的合理性检查。
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── free-port.sh
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── nop-server.py
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── port-for-user.pl //给出偶数端口号，以便和Tiny web server 进行 testing。
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── proxy.c //打印出一个特定的 HTTP &lt;span style="color:#e6db74">`&lt;/span>User-Agent&lt;span style="color:#e6db74">`&lt;/span> 头部信息到标准输出。用于标识客户端软件的类型和版本，服务器可以根据这个信息来提供不同的服务或内容。
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>└── tiny //tiny服务器
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="环境配置">
+&lt;a class="header-anchor" href="#%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">&lt;/a>
+环境配置
+&lt;/h2>&lt;p>配置linux 版本的chrome 和 chrome driver 。两者版本需对应，还有自动化测试工具Selenium，参考[Arthals&amp;rsquo;ink环境配置](&lt;a href="https://arthals.ink/blog/proxy-lab#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE">更适合北大宝宝体质的 Proxy Lab 踩坑记 • Arthals&amp;rsquo; ink&lt;/a>)&lt;/p></description></item><item><title>人工智能概论复习笔记</title><link>https://user-xixiboliya.github.io/post/ai%E6%A6%82%E8%AE%BA/</link><pubDate>Fri, 24 Jan 2025 15:20:00 -0810</pubDate><guid>https://user-xixiboliya.github.io/post/ai%E6%A6%82%E8%AE%BA/</guid><description>&lt;h1 id="导论部分">
+&lt;a class="header-anchor" href="#%e5%af%bc%e8%ae%ba%e9%83%a8%e5%88%86">&lt;/a>
+导论部分
+&lt;/h1>&lt;p>1956年的达特茅斯会议标志着AI诞生，图灵是人工智能之父。
+机器智能的本质属性是自然性。
+关于智能疑惑：多元智能理论、智能三元理论(分析、创造、实用)、智能发展理论&lt;/p>
+&lt;p>==早期种子== ：&lt;/p>
+&lt;ul>
+&lt;li>逻辑与推理(符号学派)
+&lt;ul>
+&lt;li>自亚里士多德开始，是符号推理，并非所有智能行为都可调和为逻辑熟思，图灵第一次在纯数学的符号逻辑和实体世界间建立了联系。&lt;/li>
+&lt;li>图灵测试没有规定问题的范围和提问的标准，计算机能否在智力行为表现得和人无法区分&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>控制论(行为学派)
+&lt;ul>
+&lt;li>核心思想——控制、反馈和人机交互&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>==三大学派==&lt;/p>
+&lt;ul>
+&lt;li>符号主义
+&lt;ul>
+&lt;li>观点：认知即计算(知识表达)，物理符号系统假设和有限合理性原理，人类认知和思维的基本单元是符号，认知过程就是符号的一种运算。自上而下&lt;/li>
+&lt;li>成果：知识回答，专家系统 、LISP表处理语言&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>连接主义
+&lt;ul>
+&lt;li>观点：认知即网络，人的智能是大量简单的人脑神经元细胞的复杂相互连接活动的结果，自下而上 。&lt;/li>
+&lt;li>成果：归纳学习、神经网络&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>行为主义
+&lt;ul>
+&lt;li>认知即反应(控制论)，智能行为的基础是基于“感知&amp;ndash;行动”的反应机制，系统与环境的交互作用，自下而上&lt;/li>
+&lt;li>蚁群算法、遗传算法、强化学习&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="三次爆发">
+&lt;a class="header-anchor" href="#%e4%b8%89%e6%ac%a1%e7%88%86%e5%8f%91">&lt;/a>
+三次爆发
+&lt;/h2>&lt;ul>
+&lt;li>突破(1956-1974) &lt;strong>推理期&lt;/strong>
+&lt;ul>
+&lt;li>符号主义盛行，专家系统发展很快&lt;/li>
+&lt;li>标志性基石：在统计方法中引入符号方法进行语义处理，出现了基于知识的方法。&lt;/li>
+&lt;li>出现了自然语言的相关程序：ELIZA、SHRDLU&lt;/li>
+&lt;li>1969年明斯基给机器学习连接学派致命一击：证明了感知机(第一代神经网络)不能学习任何问题。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>寒冬：数学模型和手段有一定的局限性，并且计算复杂度指数级别增加。&lt;/li>
+&lt;li>(1980-1987) &lt;strong>知识期&lt;/strong>
+&lt;ul>
+&lt;li>进入知识阶段，连接主义盛行。多层神经元网络、反向传播算法&lt;/li>
+&lt;li>知识处理成为研究焦点。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>寒冬： 缺乏实际应用，资助减少。&lt;/li>
+&lt;li>&lt;strong>学习期&lt;/strong>(至今)&lt;/li>
+&lt;/ul>
+&lt;h2 id="两大分类">
+&lt;a class="header-anchor" href="#%e4%b8%a4%e5%a4%a7%e5%88%86%e7%b1%bb">&lt;/a>
+两大分类
+&lt;/h2>&lt;ul>
+&lt;li>符号智能，自顶而下，通过推理进行问题求解&lt;/li>
+&lt;li>计算智能，以数据为基础，通过训练建立联系
+&lt;img src="output_image/ac0fe3b4820e30f620222afd9e58fc91.jpg" alt="">&lt;/li>
+&lt;/ul>
+&lt;h2 id="研究领域">
+&lt;a class="header-anchor" href="#%e7%a0%94%e7%a9%b6%e9%a2%86%e5%9f%9f">&lt;/a>
+研究领域
+&lt;/h2>&lt;ul>
+&lt;li>机器学习：监督、无监督、强化(未标记数据集，但在执行一个或多个动作后，会向AI系统提供反馈)&lt;/li>
+&lt;li>深度学习 成功应用于Siri、Alexa等助手&lt;/li>
+&lt;li>视觉&lt;/li>
+&lt;li>llm&lt;/li>
+&lt;li>Robotics&lt;/li>
+&lt;li>模糊逻辑系统&lt;/li>
+&lt;li>专家系统&lt;/li>
+&lt;li>self-driving cars&lt;/li>
+&lt;/ul>
+&lt;h1 id="知识">
+&lt;a class="header-anchor" href="#%e7%9f%a5%e8%af%86">&lt;/a>
+知识
+&lt;/h1>&lt;ul>
+&lt;li>知识的特性：相对正确性、不确定性、可表示性与可利用性&lt;/li>
+&lt;li>基于符号的知识表示方法：逻辑表示、语义网络表示、生产规则、框架表示&lt;/li>
+&lt;li>主要的知识表示方法有两种：
+&lt;ul>
+&lt;li>陈述性(静态特性，描述事物属性及其关系)，易于表示“做什么”，优点是形式简单、模块性好、可独立使用；缺点是不能直接执行。&lt;/li>
+&lt;li>过程性(知识的动态特性，表示推理和搜索)，描述规则和控制结构知识，易于表示“如何做 ”，优点是可以直接被计算机执行，易于表达启发性知识，缺点是不易表达大量知识、难于修改和理解。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="谓词逻辑表示法略">
+&lt;a class="header-anchor" href="#%e8%b0%93%e8%af%8d%e9%80%bb%e8%be%91%e8%a1%a8%e7%a4%ba%e6%b3%95%e7%95%a5">&lt;/a>
+谓词逻辑表示法(略)
+&lt;/h2>&lt;p>优点：表达能力强，新旧知识逻辑一致性 一阶谓词具有完备的逻辑推理算法
+缺点：难以表示过程和启发性知识 缺乏组织原则&lt;/p></description></item><item><title>人工智能与现代物理Ⅰ复习笔记</title><link>https://user-xixiboliya.github.io/post/%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E4%B8%8E%E7%8E%B0%E4%BB%A3%E7%89%A9%E7%90%86i/</link><pubDate>Fri, 24 Jan 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E4%B8%8E%E7%8E%B0%E4%BB%A3%E7%89%A9%E7%90%86i/</guid><description>&lt;h1 id="经典物理部分">
+&lt;a class="header-anchor" href="#%e7%bb%8f%e5%85%b8%e7%89%a9%e7%90%86%e9%83%a8%e5%88%86">&lt;/a>
+经典物理部分
+&lt;/h1>&lt;p>本部分不做详尽说明。&lt;/p>
+&lt;p>牛顿运动定律+微积分&lt;/p>
+&lt;p>速度：$v(t) = \frac{{dr(t)}}{{dt}}$&lt;/p>
+&lt;p>加速度：$a(t) = \frac{{dv(t)}}{{dt}}$&lt;/p>
+&lt;p>冲量定理：$Fdt = d(mv)$&lt;/p>
+&lt;h2 id="角动量定理">
+&lt;a class="header-anchor" href="#%e8%a7%92%e5%8a%a8%e9%87%8f%e5%ae%9a%e7%90%86">&lt;/a>
+角动量定理
+&lt;/h2>&lt;p>&lt;code>掌握如何计算刚体转动惯量&lt;/code>&lt;/p>
+&lt;p>$M = \frac{{dL}}{{dt}} = I\frac{{d\omega }}{{dt}}$&lt;/p>
+&lt;p>M为力矩，L为动量矩（角动量），I为转动惯量。&lt;/p>
+&lt;p>$\int {{r^2}dm = I}$ ${L_0} = J\omega$
+${{\bf{L}}_0} = m{\bf{r}}\times v$ ${\bf{M}} = {\bf{r}} \times {\bf{F}}$&lt;/p>
+&lt;p>对于&lt;a href="https://baike.baidu.com/item/%E5%8A%A8%E9%87%8F%E7%9F%A9%E5%AE%9A%E7%90%86/5560455?fromModule=lemma_inlink">动量矩定理&lt;/a>而言， &lt;a href="https://baike.baidu.com/item/%E8%B4%A8%E7%82%B9%E7%B3%BB/8951990?fromModule=lemma_inlink">质点系&lt;/a>对一点（或一轴）的&lt;a href="https://baike.baidu.com/item/%E8%A7%92%E5%8A%A8%E9%87%8F/290656?fromModule=lemma_inlink">角动量&lt;/a>对时间的导数等于外力系对此点（或此轴）的&lt;a href="https://baike.baidu.com/item/%E4%B8%BB%E7%9F%A9/53669328?fromModule=lemma_inlink">主矩&lt;/a>，广泛用于处理刚体定点（或轴）转动问题。角动量定理的&lt;a href="https://baike.baidu.com/item/%E5%BE%AE%E5%88%86%E5%BD%A2%E5%BC%8F/4184155?fromModule=lemma_inlink">微分形式&lt;/a>为dL/dt=M。&lt;/p>
+&lt;h2 id="简谐波">
+&lt;a class="header-anchor" href="#%e7%ae%80%e8%b0%90%e6%b3%a2">&lt;/a>
+简谐波
+&lt;/h2>$$y(x,t) = \cos (\omega t - \frac{{\omega x}}{u} + {\varphi _0})$$$$y(x,t) = \cos (\omega t - \frac{{2\pi x}}{\lambda } + {\varphi _0})$$&lt;p>
+$u$是传播速度，$\lambda$是波长。&lt;/p>
+&lt;p>弹簧振子的能量和势能、总机械能。&lt;/p>
+&lt;h3 id="波的干涉叠加">
+&lt;a class="header-anchor" href="#%e6%b3%a2%e7%9a%84%e5%b9%b2%e6%b6%89%e5%8f%a0%e5%8a%a0">&lt;/a>
+波的干涉、叠加
+&lt;/h3>&lt;p>两个同频同方向简谐振动的合成：合振动仍为简谐振动，合振动的振幅取决于两个分振动的振幅以及相位差，即$A = \sqrt {A_1^2 + A_2^2 + 2{A_1}{A_2}\cos ({\varphi _2} - {\varphi _1})}$。&lt;/p></description></item><item><title>一些奇怪小技巧</title><link>https://user-xixiboliya.github.io/post/%E5%A5%87%E6%80%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</link><pubDate>Thu, 23 Jan 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E5%A5%87%E6%80%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid><description>&lt;h1 id="shieldsio徽章制作">
+&lt;a class="header-anchor" href="#shieldsio%e5%be%bd%e7%ab%a0%e5%88%b6%e4%bd%9c">&lt;/a>
+Shields.io徽章制作
+&lt;/h1>&lt;p>在浏览 GitHub 时，你可能发现很多项目都有很漂亮的徽章。这些徽章可以用来显示项目版本、进度条、star 数量、fork 数量&amp;hellip;.，那么这些徽章是如何生成的呢？&lt;/p>
+&lt;p>准确的说，这种 badges 是可以在任何地方使用的，但是一般来说还是在 Github 里面见到的会多一些，所以干脆就在描述中添加一个 Github 的前缀。&lt;/p>
+&lt;p>&lt;img src="output_image/9fe3f58296496562d0c9ff3f6506fb5c.png" alt="">&lt;/p>
+&lt;p>其实这些徽章大多都出于一个网站 &lt;a href="https://shields.io/">shields&lt;/a>，里面不仅可以生成静态的徽章，也可以生成动态显示stars的徽章。&lt;/p>
+&lt;p>在Shields.io 网站中，进去默认展开的是静态徽章Static Badge。
+&lt;img src="output_image/e15ee28ae839c3bf77a6927704b75332.webp" alt="">&lt;/p>
+&lt;p>在右侧可以看到四个内容，分别是：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>title&lt;/strong>：badge 的文字描述。&lt;/li>
+&lt;li>&lt;strong>color&lt;/strong>：badge 的背景色，使用 hex 编码表示（不包括 &lt;code>#&lt;/code>）。&lt;/li>
+&lt;li>&lt;strong>logoname&lt;/strong>：badge 的 logo 名称。&lt;/li>
+&lt;li>&lt;strong>logocolor&lt;/strong>：logo 的颜色，使用 hex 编码表示（不包括 &lt;code>#&lt;/code>）。&lt;/li>
+&lt;/ul>
+&lt;p>在下图中，logo需要严格按照&lt;a href="https://simpleicons.org/">simple icon&lt;/a>中的名字规定，&lt;code>#FCC624&lt;/code>规定了徽章的背景色。比如，我找到了微信的图标，只需在simple icon的“logo”栏输入“WeChat”，即可让微信的图标出现在徽章上。
+&lt;img src="output_image/c2f35a1675ef8efaa27699e46202329b.png" alt="">&lt;/p>
+&lt;p>在badgeContent中，一般的输入可以是&lt;code>label-(optional)message-color&lt;/code>，即【第一段内容】-【第二段内容】-【颜色】 ，中间使用&lt;code>-&lt;/code>隔离。&lt;/p>
+&lt;p>在badgeContent要输入空格或者下划线等内容可以参考下面：&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>URL input&lt;/th>
+ &lt;th>Badge output&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Underscore &lt;code>_&lt;/code> or &lt;code>%20&lt;/code>&lt;/td>
+ &lt;td>Space&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Double underscore &lt;code>__&lt;/code>&lt;/td>
+ &lt;td>Underscore &lt;code>_&lt;/code>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Double dash &lt;code>--&lt;/code>&lt;/td>
+ &lt;td>Dash &lt;code>-&lt;/code>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>例如输入&lt;code>python-&amp;gt;=3.10.0-blue:&lt;/code>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;img src="output_image/a81de07298980f6353e7124f51d22dff.png" alt="">&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>与此同时，Shields.io也会生成对应的markdown供你使用。&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>在这里建议将 logo 颜色设置为白色，然后背景色设置为网页中推荐的那个 logo 的配色，会比正常设置要有质感一些，比如说显示 &lt;code>vitepress&lt;/code>，就可以使用：&lt;/p></description></item><item><title>CMU CSAPP bomblab phase1 ~ phase5 解答</title><link>https://user-xixiboliya.github.io/post/bomblab/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/bomblab/</guid><description>&lt;h1 id="写在前面">
+&lt;a class="header-anchor" href="#%e5%86%99%e5%9c%a8%e5%89%8d%e9%9d%a2">&lt;/a>
+写在前面
+&lt;/h1>&lt;p>贴一个下载链接&lt;a href="https://csapp.cs.cmu.edu/3e/labs.html">CS:APP3e, Bryant and O&amp;rsquo;Hallaron (cmu.edu)&lt;/a>，点击&lt;a href="https://csapp.cs.cmu.edu/3e/bomb.tar">Self-Study Handout&lt;/a>下载lab。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c" data-lang="c">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/* Do all sorts of secret stuff that makes the bomb harder to defuse. */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">initialize_bomb&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Welcome to my fiendish little bomb. You have 6 phases with&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;which to blow yourself up. Have a nice day!&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/* Hmm... Six phases must be more secure than one phase! */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> input &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">read_line&lt;/span>(); &lt;span style="color:#75715e">/* Get input */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">phase_1&lt;/span>(input); &lt;span style="color:#75715e">/* Run the phase */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">phase_defused&lt;/span>(); &lt;span style="color:#75715e">/* Drat! They figured it out!
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在进入到&lt;code>phase_1&lt;/code>之前，对于&lt;code>input = read_line()&lt;/code>函数，我们查看一下input变量的地址，使用&lt;code>gdb bomb&lt;/code>命令进入gdb调试阶段，再通过查看反汇编代码确定&lt;code>input = read_line()&lt;/code>函数return时的栈顶指针&lt;code>%rsp&lt;/code>所指向的内容，先设置断点，为了方便，使用&lt;code>touch ~/.gdbinit&lt;/code>命令创建一个默认配置，具体可以参考&lt;a href="https://arthals.ink/blog/bomb-lab">这个链接&lt;/a>。&lt;/p></description></item><item><title>docker与dev container插件的使用</title><link>https://user-xixiboliya.github.io/post/docker/</link><pubDate>Mon, 20 Jan 2025 00:00:00 +0000</pubDate><guid>https://user-xixiboliya.github.io/post/docker/</guid><description>&lt;blockquote>
 &lt;p>本文侧重1.讲解docker的插件使用。2.视觉consimulation项目的跨环境迁移&lt;/p>
 &lt;/blockquote>
 &lt;h1 id="基础配置">
@@ -120,7 +577,16 @@ git项目基础
 &lt;img src="imgs/github.png" alt="">&lt;/p></description></item><item><title>my 2024 summary</title><link>https://user-xixiboliya.github.io/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/</link><pubDate>Sun, 29 Dec 2024 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E6%88%91%E7%9A%842024%E6%80%BB%E7%BB%93/</guid><description>&lt;h1 id="我的2024总结">
 &lt;a class="header-anchor" href="#%e6%88%91%e7%9a%842024%e6%80%bb%e7%bb%93">&lt;/a>
 我的2024总结
-&lt;/h1>&lt;p>本博文将于除夕进行更新~&lt;/p></description></item><item><title>Doxygen 与 commit规范</title><link>https://user-xixiboliya.github.io/post/doxygencommit/</link><pubDate>Tue, 24 Dec 2024 11:00:00 -0700</pubDate><guid>https://user-xixiboliya.github.io/post/doxygencommit/</guid><description>&lt;h1 id="开始之前">
+&lt;/h1>&lt;p>当敲下‘my 2024 summary’这行标题开始本文的写作时，我正身处z128号列车归乡途中。z128是连接东西的大动脉之一，从西北到东南，从古都到蛮夷之地，从兰州、西安到福建，缓缓东迁、南开。今天没有下雨，车窗漏过的阳光着实令人欣慰，这在西安并不常见，当然也可能是北方都不常见，西安碑林区冬天的阳光几乎令人感觉不到温度。&lt;/p>
+&lt;p>尽管是临近除夕，确切而言，西安的年味并不浓厚。尽管政府在西安城墙、交大兴庆宫等古迹处加上了各种璀璨且卷出新高度的花灯，但明显体感的人口返乡外流、每晚零下凛然的室外寒风着实令人感到荒芜与漂泊。常常感到自己的抉择一定意义上都落向了漂泊，就像波函数向的某种定态的坍缩一般，只不过在十多年前是北漂，如今之后可能是南漂。&lt;/p>
+&lt;p>2024年年初还残留着一些博览古今的幻想。一年前的这段时间，借着复旦的一个全国性活动的名义，我正在研读跟专业毫不搭噶的斯多葛学派的哲学著作，寒假在家里面坐牢一点一点地憋了快20天才磨出来一篇巨型学术缝合作品《具身治疗》。这意义不大，但当初为什么会这样做很大程度上是因为笔者才大一，可以允许自己盲目探索一会儿。最大的收获是加了一位2021级pku学长的微信——这是一位个人感觉人格张力拉满的同学：学的是协和八年制临床，但在朋友圈表达过不想做研究型的学者，与此同时是pku学生合唱团成员，不仅有指挥经历，还有与中央多名艺术家同台或者受指导的经历。那位同学同时是一个e人，尽管他平时经常抽烟。笔者文笔功底有限，只能用有趣来形容这样的同学。上图中有fdu的星空咖啡馆、子彬院的会议厅照片。在答辩完之后笔者认识到fdu那些学问建树颇为丰硕的学者也不过是某一细分领域的学者专家，因为一个人的精力实在无法广博通闻诸多领域的诸多事。但话说回来，放在人生的维度上，笔者还是希望自己能够有趣一些。
+&lt;img src="experience.jpg" alt="">
+是的，能够在个人擅长的技能上探索是一件有趣的事。但何谓擅长，你会发现大多人一生都不知所云，大多者只是浑噩地从事一份工作罢了。正如笔者在县城的时候辅导过课业的几位学生。成绩确实不够好，但一天天的披星戴月，不挑餐食又照顾妹妹关心家长，平时老实不去花里胡哨地玩，家长一想确实找不到理由训斥他。只是说不擅长读书罢了，不太能够实现阶级跃迁罢了，但这又如何能言呢？在其他方面笔者确实自愧不如。对于有趣而言，笔者曾认为自己在讲话方面挺擅长的，于是在4月份5月份背宣讲稿子希望加入西迁博物馆宣讲团。那时二十页A4纸左右的讲稿，笔者自己吸收内化，磕磕绊绊地背了将近一学期，但最后试讲的结果并没有很好，宣讲的语言过于平白。或许笔者擅长的只是像讲课那样侃侃而谈无所拘束的讲话，背讲稿、背台词的工作一直是笔者吃力的领域，于是这方面的时间和精力投入便变成了沉没成本。这是笔者所做出的探索。&lt;/p>
+&lt;p>自2月的年初开始，笔者对从事硬件控制的幻想逐步被戳破。那时找了北极熊学姐加入了robocup的一个组，做的是工程竞技项目，说白了是一个很无聊的工作——在一个迭代成熟的项目下教会机器人走路。现在以浅薄的分析，似乎可以手调RL，但对于本科生而言难度疑似略大。这个项目采用的自制板和舵机经常是出现了问题难以排查。这里接触不良，那里电压不够……可能是笔者较菜，硬件的debug、PCB板与黑商的交涉总是让人头疼。于是在五月份六月份已然属于灰心的状态，当时遇上考试周，这令笔者感到些许压抑。直到期末考之后才已然发现做这个项目的大部分的时间效果甚微。是这样的，比赛是这样的，我所能作的是这样的。到六月份那时，这个项目逐渐被笔者不看好因而处于淡淡然然的状态。七月份参加了robocup的省赛是省二，但已经看到了机械结构的不足，接着是10月份的国赛，成绩并不好。或许吧，是这样的。&lt;/p>
+&lt;p>笔者作为南方人第一次摸爬滚打地尝试了滑雪、为了满足占有欲用暑假辅导的收入购置了一个运动相机、勇闯了西安银泰社交coser拍照、不定时打卡了的家乡风味、摸摸碰碰跑通了RC livox lidar的代码、一刷与带mesome二刷了的华山之旅，还有糖蒜铺子的脱口秀experience（或许笔者更擅长这个？但是笔者实在不会叙述故事）、因为失落没人陪独自到青龙寺用周易算了命结果是上签而一时怀疑算命先生作祟、接任了唐仲英爱心社的某个小部长的职位、去了一次再也不会去的兵马俑骊山、参加了令人失落的发展对象答辩、下学期拿到了（？混进了）XJTU RC队伍 、回家再次品尝许久未吃的永安粿条和沙县小吃、元宵错失了家乡刚申请非物质文化遗产板凳龙的大型巡演……某种意义上是这样的，笔者与自己在某种意义上达到了和解——摆摆烂烂的，尽管许多时候感到无力与尽力、压抑与不知所措。 相当一部分繁忙事务的原因是自己在给自己层层加码，但转念一想繁忙某种意义上是精神世界的反衬。&lt;/p>
+&lt;p>有人思来想去扪心自问却仍未选择，有人稀里糊涂不知不觉却已经在路上。&lt;/p>
+&lt;p>编辑此行时正值2025春节元宵，笔者正在东航MU从福州长乐机场飞往西安咸阳的客机上。年味即将散去，往往令人沮丧，但新的一年希望保持心情、希望有所取舍、希望认识更多的人、希望有所进取与收获。笔者与正在阅读此文的你，共勉。&lt;/p>
+&lt;p>我还是很喜欢家乡味道的。&lt;/p></description></item><item><title>Doxygen 与 commit规范</title><link>https://user-xixiboliya.github.io/post/doxygencommit/</link><pubDate>Tue, 24 Dec 2024 11:00:00 -0700</pubDate><guid>https://user-xixiboliya.github.io/post/doxygencommit/</guid><description>&lt;h1 id="开始之前">
 &lt;a class="header-anchor" href="#%e5%bc%80%e5%a7%8b%e4%b9%8b%e5%89%8d">&lt;/a>
 开始之前
 &lt;/h1>&lt;p>首先推荐大家在vscode中下载插件==通灵译码==或者==GitHub complie==，能极大&lt;del>偷懒&lt;/del>提升效率。
@@ -230,7 +696,7 @@ Ubuntu / Linux
 &lt;p>潘功胜《大行蝶变：中国大型商业银行复兴之路》&lt;/p>
 &lt;p>哈佛大学 傅高义 《邓小平时代》&lt;/p>
 &lt;p>复旦大学历史地理学家葛剑雄《统一与分裂：中国历史的启示》&lt;/p>
-&lt;p>复旦大学陈明明、中山大学肖滨《当代中国政府与政治》&lt;/p></description></item><item><title>Datalab</title><link>https://user-xixiboliya.github.io/post/datalab/</link><pubDate>Fri, 22 Nov 2024 11:00:00 -0700</pubDate><guid>https://user-xixiboliya.github.io/post/datalab/</guid><description>&lt;p>&lt;img src="imgs/5ba35e59614ed6ae5dc3a4cfaac11f40.png" alt="">
+&lt;p>复旦大学陈明明、中山大学肖滨《当代中国政府与政治》&lt;/p></description></item><item><title>CMU Datalab</title><link>https://user-xixiboliya.github.io/post/datalab/</link><pubDate>Fri, 22 Nov 2024 11:00:00 -0700</pubDate><guid>https://user-xixiboliya.github.io/post/datalab/</guid><description>&lt;p>&lt;img src="imgs/5ba35e59614ed6ae5dc3a4cfaac11f40.png" alt="">
 没得满分是因为在isAsciiDigit中使用了&lt;code>&amp;gt;&amp;gt;&lt;/code>违规符号。没有用&lt;code>&amp;gt;&amp;gt;&lt;/code>感觉不会写……请求各位大佬对此出谋划策，感谢！&lt;/p>
 &lt;h2 id="写在前面">
 &lt;a class="header-anchor" href="#%e5%86%99%e5%9c%a8%e5%89%8d%e9%9d%a2">&lt;/a>
@@ -566,19 +1032,19 @@ ssh使用入门
  &lt;div class="friend-icon-wrap">
  &lt;div class="friend-icon">
  &lt;img
- data-src="https://xjtu.app/user_avatar/xjtu.app/forever/288/592_2.png"
+ data-src="https://axi404.top/avatar/avatar.png"
  data-sizes="auto"
- alt="阿汐"
+ alt="Axi&amp;#39;s Blog"
  class="lazyload"
  />
  &lt;/div>
  &lt;/div>
  &lt;div class="friend-info-wrap">
  &lt;div class="friend-name">
- 阿汐
+ Axi&amp;#39;s Blog
  &lt;/div>
  &lt;div class="friend-desc">
- 一位喵喵学长……
+ 一只可爱小猫
  &lt;/div>
  &lt;/div>
  &lt;/div>
@@ -601,6 +1067,28 @@ ssh使用入门
  &lt;/div>
  &lt;div class="friend-desc">
  「妳突然對我説 七里香的名字很美」
+ &lt;/div>
+ &lt;/div>
+ &lt;/div>
+ 
+ &lt;div class="friend-item-wrap">
+ &lt;a href="https://github.com/WDGaster703" rel="noopener external nofollow noreferrer" target="_blank">&lt;/a>
+ &lt;div class="friend-icon-wrap">
+ &lt;div class="friend-icon">
+ &lt;img
+ data-src="https://avatars.githubusercontent.com/u/182055930?v=4"
+ data-sizes="auto"
+ alt="Gaster"
+ class="lazyload"
+ />
+ &lt;/div>
+ &lt;/div>
+ &lt;div class="friend-info-wrap">
+ &lt;div class="friend-name">
+ Gaster
+ &lt;/div>
+ &lt;div class="friend-desc">
+ HITsz电气大牛
  &lt;/div>
  &lt;/div>
  &lt;/div>

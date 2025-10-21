@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CourseNote on Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/categories/coursenote/</link><description>Recent content in CourseNote on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 14 Mar 2025 16:00:00 -0720</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/categories/coursenote/index.xml" rel="self" type="application/rss+xml"/><item><title>认知心理学复习纲要</title><link>https://user-xixiboliya.github.io/post/%E8%AE%A4%E7%9F%A5%E5%BF%83%E7%90%86%E5%AD%A6/</link><pubDate>Sun, 23 Feb 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E8%AE%A4%E7%9F%A5%E5%BF%83%E7%90%86%E5%AD%A6/</guid><description>&lt;blockquote>
+&lt;p>“出题极其阴险。给人留下很不好的印象。”&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;code>题型有 名词解释、成对概念分析、填空、判断对错、匹配连线、填图、实验分析、psychopy。&lt;/code>&lt;/p>
+&lt;p>认知心理学以研究黑箱方法为主，神经生物学以白箱研究为主，二者均启发计算神经工程。神经生物学为认知心理学提供了机理与证据。&lt;/p>
+&lt;p>&lt;em>Mental progress: Private psychological activities that include thinking, perceiving, and feeling.&lt;/em>&lt;/p>
+&lt;p>&lt;strong>认知心理学研究的基本问题&lt;/strong>：
+心理表征问题——心理表征的形成与对心理表征的加工。表征是指&lt;strong>信息&lt;/strong>或&lt;strong>知识&lt;/strong>在心理活动中的表现和记载的方式，是外部事物在心理活动中的内部表现。&lt;/p>
+&lt;p>认知活动（心理表征及其加工）的意识水平：意识和无意识&lt;/p>
+&lt;p>身心关系问题&lt;/p>
+&lt;h1 id="认知心理学的研究范式">
+&lt;a class="header-anchor" href="#%e8%ae%a4%e7%9f%a5%e5%bf%83%e7%90%86%e5%ad%a6%e7%9a%84%e7%a0%94%e7%a9%b6%e8%8c%83%e5%bc%8f">&lt;/a>
+认知心理学的研究范式
+&lt;/h1>&lt;h2 id="信息加工范式">
+&lt;a class="header-anchor" href="#%e4%bf%a1%e6%81%af%e5%8a%a0%e5%b7%a5%e8%8c%83%e5%bc%8f">&lt;/a>
+信息加工范式
+&lt;/h2>&lt;p>研究目的是确定认知操作的过程和结构，将外部信息转换为可操作的离散符号——心理表征 对信息的加工范式是序列(sequential)进行的 该模式可以回答自下而上的加工过程，却忽视了自上而下的加工过程。&lt;/p>
+&lt;p>[信息加工的一般原理图] 感受器、效应器、信息加工系统
+&lt;img src="output_image/5285b0ce23fe3aaed99e50f1b3b02f24.png" alt="">
+[对信息加工观点的批评图] 认知系统、调节系统、情绪系统、物理信号、运动和声音
+&lt;img src="output_image/a031756f06a1fd7d9603eb336c328a79.png" alt="">&lt;/p>
+&lt;h2 id="联结主义范式">
+&lt;a class="header-anchor" href="#%e8%81%94%e7%bb%93%e4%b8%bb%e4%b9%89%e8%8c%83%e5%bc%8f">&lt;/a>
+联结主义范式
+&lt;/h2>&lt;p>模拟神经网络的集成&lt;strong>平行加工&lt;/strong>方式。&lt;/p>
+&lt;ol>
+&lt;li>信息表征是以&lt;strong>神经网络的激活模式&lt;/strong>实现的，不同的激活模式表征&lt;strong>不同信息&lt;/strong>，一个网络当中可以存储和表征不同的信息（一个网络有不同的激活模式）。信息是以&lt;strong>非符号的分布式&lt;/strong>存储于神经网络中，存储具有&lt;strong>非局部性&lt;/strong>；信息加工就是以一定模式在网络当中&lt;strong>激活扩散&lt;/strong>，在空间上是平行分布式加工。&lt;/li>
+&lt;li>这种网络具有学习能力。&lt;/li>
+&lt;/ol>
+&lt;p>联结主义范式图他敢考？&lt;/p>
+&lt;p>此外，认知心理学研究的生态学取向也日趋明显，强调人与环境的动态交互过程，从更为整体的观点认识人的认知过程。&lt;/p>
+&lt;h2 id="认知心理学的产生基础">
+&lt;a class="header-anchor" href="#%e8%ae%a4%e7%9f%a5%e5%bf%83%e7%90%86%e5%ad%a6%e7%9a%84%e4%ba%a7%e7%94%9f%e5%9f%ba%e7%a1%80">&lt;/a>
+认知心理学的产生基础
+&lt;/h2>&lt;p>&lt;strong>哲学：&lt;/strong>&lt;/p>
+&lt;p>柏拉图的理性主义（知识的基础是大脑的先天特征） VS 亚里士多德的经验主义（一切皆学习所得）&lt;/p>
+&lt;p>认知心理学既依赖于理性主义研究，也依赖于经验主义研究。&lt;/p>
+&lt;p>&lt;strong>心理学：&lt;/strong>&lt;/p>
+&lt;p>实验内省法：冯特主张以&lt;strong>意识作为研究对象&lt;/strong>。&lt;/p>
+&lt;p>行为主义：华生主张用纯粹客观的自然科学方法来研究，认为心理学应该研究similate-react。&lt;/p>
+&lt;p>早期注重于研究行为主义，而托尔曼、班杜拉等行为主义者已开始注意行为的认知过程。&lt;/p>
+&lt;p>格式塔学派也反对冯特的观点，但强调心理活动的整体性。“整体大于部分之和。”&lt;/p>
+&lt;h2 id="控制论">
+&lt;a class="header-anchor" href="#%e6%8e%a7%e5%88%b6%e8%ae%ba">&lt;/a>
+控制论
+&lt;/h2>&lt;p>冯诺依曼提出自复制自动机理论，构造出了一种基于29状态的二维元胞自动机模型的自复制自动机的理论原型&lt;/p>
+&lt;p>1948年，维纳发表的控制论《控制论——关于在动物和机器中控制和通讯的科学》提出核心思想——&lt;strong>控制、反馈和人机交互&lt;/strong>。&lt;/p>
+&lt;p>1956年，认知心理学正式诞生，1967年出版史上第一部《认知心理学》专著。&lt;/p>
+&lt;p>&lt;img src="output_image/44135b1d2581429bb14fb1b1d9075397.png" alt="">
+&lt;img src="output_image/55c4692391c5c40eb0e1389038a82f9a.png" alt="">&lt;/p>
+&lt;h1 id="感觉">
+&lt;a class="header-anchor" href="#%e6%84%9f%e8%a7%89">&lt;/a>
+感觉
+&lt;/h1>&lt;p>什么是absolute threshold？ 能够被感知到的最小强度的刺激。在50%的时间里可以检测到的最小能量。
+&lt;img src="output_image/35b1ad15dcb33147f36caa9eb9989418.png" alt="">
+sensory adaptation？&lt;/p>
+&lt;p>[感觉适应图]&lt;/p>
+&lt;ul>
+&lt;li>长时间暴露于&lt;strong>不变&lt;/strong>的刺激下感觉能力的调整。&lt;/li>
+&lt;li>在大多数情况下，我们的感官会适应他们所经历的刺激水平。&lt;/li>
+&lt;li>敏感性的明显下降是由于感觉神经受体无法无限期地向大脑发送信息。&lt;/li>
+&lt;/ul>
+$$Z = \frac{{f \times d}}{{{x_{right}} - {x_{left}}}}$$&lt;h2 id="对立过程理论">
+&lt;a class="header-anchor" href="#%e5%af%b9%e7%ab%8b%e8%bf%87%e7%a8%8b%e7%90%86%e8%ae%ba">&lt;/a>
+对立过程理论
+&lt;/h2>&lt;p>三套颜色感受器：黄Y-蓝B 红R-绿G 黑B-白W ，非此即彼。
+虽然视网膜中有三种颜色受体，但他们传递的信息被视觉系统中的其他神经元编码为对手过程形式。&lt;/p></description></item><item><title>人工智能概论复习笔记</title><link>https://user-xixiboliya.github.io/post/ai%E6%A6%82%E8%AE%BA/</link><pubDate>Fri, 24 Jan 2025 15:20:00 -0810</pubDate><guid>https://user-xixiboliya.github.io/post/ai%E6%A6%82%E8%AE%BA/</guid><description>&lt;h1 id="导论部分">
+&lt;a class="header-anchor" href="#%e5%af%bc%e8%ae%ba%e9%83%a8%e5%88%86">&lt;/a>
+导论部分
+&lt;/h1>&lt;p>1956年的达特茅斯会议标志着AI诞生，图灵是人工智能之父。
+机器智能的本质属性是自然性。
+关于智能疑惑：多元智能理论、智能三元理论(分析、创造、实用)、智能发展理论&lt;/p>
+&lt;p>==早期种子== ：&lt;/p>
+&lt;ul>
+&lt;li>逻辑与推理(符号学派)
+&lt;ul>
+&lt;li>自亚里士多德开始，是符号推理，并非所有智能行为都可调和为逻辑熟思，图灵第一次在纯数学的符号逻辑和实体世界间建立了联系。&lt;/li>
+&lt;li>图灵测试没有规定问题的范围和提问的标准，计算机能否在智力行为表现得和人无法区分&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>控制论(行为学派)
+&lt;ul>
+&lt;li>核心思想——控制、反馈和人机交互&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>==三大学派==&lt;/p>
+&lt;ul>
+&lt;li>符号主义
+&lt;ul>
+&lt;li>观点：认知即计算(知识表达)，物理符号系统假设和有限合理性原理，人类认知和思维的基本单元是符号，认知过程就是符号的一种运算。自上而下&lt;/li>
+&lt;li>成果：知识回答，专家系统 、LISP表处理语言&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>连接主义
+&lt;ul>
+&lt;li>观点：认知即网络，人的智能是大量简单的人脑神经元细胞的复杂相互连接活动的结果，自下而上 。&lt;/li>
+&lt;li>成果：归纳学习、神经网络&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>行为主义
+&lt;ul>
+&lt;li>认知即反应(控制论)，智能行为的基础是基于“感知&amp;ndash;行动”的反应机制，系统与环境的交互作用，自下而上&lt;/li>
+&lt;li>蚁群算法、遗传算法、强化学习&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="三次爆发">
+&lt;a class="header-anchor" href="#%e4%b8%89%e6%ac%a1%e7%88%86%e5%8f%91">&lt;/a>
+三次爆发
+&lt;/h2>&lt;ul>
+&lt;li>突破(1956-1974) &lt;strong>推理期&lt;/strong>
+&lt;ul>
+&lt;li>符号主义盛行，专家系统发展很快&lt;/li>
+&lt;li>标志性基石：在统计方法中引入符号方法进行语义处理，出现了基于知识的方法。&lt;/li>
+&lt;li>出现了自然语言的相关程序：ELIZA、SHRDLU&lt;/li>
+&lt;li>1969年明斯基给机器学习连接学派致命一击：证明了感知机(第一代神经网络)不能学习任何问题。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>寒冬：数学模型和手段有一定的局限性，并且计算复杂度指数级别增加。&lt;/li>
+&lt;li>(1980-1987) &lt;strong>知识期&lt;/strong>
+&lt;ul>
+&lt;li>进入知识阶段，连接主义盛行。多层神经元网络、反向传播算法&lt;/li>
+&lt;li>知识处理成为研究焦点。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>寒冬： 缺乏实际应用，资助减少。&lt;/li>
+&lt;li>&lt;strong>学习期&lt;/strong>(至今)&lt;/li>
+&lt;/ul>
+&lt;h2 id="两大分类">
+&lt;a class="header-anchor" href="#%e4%b8%a4%e5%a4%a7%e5%88%86%e7%b1%bb">&lt;/a>
+两大分类
+&lt;/h2>&lt;ul>
+&lt;li>符号智能，自顶而下，通过推理进行问题求解&lt;/li>
+&lt;li>计算智能，以数据为基础，通过训练建立联系
+&lt;img src="output_image/ac0fe3b4820e30f620222afd9e58fc91.jpg" alt="">&lt;/li>
+&lt;/ul>
+&lt;h2 id="研究领域">
+&lt;a class="header-anchor" href="#%e7%a0%94%e7%a9%b6%e9%a2%86%e5%9f%9f">&lt;/a>
+研究领域
+&lt;/h2>&lt;ul>
+&lt;li>机器学习：监督、无监督、强化(未标记数据集，但在执行一个或多个动作后，会向AI系统提供反馈)&lt;/li>
+&lt;li>深度学习 成功应用于Siri、Alexa等助手&lt;/li>
+&lt;li>视觉&lt;/li>
+&lt;li>llm&lt;/li>
+&lt;li>Robotics&lt;/li>
+&lt;li>模糊逻辑系统&lt;/li>
+&lt;li>专家系统&lt;/li>
+&lt;li>self-driving cars&lt;/li>
+&lt;/ul>
+&lt;h1 id="知识">
+&lt;a class="header-anchor" href="#%e7%9f%a5%e8%af%86">&lt;/a>
+知识
+&lt;/h1>&lt;ul>
+&lt;li>知识的特性：相对正确性、不确定性、可表示性与可利用性&lt;/li>
+&lt;li>基于符号的知识表示方法：逻辑表示、语义网络表示、生产规则、框架表示&lt;/li>
+&lt;li>主要的知识表示方法有两种：
+&lt;ul>
+&lt;li>陈述性(静态特性，描述事物属性及其关系)，易于表示“做什么”，优点是形式简单、模块性好、可独立使用；缺点是不能直接执行。&lt;/li>
+&lt;li>过程性(知识的动态特性，表示推理和搜索)，描述规则和控制结构知识，易于表示“如何做 ”，优点是可以直接被计算机执行，易于表达启发性知识，缺点是不易表达大量知识、难于修改和理解。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="谓词逻辑表示法略">
+&lt;a class="header-anchor" href="#%e8%b0%93%e8%af%8d%e9%80%bb%e8%be%91%e8%a1%a8%e7%a4%ba%e6%b3%95%e7%95%a5">&lt;/a>
+谓词逻辑表示法(略)
+&lt;/h2>&lt;p>优点：表达能力强，新旧知识逻辑一致性 一阶谓词具有完备的逻辑推理算法
+缺点：难以表示过程和启发性知识 缺乏组织原则&lt;/p></description></item><item><title>人工智能与现代物理Ⅰ复习笔记</title><link>https://user-xixiboliya.github.io/post/%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E4%B8%8E%E7%8E%B0%E4%BB%A3%E7%89%A9%E7%90%86i/</link><pubDate>Fri, 24 Jan 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E4%B8%8E%E7%8E%B0%E4%BB%A3%E7%89%A9%E7%90%86i/</guid><description>&lt;h1 id="经典物理部分">
+&lt;a class="header-anchor" href="#%e7%bb%8f%e5%85%b8%e7%89%a9%e7%90%86%e9%83%a8%e5%88%86">&lt;/a>
+经典物理部分
+&lt;/h1>&lt;p>本部分不做详尽说明。&lt;/p>
+&lt;p>牛顿运动定律+微积分&lt;/p>
+&lt;p>速度：$v(t) = \frac{{dr(t)}}{{dt}}$&lt;/p>
+&lt;p>加速度：$a(t) = \frac{{dv(t)}}{{dt}}$&lt;/p>
+&lt;p>冲量定理：$Fdt = d(mv)$&lt;/p>
+&lt;h2 id="角动量定理">
+&lt;a class="header-anchor" href="#%e8%a7%92%e5%8a%a8%e9%87%8f%e5%ae%9a%e7%90%86">&lt;/a>
+角动量定理
+&lt;/h2>&lt;p>&lt;code>掌握如何计算刚体转动惯量&lt;/code>&lt;/p>
+&lt;p>$M = \frac{{dL}}{{dt}} = I\frac{{d\omega }}{{dt}}$&lt;/p>
+&lt;p>M为力矩，L为动量矩（角动量），I为转动惯量。&lt;/p>
+&lt;p>$\int {{r^2}dm = I}$ ${L_0} = J\omega$
+${{\bf{L}}_0} = m{\bf{r}}\times v$ ${\bf{M}} = {\bf{r}} \times {\bf{F}}$&lt;/p>
+&lt;p>对于&lt;a href="https://baike.baidu.com/item/%E5%8A%A8%E9%87%8F%E7%9F%A9%E5%AE%9A%E7%90%86/5560455?fromModule=lemma_inlink">动量矩定理&lt;/a>而言， &lt;a href="https://baike.baidu.com/item/%E8%B4%A8%E7%82%B9%E7%B3%BB/8951990?fromModule=lemma_inlink">质点系&lt;/a>对一点（或一轴）的&lt;a href="https://baike.baidu.com/item/%E8%A7%92%E5%8A%A8%E9%87%8F/290656?fromModule=lemma_inlink">角动量&lt;/a>对时间的导数等于外力系对此点（或此轴）的&lt;a href="https://baike.baidu.com/item/%E4%B8%BB%E7%9F%A9/53669328?fromModule=lemma_inlink">主矩&lt;/a>，广泛用于处理刚体定点（或轴）转动问题。角动量定理的&lt;a href="https://baike.baidu.com/item/%E5%BE%AE%E5%88%86%E5%BD%A2%E5%BC%8F/4184155?fromModule=lemma_inlink">微分形式&lt;/a>为dL/dt=M。&lt;/p>
+&lt;h2 id="简谐波">
+&lt;a class="header-anchor" href="#%e7%ae%80%e8%b0%90%e6%b3%a2">&lt;/a>
+简谐波
+&lt;/h2>$$y(x,t) = \cos (\omega t - \frac{{\omega x}}{u} + {\varphi _0})$$$$y(x,t) = \cos (\omega t - \frac{{2\pi x}}{\lambda } + {\varphi _0})$$&lt;p>
+$u$是传播速度，$\lambda$是波长。&lt;/p>
+&lt;p>弹簧振子的能量和势能、总机械能。&lt;/p>
+&lt;h3 id="波的干涉叠加">
+&lt;a class="header-anchor" href="#%e6%b3%a2%e7%9a%84%e5%b9%b2%e6%b6%89%e5%8f%a0%e5%8a%a0">&lt;/a>
+波的干涉、叠加
+&lt;/h3>&lt;p>两个同频同方向简谐振动的合成：合振动仍为简谐振动，合振动的振幅取决于两个分振动的振幅以及相位差，即$A = \sqrt {A_1^2 + A_2^2 + 2{A_1}{A_2}\cos ({\varphi _2} - {\varphi _1})}$。&lt;/p></description></item></channel></rss>

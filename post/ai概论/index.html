@@ -1,0 +1,263 @@
+<!doctype html><html lang=en-us data-theme-mode=auto><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><title>人工智能概论复习笔记 | Bertsin
+</title><meta name=description content="2024 XJTU 人工智能概论复习笔记。"><script>window.siteConfig=JSON.parse('{"anchor_icon":null,"clipboard":{"copyright":{"content":"本文版权：本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！","count":50,"enable":false},"fail":"复制失败 (ﾟ⊿ﾟ)ﾂ","success":"复制成功(*^▽^*)"},"code_block":{"expand":true},"icon_font":"4552607_tq6stt6tcg","outdate":{"daysago":180,"enable":false,"message":"本文最后更新于 {time}，请注意文中内容可能已经发生变化。"}}')</script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7cNoto%20Serif%20SC:400,400italic,700,700italic%7c&amp;display=swap" media=print onload='this.media="all"'><link rel=preload href=//at.alicdn.com/t/c/font_4552607_tq6stt6tcg.woff2 as=font type=font/woff2 crossorigin=anonymous><link rel=stylesheet href=/css/loader.min.2ad0e9bbffb534e893c0ecefc44787a277cf851387e8ad9dccfbc3a5f0886dbe.css><meta property="og:type" content="website"><meta property="og:title" content="人工智能概论复习笔记 | Bertsin"><meta property="og:description" content="2024 XJTU 人工智能概论复习笔记。"><meta property="og:url" content="https://user-xixiboliya.github.io/post/ai%E6%A6%82%E8%AE%BA/"><meta property="og:site_name" content="Welcome to Bertsin Homepage!"><meta property="og:image" content="/"><meta property="article:author" content="Bertsin"><meta property="article:published_time" content="2025-01-24T15:20:00-08:10"><meta property="article:modified_time" content="2025-02-16T16:06:00-07:30"><meta name=twitter:card content="summary"><meta name=twitter:image content="/"><link rel="shortcut icon" href=/favicon.ico><link rel=stylesheet href=/css/main.min.a23591d00af1734c216ea77b270e5fab60a4f92b6498af06e6b0dde48f7c49c0.css><link rel=preload as=style href=https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css onload='this.onload=null,this.rel="stylesheet"'><link rel=preload as=style href=https://npm.webcache.cn/katex@0.16.9/dist/katex.min.css onload='this.onload=null,this.rel="stylesheet"'><script src=https://npm.webcache.cn/pace-js@1.2.4/pace.min.js integrity=sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8 crossorigin=anonymous></script><link rel=stylesheet href=https://npm.webcache.cn/@reimujs/aos@0.1.0/dist/aos.css></head><body><div id=loader><div class="loading-left-bg loading-bg"></div><div class="loading-right-bg loading-bg"></div><div class=spinner-box><div class=loading-taichi><svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" shape-rendering="geometricPrecision"><path d="M303.5 432a80 80 0 01-12 160 80 80 0 0112-160z" fill="#ff5252"/><path d="M512 65a447 447 0 010 894V929a417 417 0 000-834 417 417 0 000 834v30a447 447 0 010-894zm0 30A417 417 0 01929 512 208.5 208.5.0 01720.5 720.5V592a80 80 0 000-160 80 80 0 000 160V720.5A208.5 208.5.0 01512 512 208.5 208.5.0 00303.5 303.5 208.5 208.5.0 0095 512 417 417 0 01512 95z" fill="#ff5252"/></svg></div><div class=loading-word>少女祈祷中...</div></div></div></div><script>var time=null,startLoading=()=>{time=Date.now(),document.getElementById("loader").classList.remove("loading")},endLoading=()=>{time?Date.now()-time>500?(time=null,document.body.style.overflow="auto",document.getElementById("loader").classList.add("loading")):(setTimeout(endLoading,500-(Date.now()-time)),time=null):(document.body.style.overflow="auto",document.getElementById("loader").classList.add("loading"))};window.addEventListener("DOMContentLoaded",endLoading),document.getElementById("loader").addEventListener("click",endLoading)</script><div id=copy-tooltip style="pointer-events:none;opacity:0;transition:all .2s ease;position:fixed;top:50%;left:50%;z-index:999;transform:translate(-50%,-50%);color:#fff;background:rgba(0,0,0,.5);padding:10px 15px;border-radius:10px"></div><div id=container><div id=wrap><div id=header-nav><nav id=main-nav><span class=main-nav-link-wrap><div class='main-nav-icon icon rotate'>&#xe62b;</div><a class=main-nav-link href=/>Home</a>
+</span><span class=main-nav-link-wrap><div class='main-nav-icon icon'>&#xe633;</div><a class=main-nav-link href=/archives>Archives</a>
+</span><span class=main-nav-link-wrap><div class='main-nav-icon icon'>&#xe63d;</div><a class=main-nav-link href=/about>About</a>
+</span><span class=main-nav-link-wrap><div class='main-nav-icon icon'>&#xe639;</div><a class=main-nav-link href=/friend>Friend</a>
+</span><a id=main-nav-toggle class=nav-icon></a></nav><nav id=sub-nav><a id=nav-search-btn class="nav-icon popup-trigger" title=Search></a></nav></div><header id=header><picture></picture>
+<img fetchpriority=high src=/images/liyue-default.png alt=人工智能概论复习笔记><div id=header-outer><div id=header-title><a href=/ id=logo><h1 data-aos=slide-up>人工智能概论复习笔记</h1></a><h2 id=subtitle-wrap data-aos=slide-down></h2></div></div></header><div id=content class=sidebar-right><aside id=sidebar><div class="sidebar-wrapper wrap-sticky"><div class=sidebar-wrap data-aos=fade-up><div class=sidebar-toc-sidebar><div class=sidebar-toc><h3 class=toc-title>Contents</h3><div class="sidebar-toc-wrapper toc-div-class"><nav id=TableOfContents><ul><li><a href=#三次爆发>三次爆发</a></li><li><a href=#两大分类>两大分类</a></li><li><a href=#研究领域>研究领域</a></li></ul><ul><li><a href=#谓词逻辑表示法略>谓词逻辑表示法(略)</a></li><li><a href=#产生式表示法>产生式表示法</a><ul><li><a href=#确定性规则与不确定性规则的举例>确定性规则与不确定性规则的举例</a></li><li><a href=#事实的表示>事实的表示</a></li><li><a href=#一个生成式系统>一个生成式系统</a></li></ul></li><li><a href=#语义网络表示法>语义网络表示法</a><ul><li><a href=#知识图谱>知识图谱</a></li></ul></li><li><a href=#框架表示法>框架表示法</a></li><li><a href=#状态空间表示法>状态空间表示法</a></li></ul><ul><li><a href=#状态空间搜索>状态空间搜索</a></li><li><a href=#盲目搜索>盲目搜索</a><ul><li><a href=#回溯>回溯</a></li></ul></li><li><a href=#一致代价搜索>一致代价搜索</a></li><li><a href=#评价函数>评价函数</a></li><li><a href=#贪婪搜索>贪婪搜索</a></li><li><a href=#a-算法>A 算法</a></li><li><a href=#a-搜索>A* 搜索</a></li></ul><ul><li><a href=#问题规约的与或树>问题规约的与或树</a><ul><li><a href=#与或树求解代价计算示例>与或树求解代价计算示例</a></li></ul></li><li><a href=#极小极大搜索>极小极大搜索</a></li><li><a href=#极小极大搜索示例井字棋搜索过程>极小极大搜索示例：井字棋搜索过程</a></li><li><a href=#alpha-beta-剪枝>Alpha-beta 剪枝</a></li><li><a href=#囚徒困境纳什均衡>囚徒困境：纳什均衡</a><ul><li><a href=#智猪博弈和婆媳之争>智猪博弈和婆媳之争</a></li></ul></li><li><a href=#蒙特卡洛搜索>蒙特卡洛搜索</a></li></ul><ul><li><a href=#推理的控制策略>推理的控制策略</a><ul><li><a href=#推理方向>推理方向</a></li><li><a href=#冲突消解策略>冲突消解策略</a></li></ul></li><li><a href=#命题逻辑>命题逻辑</a></li><li><a href=#演绎推理>演绎推理</a></li><li><a href=#三段法演绎推理>三段法演绎推理</a></li><li><a href=#假言演绎推理>假言演绎推理</a></li><li><a href=#完全归纳推理>完全归纳推理</a></li><li><a href=#不完全归纳推理>不完全归纳推理</a></li><li><a href=#枚举归纳推理>枚举归纳推理</a></li><li><a href=#默认推理>默认推理</a></li><li><a href=#自然演绎推理>自然演绎推理</a></li><li><a href=#归结推理>归结推理</a></li><li><a href=#前束范式与谓词转换等>前束范式与谓词转换等</a></li><li><a href=#skolem范式>skolem范式</a></li><li><a href=#子句>子句</a><ul><li><a href=#示例>示例</a></li></ul></li><li><a href=#海伯伦域-h域>海伯伦域 H域</a></li><li><a href=#鲁滨逊归结>鲁滨逊归结</a><ul><li></li></ul></li></ul><ul><li><a href=#概率推理>概率推理</a></li><li><a href=#主观贝叶斯>主观贝叶斯</a><ul><li><a href=#杜达公式>杜达公式</a></li></ul></li><li><a href=#知识的不确定性表示可信度因子cf模型>知识的不确定性表示：可信度因子(CF)模型</a><ul><li><a href=#不确定性推理-1>不确定性推理</a></li><li><a href=#结论不确定性的合成>结论不确定性的合成</a></li></ul></li><li><a href=#证据理论>证据理论</a></li><li><a href=#笑话一则>笑话一则</a><ul><li><a href=#zadeh悖论>Zadeh悖论</a></li></ul></li><li><a href=#模糊推理方法>模糊推理方法</a><ul><li><a href=#zadeh表示法>zadeh表示法</a></li><li><a href=#模糊集合的基本运算>模糊集合的基本运算</a></li><li><a href=#经典集合关系和笛卡尔乘积>经典集合关系和笛卡尔乘积</a></li></ul></li></ul><ul><li><a href=#智能体与环境>智能体与环境</a><ul><li><a href=#peas表示>PEAS表示</a></li><li><a href=#agent的任务环境了解即可>Agent的任务环境（了解即可）</a></li></ul></li><li><a href=#智能体与结构>智能体与结构</a><ul><li><a href=#智能体的类型掌握>智能体的类型（掌握）</a></li></ul></li><li><a href=#智能体的应用略>智能体的应用(略)</a></li></ul></nav></div></div></div><div class="sidebar-common-sidebar hidden"><div class=sidebar-author><img data-src=/avatar/avatar.webp data-sizes=auto alt=Bertsin class=lazyload><div class=sidebar-author-name>Bertsin</div><div class=sidebar-description>祈祷中...</div></div><div class=sidebar-state><div class=sidebar-state-article><div>Posts</div><div class=sidebar-state-number>22</div></div><div class=sidebar-state-category><div>Categories</div><div class=sidebar-state-number>6</div></div><div class=sidebar-state-tag><div>Tags</div><div class=sidebar-state-number>1</div></div></div><div class=sidebar-social><div class="icon-bilibili sidebar-social-icon"><a href="https://space.bilibili.com/651491932?spm_id_from=333.1007.0.0" itemprop=url target=_blank aria-label=bilibili rel="noopener external nofollow noreferrer"></a></div><div class="icon-email sidebar-social-icon"><a href=linboxi123@163.com itemprop=url target=_blank aria-label=email rel="noopener external nofollow noreferrer"></a></div><div class="icon-github sidebar-social-icon"><a href=https://github.com/user-xixiboliya itemprop=url target=_blank aria-label=github rel="noopener external nofollow noreferrer"></a></div><div class="icon-zhihu sidebar-social-icon"><a href=https://www.zhihu.com/people/lllll-19-64-21 itemprop=url target=_blank aria-label=zhihu rel="noopener external nofollow noreferrer"></a></div></div><div class=sidebar-menu><div class=sidebar-menu-link-wrap><a class=sidebar-menu-link-dummy href=/ aria-label=Home></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class=sidebar-menu-link>Home</div></div><div class=sidebar-menu-link-wrap><a class=sidebar-menu-link-dummy href=/archives aria-label=Archives></a><div class='sidebar-menu-icon icon'>&#xe633;</div><div class=sidebar-menu-link>Archives</div></div><div class=sidebar-menu-link-wrap><a class=sidebar-menu-link-dummy href=/about aria-label=About></a><div class='sidebar-menu-icon icon'>&#xe63d;</div><div class=sidebar-menu-link>About</div></div><div class=sidebar-menu-link-wrap><a class=sidebar-menu-link-dummy href=/friend aria-label=Friend></a><div class='sidebar-menu-icon icon'>&#xe639;</div><div class=sidebar-menu-link>Friend</div></div></div></div><div class=sidebar-btn-wrapper style=position:static><div class="sidebar-toc-btn current"></div><div class=sidebar-common-btn></div></div></div></div><div class=sidebar-widget></div></aside><section id=main><article class="h-entry article" itemprop=blogPost itemscope itemtype=https://schema.org/BlogPosting><div class=article-inner data-aos=fade-up><div class=article-meta><div class=article-date><span class=article-date-link data-aos=zoom-in><time datetime="2025-01-24 15:20:00 -0810 -0810" itemprop=datePublished>2025-01-24</time>
+<time style=display:none id=post-update-time>2025-02-16</time></span></div><div class=article-category><a class=article-category-link href=/categories/coursenote data-aos=zoom-in>COURSENOTE</a></div></div><div class=hr-line></div><div class="e-content article-entry" itemprop=articleBody><h1 id=导论部分><a class=header-anchor href=#%e5%af%bc%e8%ae%ba%e9%83%a8%e5%88%86></a>导论部分</h1><p>1956年的达特茅斯会议标志着AI诞生，图灵是人工智能之父。
+机器智能的本质属性是自然性。
+关于智能疑惑：多元智能理论、智能三元理论(分析、创造、实用)、智能发展理论</p><p>==早期种子== ：</p><ul><li>逻辑与推理(符号学派)<ul><li>自亚里士多德开始，是符号推理，并非所有智能行为都可调和为逻辑熟思，图灵第一次在纯数学的符号逻辑和实体世界间建立了联系。</li><li>图灵测试没有规定问题的范围和提问的标准，计算机能否在智力行为表现得和人无法区分</li></ul></li><li>控制论(行为学派)<ul><li>核心思想——控制、反馈和人机交互</li></ul></li></ul><p>==三大学派==</p><ul><li>符号主义<ul><li>观点：认知即计算(知识表达)，物理符号系统假设和有限合理性原理，人类认知和思维的基本单元是符号，认知过程就是符号的一种运算。自上而下</li><li>成果：知识回答，专家系统 、LISP表处理语言</li></ul></li><li>连接主义<ul><li>观点：认知即网络，人的智能是大量简单的人脑神经元细胞的复杂相互连接活动的结果，自下而上 。</li><li>成果：归纳学习、神经网络</li></ul></li><li>行为主义<ul><li>认知即反应(控制论)，智能行为的基础是基于“感知&ndash;行动”的反应机制，系统与环境的交互作用，自下而上</li><li>蚁群算法、遗传算法、强化学习</li></ul></li></ul><h2 id=三次爆发><a class=header-anchor href=#%e4%b8%89%e6%ac%a1%e7%88%86%e5%8f%91></a>三次爆发</h2><ul><li>突破(1956-1974) <strong>推理期</strong><ul><li>符号主义盛行，专家系统发展很快</li><li>标志性基石：在统计方法中引入符号方法进行语义处理，出现了基于知识的方法。</li><li>出现了自然语言的相关程序：ELIZA、SHRDLU</li><li>1969年明斯基给机器学习连接学派致命一击：证明了感知机(第一代神经网络)不能学习任何问题。</li></ul></li><li>寒冬：数学模型和手段有一定的局限性，并且计算复杂度指数级别增加。</li><li>(1980-1987) <strong>知识期</strong><ul><li>进入知识阶段，连接主义盛行。多层神经元网络、反向传播算法</li><li>知识处理成为研究焦点。</li></ul></li><li>寒冬： 缺乏实际应用，资助减少。</li><li><strong>学习期</strong>(至今)</li></ul><h2 id=两大分类><a class=header-anchor href=#%e4%b8%a4%e5%a4%a7%e5%88%86%e7%b1%bb></a>两大分类</h2><ul><li>符号智能，自顶而下，通过推理进行问题求解</li><li>计算智能，以数据为基础，通过训练建立联系
+<img src=output_image/ac0fe3b4820e30f620222afd9e58fc91.jpg alt></li></ul><h2 id=研究领域><a class=header-anchor href=#%e7%a0%94%e7%a9%b6%e9%a2%86%e5%9f%9f></a>研究领域</h2><ul><li>机器学习：监督、无监督、强化(未标记数据集，但在执行一个或多个动作后，会向AI系统提供反馈)</li><li>深度学习 成功应用于Siri、Alexa等助手</li><li>视觉</li><li>llm</li><li>Robotics</li><li>模糊逻辑系统</li><li>专家系统</li><li>self-driving cars</li></ul><h1 id=知识><a class=header-anchor href=#%e7%9f%a5%e8%af%86></a>知识</h1><ul><li>知识的特性：相对正确性、不确定性、可表示性与可利用性</li><li>基于符号的知识表示方法：逻辑表示、语义网络表示、生产规则、框架表示</li><li>主要的知识表示方法有两种：<ul><li>陈述性(静态特性，描述事物属性及其关系)，易于表示“做什么”，优点是形式简单、模块性好、可独立使用；缺点是不能直接执行。</li><li>过程性(知识的动态特性，表示推理和搜索)，描述规则和控制结构知识，易于表示“如何做 ”，优点是可以直接被计算机执行，易于表达启发性知识，缺点是不易表达大量知识、难于修改和理解。</li></ul></li></ul><h2 id=谓词逻辑表示法略><a class=header-anchor href=#%e8%b0%93%e8%af%8d%e9%80%bb%e8%be%91%e8%a1%a8%e7%a4%ba%e6%b3%95%e7%95%a5></a>谓词逻辑表示法(略)</h2><p>优点：表达能力强，新旧知识逻辑一致性 一阶谓词具有完备的逻辑推理算法
+缺点：难以表示过程和启发性知识 缺乏组织原则</p><h2 id=产生式表示法><a class=header-anchor href=#%e4%ba%a7%e7%94%9f%e5%bc%8f%e8%a1%a8%e7%a4%ba%e6%b3%95></a>产生式表示法</h2><h3 id=确定性规则与不确定性规则的举例><a class=header-anchor href=#%e7%a1%ae%e5%ae%9a%e6%80%a7%e8%a7%84%e5%88%99%e4%b8%8e%e4%b8%8d%e7%a1%ae%e5%ae%9a%e6%80%a7%e8%a7%84%e5%88%99%e7%9a%84%e4%b8%be%e4%be%8b></a>确定性规则与不确定性规则的举例</h3><p>如果动物会飞且动物会下蛋，则动物是鸟：
+IF 动物会飞 AND 动物会下蛋 THEN 动物是鸟。
+如果发烧，就会感冒：
+IF 发烧 THEN 感冒 (0.6) 0.6是发烧的概率</p><h3 id=事实的表示><a class=header-anchor href=#%e4%ba%8b%e5%ae%9e%e7%9a%84%e8%a1%a8%e7%a4%ba></a>事实的表示</h3><p>语言变量+关系+语言变量</p><blockquote><p>雪是白的
+王五喜欢大交</p></blockquote><h4 id=确定性事实的表示><a class=header-anchor href=#%e7%a1%ae%e5%ae%9a%e6%80%a7%e4%ba%8b%e5%ae%9e%e7%9a%84%e8%a1%a8%e7%a4%ba></a>确定性事实的表示</h4><p>一般使用三元组表示<code>(对象，属性，值)</code>或者<code>(关系，对象1，对象2)</code>
+老张年龄45岁 => ( Zhang , Age , 45 )<br>老沈和老李是朋友 => ( friend , shen , li )</p><h4 id=不确定性事实的表示><a class=header-anchor href=#%e4%b8%8d%e7%a1%ae%e5%ae%9a%e6%80%a7%e4%ba%8b%e5%ae%9e%e7%9a%84%e8%a1%a8%e7%a4%ba></a>不确定性事实的表示</h4><p><code>(对象，属性，值，置信度)</code>或者<code>(关系，对象1，对象2，置信度)</code></p><blockquote><p>老张年龄可能45岁 => ( Zhang , Age , 45 , 0.8 ) 老沈和老李不太可能是朋友 => ( friend , shen , li , 0.2 )</p></blockquote><h3 id=一个生成式系统><a class=header-anchor href=#%e4%b8%80%e4%b8%aa%e7%94%9f%e6%88%90%e5%bc%8f%e7%b3%bb%e7%bb%9f></a>一个生成式系统</h3><p><img src=output_image/b03139f3293a42a58b34bccb91e456e4.jpg alt></p><h2 id=语义网络表示法><a class=header-anchor href=#%e8%af%ad%e4%b9%89%e7%bd%91%e7%bb%9c%e8%a1%a8%e7%a4%ba%e6%b3%95></a>语义网络表示法</h2><p>语义基元(节点1，弧，节点2) 这个弧是有方向的。</p><blockquote><p>大脑&mdash;&mdash;&ndash;part of&mdash;&mdash;->人体
+实例关系：ISA (is a)
+泛化关系：AKO（A kind of）
+成员关系：A-Menber-of
+属性关系：AGE等
+包含关系：Part-of
+时间关系：before after
+位置关系：Located-on
+相近关系：similar to
+推论关系：Reasoning to
+<img src=output_image/fa2a234b6d3a37d663de50c6535e16e8.jpg alt>
+==产生式表示法:if wang and li then friend==
+<img src=output_image/5bcb69b9d07b266906ef2b911e5ea314.jpg alt></p></blockquote><h3 id=知识图谱><a class=header-anchor href=#%e7%9f%a5%e8%af%86%e5%9b%be%e8%b0%b1></a>知识图谱</h3><p><img src=output_image/2d9c8118827227be2cf1fbe6f7d9a327.png alt></p><h2 id=框架表示法><a class=header-anchor href=#%e6%a1%86%e6%9e%b6%e8%a1%a8%e7%a4%ba%e6%b3%95></a>框架表示法</h2><p><img src=output_image/1e434898dbb1831438aeb4d536d060de.jpg alt></p><h2 id=状态空间表示法><a class=header-anchor href=#%e7%8a%b6%e6%80%81%e7%a9%ba%e9%97%b4%e8%a1%a8%e7%a4%ba%e6%b3%95></a>状态空间表示法</h2><p>( S , O , $S_0$, G ) S是状态集合，O是状态转换集合，$S_0$是初始状态集合，G是目的状态集合，四元组。
+==传教士与野人问题==：过去时船上坐两人，回来时船上坐一人（不包括船夫），先考虑回来时船上坐一人，实在不行的话回来的时候船上也可以坐两人，注意行动不要与之前相违背。满足每一个状态的野人数量小于传教士数量。
+${S_0}(3,3,1)$，第一个3表示此岸的传教士数量，第二个3表示此岸的野人数量，1表示船是否停靠在此岸。
+<img src=output_image/78df09d06c4c6bd8694d4b2e4cffaf12.jpg alt></p><h1 id=搜索求解><a class=header-anchor href=#%e6%90%9c%e7%b4%a2%e6%b1%82%e8%a7%a3></a>搜索求解</h1><p>按照问题的表示方式可以分为：状态空间搜索、与或树搜索。
+按照是否使用启发式信息可以分为盲目搜索和启发式搜索。</p><h2 id=状态空间搜索><a class=header-anchor href=#%e7%8a%b6%e6%80%81%e7%a9%ba%e9%97%b4%e6%90%9c%e7%b4%a2></a>状态空间搜索</h2><p>很多搜索问题都可以转化成图搜索问题，状态空间图。
+罗马尼亚旅行问题——搜索树</p><h2 id=盲目搜索><a class=header-anchor href=#%e7%9b%b2%e7%9b%ae%e6%90%9c%e7%b4%a2></a>盲目搜索</h2><p>掌握==八数码问题==和==传教士与野人问题==的有限DFS和BFS，状态空间图是一样的。</p><p>八数码的BFS也不是上来就写出那一层的所有接续状态。</p><p>DFS是不完备搜索，不能保证找到最优解，可能会陷入死循环，所有限定深度强制进行回溯，存在搜索与回溯相交替出现的现象。</p><p>BFS是完备的搜索，如果路径是非递减函数，则广度搜索是最优的，但是子节点较多的情况下，其消耗内存严重。</p><p>图搜索包括穷举搜索和启发式搜索。</p><table><thead><tr><th>属性</th><th>DFS</th><th>BFS</th></tr></thead><tbody><tr><td>完备性</td><td>不一定</td><td>完备（在分支因子b有限的前提下）</td></tr><tr><td>最优性</td><td>不具备</td><td>最优（路径是非递减函数）</td></tr><tr><td>时间复杂性</td><td>$b^m$ b是分支因子</td><td>$b^d$ $d$是解的深度</td></tr><tr><td>空间复杂度</td><td>$b^m$</td><td>$b^d$</td></tr><tr><td></td><td></td><td></td></tr></tbody></table><p>==掌握课堂练习：八数码问题==</p><h3 id=回溯><a class=header-anchor href=#%e5%9b%9e%e6%ba%af></a>回溯</h3><p>掌握N皇后问题。关键在于确定解空间树，建立递归的开始与结束条件，为了降低时间复杂度而剪枝，回溯要返回至问题未被修改的状态。
+掌握罗马尼亚旅行问题。</p><h2 id=一致代价搜索><a class=header-anchor href=#%e4%b8%80%e8%87%b4%e4%bb%a3%e4%bb%b7%e6%90%9c%e7%b4%a2></a>一致代价搜索</h2><p>只考虑到当前节点的代价$g(n)$，挑最小的代价进行拓展。</p><ul><li>总是扩展路径消耗最小的节点N，N点的路径消耗等于前一节点N-1的路径消耗加上N-1到N的路径消耗。</li><li>在BFS上进行的拓展，使用优先队列并在边缘中的状态发现更小代价的路径时引入额外的检查，也称为代价一致搜索。
+在搜索的时候每搜索一步，就在比较各个路径上的权重，来锚定下一次搜索。</li></ul><blockquote><p>掌握一致搜索的罗马尼亚旅行问题</p></blockquote><p>启发函数$h(n)$，其越小表明当前状态$n$越接近目标状态，</p><h2 id=评价函数><a class=header-anchor href=#%e8%af%84%e4%bb%b7%e5%87%bd%e6%95%b0></a>评价函数</h2><p><img src=output_image/6764dedc921da7d7c21b40d6f320324d.jpg alt></p><h2 id=贪婪搜索><a class=header-anchor href=#%e8%b4%aa%e5%a9%aa%e6%90%9c%e7%b4%a2></a>贪婪搜索</h2><p>只依赖$h(n)$作为代价函数，不考虑到当前节点的代价$g(n)$。
+仅依赖当前状态与目标状态间的剩余距离。是更聪明的“DFS”，因为有第三者信息告诉它每一个节点里目标还有多远，它只要选最小的那一个就行。</p><p>==掌握罗马尼亚旅行问题的贪婪算法搜索树==</p><p>贪婪最佳搜索不是最优搜索，启发函数代价最小化会对错误的起点比较敏感，比较依赖外部信息，是不完备搜索。
+<img src=output_image/f0e4f18a1dd5be3f7031ab426b37bd01.png alt></p><h2 id=a-算法><a class=header-anchor href=#a-%e7%ae%97%e6%b3%95></a>A 算法</h2><p>==掌握八数码的A算法==</p><p>$f(n)=g(n)+h(n)$</p><p>$g(n)$表示当前状态(节点)在深度树中的深度，$h(n)$表示当前状态(节点)中不在目标位置的数码个数。</p><h2 id=a-搜索><a class=header-anchor href=#a-%e6%90%9c%e7%b4%a2></a>A* 搜索</h2><p>最小化总的解决方案代价估计值的最佳优先搜索
+$f^*(n)=g^*(n)+h^*(n)$
+$g^*(n)$从起始点到节点n的路径最低代价
+$h^*(n)$从节点n到目标节点的最低代价路径的代价</p><blockquote><p>掌握罗马尼亚的A* 搜索树
+<img src=output_image/983bf1361e58d015b88fa58683a56fa6.png alt></p></blockquote><h1 id=博弈搜索><a class=header-anchor href=#%e5%8d%9a%e5%bc%88%e6%90%9c%e7%b4%a2></a>博弈搜索</h1><p>在AI领域里的是指：有完整信息的，确定性的、轮流行动的，两个参与者的零和游戏。
+博弈的基本要素：参加者、信息、策略、博弈次序、博弈收益。</p><p>零和博弈，博弈方的利益始终对立，例如田忌赛马，剪刀石头布。</p><p>囚徒困境不是零和博弈。
+合作博弈 集体利益最大化
+非合作博弈 个人利益最大化</p><p>非合作博弈：完全（不完全）信息静态（动态）博弈</p><h2 id=问题规约的与或树><a class=header-anchor href=#%e9%97%ae%e9%a2%98%e8%a7%84%e7%ba%a6%e7%9a%84%e4%b8%8e%e6%88%96%e6%a0%91></a>问题规约的与或树</h2><p>与树：把一个复杂问题分解成若干子问题的同时求解
+或树：把一个复杂问题分解成若干与之等价的新问题的同时求解，这些新问题之间是“或”的关系
+本原问题：不可能或者不需要再分解变换，并且可以直接解答的问题</p><h3 id=与或树求解代价计算示例><a class=header-anchor href=#%e4%b8%8e%e6%88%96%e6%a0%91%e6%b1%82%e8%a7%a3%e4%bb%a3%e4%bb%b7%e8%ae%a1%e7%ae%97%e7%a4%ba%e4%be%8b></a>与或树求解代价计算示例</h3><p>“按与点求和计算” “按与点最大值代价计算”
+<img src=output_image/14fbfa8b8005a3b850fd135b707b07b5.png alt></p><h2 id=极小极大搜索><a class=header-anchor href=#%e6%9e%81%e5%b0%8f%e6%9e%81%e5%a4%a7%e6%90%9c%e7%b4%a2></a>极小极大搜索</h2><p>在有限的深度内使用深度优先搜索，利用递归回溯从可能的走法中选择对自己有利的走法，即对自己的收益最大、对手的收益最小。
+<img src=output_image/1202ab9d5598be1ec1c71d00c0521916.png alt>
+或节点是max方，与节点是min方，我们站在max方思考问题，希望或（max）我们，与（min）他们。
+<img src=output_image/47b39fc1deb2832a67bcdae254dafe92.png alt></p><h2 id=极小极大搜索示例井字棋搜索过程><a class=header-anchor href=#%e6%9e%81%e5%b0%8f%e6%9e%81%e5%a4%a7%e6%90%9c%e7%b4%a2%e7%a4%ba%e4%be%8b%e4%ba%95%e5%ad%97%e6%a3%8b%e6%90%9c%e7%b4%a2%e8%bf%87%e7%a8%8b></a>极小极大搜索示例：井字棋搜索过程</h2><p><img src=output_image/f753bbdf6fd2bc8744f8d3a500ace2d8.png alt>
+每一种情况井字棋下面的等式是指，在该情况下，所有的剩下的格子全部填上对应的棋子，其中被减数是剩下格子全部填上x后，可以形成“三连”的个数，减数是填上o之后，可以形成的对于o的三连个数。</p><h2 id=alpha-beta-剪枝><a class=header-anchor href=#alpha-beta-%e5%89%aa%e6%9e%9d></a>Alpha-beta 剪枝</h2><p><img src=output_image/7cd4362fa8c27954d8d4996f8eafc372.png alt>
+所谓Beta剪枝，是父节点是min节点的剪枝；Alpha剪枝，是父节点是max节点的剪枝。计算方法是，对于每一次由子节点（或者端点）回溯到父节点时，同时考虑父节点的父节点c（c的初始范围为无限制）的范围，若c的范围可以被更新，则不发生剪枝，反之发生剪枝。
+这个蓝色的叉叉是……？
+<img src=output_image/430083a6bc713ed1dd5c562fa87845a3.png alt>
+参考列式：
+<img src=output_image/3a5d240b760bc0bf1b032b7dc9f14243.png alt></p><h2 id=囚徒困境纳什均衡><a class=header-anchor href=#%e5%9b%9a%e5%be%92%e5%9b%b0%e5%a2%83%e7%ba%b3%e4%bb%80%e5%9d%87%e8%a1%a1></a>囚徒困境：纳什均衡</h2><p>每个人都是理性地追求自己的利益最大化，但得到的结果未必理性。</p><h3 id=智猪博弈和婆媳之争><a class=header-anchor href=#%e6%99%ba%e7%8c%aa%e5%8d%9a%e5%bc%88%e5%92%8c%e5%a9%86%e5%aa%b3%e4%b9%8b%e4%ba%89></a>智猪博弈和婆媳之争</h3><p>注意2×<em>2</em>的表。
+<img src=output_image/3cb6789101568ab63af4b09724c00b7b.png alt></p><h2 id=蒙特卡洛搜索><a class=header-anchor href=#%e8%92%99%e7%89%b9%e5%8d%a1%e6%b4%9b%e6%90%9c%e7%b4%a2></a>蒙特卡洛搜索</h2><p>一边探索一边调整</p><ul><li>以增量和非对称方式构建树，每次迭代采用树策略。</li><li>树策略试图平衡考虑探索和利用</li><li>所选节点运行模拟并根据结果更新搜索树
+每个搜索迭代分为四个不同的步骤: 树策略（选择，扩展）默认策略（模拟，回溯）每一个节点包括两个信息：收益值、次数。
+<img src=output_image/a9e7f4d876c3cd8458865a68ac4e6bde.png alt>
+搜索示例，中间省略去了扩展：
+<img src=output_image/ab403ed2b48c60aa9c2cf34b1f1e8419.png alt>
+<img src=output_image/c99df498e2c0b70fe75b11fada04381b.png alt>
+<img src=output_image/2d34526a1b1e1633a3c005b78ca0beae.png alt>
+特点：
+<img src=output_image/76a5c1e678e7c096dcc2094f340849ed.png alt></li></ul><h1 id=确定性推理><a class=header-anchor href=#%e7%a1%ae%e5%ae%9a%e6%80%a7%e6%8e%a8%e7%90%86></a>确定性推理</h1><p>推理的基本概念：从已知事实出发，按照某种策略或者规则……
+推理必须依靠命题表达，推理有内容和形式两方面。</p><pre tabindex=0><code>推理的陈述与形式举例：
+推理陈述：有些教师是女性，所以有些女性是教师
+推理形式：有些P是S，所以有些S是P   （所有M都是P，S是M，所以S是P）
+</code></pre><h2 id=推理的控制策略><a class=header-anchor href=#%e6%8e%a8%e7%90%86%e7%9a%84%e6%8e%a7%e5%88%b6%e7%ad%96%e7%95%a5></a>推理的控制策略</h2><h3 id=推理方向><a class=header-anchor href=#%e6%8e%a8%e7%90%86%e6%96%b9%e5%90%91></a>推理方向</h3><p>按照推理方向有正向、逆向、混合（先逆后正以及先正后逆）和双向推理。</p><h3 id=冲突消解策略><a class=header-anchor href=#%e5%86%b2%e7%aa%81%e6%b6%88%e8%a7%a3%e7%ad%96%e7%95%a5></a>冲突消解策略</h3><p>正向推理出现一条事实能与系统知识库中的多条知识匹配，或者多个事实能与同一条知识匹配；逆向推理中，同一个假设目标能与系统知识库中多条知识匹配，或多个假设目标能与同一条知识匹配。</p><p>基本思想就是对匹配的知识或规则进行排序，以确定匹配知识规则的优先级别。</p><p>常用的排序方法有：
+就近原则排序
+按知识特殊性排序，优先选择特殊性知识
+按照上下文限制排序
+按知识的新鲜性排序
+按照知识的差异性排序
+领域问题的特点排序
+按照规则的次序排序
+按前提条件的规模排序</p><h2 id=命题逻辑><a class=header-anchor href=#%e5%91%bd%e9%a2%98%e9%80%bb%e8%be%91></a>命题逻辑</h2><p>悖论不是命题。
+如果今天不封校，那么我去超市购物，除非我很累：
+$(\neg Feng \wedge \neg Tired) \to Shopping$</p><p>掌握真值表、析取范式和合取范式（离散讲过了，故略）
+<strong>但是复习还需要过一遍概念</strong>。例如：什么是二阶谓词？
+注意全称量词的消除。</p><h2 id=演绎推理><a class=header-anchor href=#%e6%bc%94%e7%bb%8e%e6%8e%a8%e7%90%86></a>演绎推理</h2><p>主要包括三段论、假言推理、选言推理等。<strong>从一般到个别</strong>
+假言演绎推理：
+<img src=output_image/2f2a686c6637ed4ba53cc22fb76e9d2a.png alt></p><h2 id=三段法演绎推理><a class=header-anchor href=#%e4%b8%89%e6%ae%b5%e6%b3%95%e6%bc%94%e7%bb%8e%e6%8e%a8%e7%90%86></a>三段法演绎推理</h2><p>跟上述图片很像。。</p><h2 id=假言演绎推理><a class=header-anchor href=#%e5%81%87%e8%a8%80%e6%bc%94%e7%bb%8e%e6%8e%a8%e7%90%86></a>假言演绎推理</h2><ul><li>充分性条件假言推理：
+判断标准：如果……那么……，若……则……，只要……就……。可以形象化记忆，前件在内。</li><li>必要性条件假言推理：
+判断标准：只有……才……，不……不……。可以形象化记忆，后件在内。</li></ul><h2 id=完全归纳推理><a class=header-anchor href=#%e5%ae%8c%e5%85%a8%e5%bd%92%e7%ba%b3%e6%8e%a8%e7%90%86></a>完全归纳推理</h2><p>从大量实例中总结出一般性结论的推理过程，是一种从<strong>个别到一般</strong>的推理，是自下而上的过程。前提所断定的知识范围和结论所断定的知识范围完全相同。</p><pre tabindex=0><code>男生都做了核酸检测，女生也都做了核酸检测，所以学生都做了核酸检测。
+</code></pre><p>结果是必然的。
+<img src=output_image/b8637f88ff7544fdbbd9f118c8055bb3.png alt></p><h2 id=不完全归纳推理><a class=header-anchor href=#%e4%b8%8d%e5%ae%8c%e5%85%a8%e5%bd%92%e7%ba%b3%e6%8e%a8%e7%90%86></a>不完全归纳推理</h2><p>例如：瑞雪兆丰年。</p><h2 id=枚举归纳推理><a class=header-anchor href=#%e6%9e%9a%e4%b8%be%e5%bd%92%e7%ba%b3%e6%8e%a8%e7%90%86></a>枚举归纳推理</h2><p>这样做的结论是或然的。
+1）可靠程度是和事例数量相关的，得到的结果 肯定是正确的；2）效率低下，可能会造成时间崩溃；3）通常会涉及到求极值（ 如最大，最小，最重等）。</p><p><strong>演绎推理与归纳推理的区别</strong>：</p><ol><li>推理方向：演绎推理是从一般到个别，归纳推理从个别到一般。</li><li>结论断定范围：演绎推理的结论所得到的知识，没有超出前提所提供的知 识范围；而归纳推理的结论所得到的知识，却超出了前提所提供的知识范围。</li><li>演绎推理的前提数量是确定而有限的，归纳推理的前提数量通常不确定。</li><li></li></ol><p>演绎推理是前提与结论之间有必然性联系（蕴含关系）的推理（即必然性推理）</p><h2 id=默认推理><a class=header-anchor href=#%e9%bb%98%e8%ae%a4%e6%8e%a8%e7%90%86></a>默认推理</h2><p>在<strong>知识不完全</strong>的情况下作出的推理，在条件A已成立的情况下，如果没有足够的证据能证明条件B不成立， 则默认B是成立的，并在此默认的前提下进行推理，推导出某个结论。
+<img src=output_image/9d59f8443926ff4fe73ab52ca50c348c.png alt></p><h2 id=自然演绎推理><a class=header-anchor href=#%e8%87%aa%e7%84%b6%e6%bc%94%e7%bb%8e%e6%8e%a8%e7%90%86></a>自然演绎推理</h2><p><img src=output_image/bb332735823df4db5dd9416b91d227eb.png alt></p><h2 id=归结推理><a class=header-anchor href=#%e5%bd%92%e7%bb%93%e6%8e%a8%e7%90%86></a>归结推理</h2><p>归结推理是对要证明为真公式取非，导出矛盾；而自然演绎推理是从已知为真的事实出发，运用经典逻辑的推理规则推出结论。</p><p>反证法思想：把关于永真性的证明转化为关于不可满足性的证明，即要证明P→Q永真 ，可以转化为证明 $P \wedge \neg Q$是不可满足的。</p><h2 id=前束范式与谓词转换等><a class=header-anchor href=#%e5%89%8d%e6%9d%9f%e8%8c%83%e5%bc%8f%e4%b8%8e%e8%b0%93%e8%af%8d%e8%bd%ac%e6%8d%a2%e7%ad%89></a>前束范式与谓词转换等</h2><p>了解定理公式、辖域扩张、量词等价转换式……</p><h2 id=skolem范式><a class=header-anchor href=#skolem%e8%8c%83%e5%bc%8f></a>skolem范式</h2><p><img src=output_image/42707807baa42c1df430bb5b1e146dbf.png alt></p><ul><li>前缀仅含全称量词且辖域为母式全部</li><li>母式为合取范式，其中不含量词
+有一种特定化的思想。
+<img src=output_image/235f858f8d333f3644d62a526be456b3.png alt>
+突然发现有点难看懂：
+<img src=output_image/e4eb93591bcf1c1ff715cbbc14dd5b95.png alt><img src=output_image/fedf5bd18f18b3209bc5e1d361a66a62.png alt><img src=output_image/dfeea5e31a0012a0f47155e24b674af8.png alt>
+<img src=output_image/24f05ed3a508b7242b0876f7338abdd7.png alt>
+<img src=output_image/ae39b4aec8d0ea015a8815b4654d815a.png alt></li></ul><h2 id=子句><a class=header-anchor href=#%e5%ad%90%e5%8f%a5></a>子句</h2><p>原子命题公式
+文字：原子谓词公式及其否定。
+子句：任何文字的析取式，任何文字本身就是子句
+空子句：不含任何文字的子句，不能被任何解释所满足，是永假，记为NIL
+子句集：由子句或空子句构成的集合，其变元手全称量词约束，子句之间具有合取关系“与”。
+$a \leftrightarrow b \Leftrightarrow (a \wedge b) \vee (\neg a \wedge \neg b)$这是怎么推出来的……
+<img src=output_image/3c74137fad464d7b265a8386dbcdd33f.png alt></p><h3 id=示例><a class=header-anchor href=#%e7%a4%ba%e4%be%8b></a>示例</h3><p><img src=output_image/dd0d6ae282f99709ae2de4a19cc52f63.png alt><img src=output_image/2b49d64c3fe754203387ae62180c58b7.png alt>
+<img src=output_image/c39ab4e16a880ccc16e7808ad5c8f92b.png alt>
+<img src=output_image/5b00e6aa38dc14d81738127d4006763b.png alt><img src=output_image/45ead0e91bdf03a772008a274c2837a7.png alt></p><p>子句集的子句间具有合取关系（“与“），各子句的变量实际上都是全称量词的 约束变量，且作用域只在子句范围内。</p><p>为消除子句间不必要的交互作用，各子句可使用不同的变量名。</p><p>在消去存在量词是所用的Skolem函数可以不同，化简后的标准子句集是不唯一的。</p><p>当原谓词公式为非永假时，它与其标准子句集并不等价。</p><p>当原谓词公式为永假（或不可满足）时，其标准子句集则一定是永假，即Skolem 化不影响原谓词公式的永假性。</p><p><img src=output_image/f1e543ba7d1eb6d04f3941dbe8ec798e.png alt>谓词公式永假《= =》子句集不可满足性</p><h2 id=海伯伦域-h域><a class=header-anchor href=#%e6%b5%b7%e4%bc%af%e4%bc%a6%e5%9f%9f-h%e5%9f%9f></a>海伯伦域 H域</h2><p>将每次新增的项丢到下一次的迭代里，本例中没有个体常量。
+<img src=output_image/60dcd4051568635110f30d199d78c83c.png alt></p><h2 id=鲁滨逊归结><a class=header-anchor href=#%e9%b2%81%e6%bb%a8%e9%80%8a%e5%bd%92%e7%bb%93></a>鲁滨逊归结</h2><p><img src=output_image/8097bed2261acbf42bfd9f23872ef58f.png alt></p><h4 id=谓词逻辑文字互补与置换><a class=header-anchor href=#%e8%b0%93%e8%af%8d%e9%80%bb%e8%be%91%e6%96%87%e5%ad%97%e4%ba%92%e8%a1%a5%e4%b8%8e%e7%bd%ae%e6%8d%a2></a>谓词逻辑文字互补与置换</h4><h4 id=谓词逻辑的归结示例与原理><a class=header-anchor href=#%e8%b0%93%e8%af%8d%e9%80%bb%e8%be%91%e7%9a%84%e5%bd%92%e7%bb%93%e7%a4%ba%e4%be%8b%e4%b8%8e%e5%8e%9f%e7%90%86></a>谓词逻辑的归结示例与原理</h4><p>归结反演示例：
+结果应该是一个NIL
+<img src=output_image/89bfdf9dc6178423338e51a5d085f504.png alt><img src=output_image/c8b936042c5a67a3efaa766964f293a3.png alt>
+归结反演记得写出子句集，子句集中相同变量应该进行换名处理。</p><p>归结原理求解示例：
+与归结反演不同的是，证明的命题不太具有“是否”的表达，例如：“小张的老师是谁”而不是“王是小张的老师”
+解题上则是对待求解问题表达成否定，之后再与谓词<code>Answer(x)</code>构成析取式。
+<img src=output_image/2831f5453f74302686a16fd2a89301c0.png alt>
+注意谓词表示。例如“如果x和y是同班同学，则上课时x的教室也是y的教室”。
+<img src=output_image/2f31c69f33d6032889b3a78def1f53f6.png alt>
+往往不同的子句会推出不同的结论，子句的选取重要。</p><h4 id=思维导图><a class=header-anchor href=#%e6%80%9d%e7%bb%b4%e5%af%bc%e5%9b%be></a>思维导图</h4><p><img src=output_image/3d3a025318139ebf56128d75c71ad86c.png alt></p><h1 id=不确定性推理><a class=header-anchor href=#%e4%b8%8d%e7%a1%ae%e5%ae%9a%e6%80%a7%e6%8e%a8%e7%90%86></a>不确定性推理</h1><p>贝叶斯公式，单证单论 ：
+<img src=output_image/b1d105edc8ca22602d07d951f65c4254.png alt></p><h2 id=概率推理><a class=header-anchor href=#%e6%a6%82%e7%8e%87%e6%8e%a8%e7%90%86></a>概率推理</h2><p>多证多论：
+<img src=output_image/93c597c8c40f431f78015c324b0988ca.png alt>
+odd几率函数定义（获胜概率/落败概率）</p><h2 id=主观贝叶斯><a class=header-anchor href=#%e4%b8%bb%e8%a7%82%e8%b4%9d%e5%8f%b6%e6%96%af></a>主观贝叶斯</h2><p>$IF\quad E \quad THEN \quad (LS,LN) \quad H\quad p(H)$
+H代表一般性的结论，S代表所有证据的一部分，可以表示为我们观测到的数据现象，E代表所有的证据。$LS$ 、$LN$用于度量知识的不确定性，LS是充分性度量，LN是必要性度量。</p><p>证据充分性的度量 p(H|E)=1。</p>$$\frac{{p(H|E)}}{{P(\neg H|E)}} = \frac{{p(E|H)}}{{p(E|\neg H)}}\frac{{p(H)}}{{p(\neg H)}},LS = \frac{{p(E|H)}}{{p(E|\neg H)}}$$$$\frac{{p(H|\neg E)}}{{P(\neg H|\neg E)}} = \frac{{p(\neg E|H)}}{{p(\neg E|\neg H)}}\frac{{p(H)}}{{p(\neg H)}},LN = \frac{{p(\neg E|H)}}{{p(\neg E|\neg H)}}$$<p>证据必要性的度量：$O(H|\neg E) = 0$</p><p>$LN = \frac{{O(H|E)}}{{O(N)}}$,$LN = \frac{{p(\neg E|H)}}{{p(\neg E|\neg H)}}$
+<img src=output_image/69ecee0fdf83c87f958a5272e4787a83.png alt>
+<img src=output_image/98b6fc6a30c728539e6912955accf862.png alt></p><h3 id=杜达公式><a class=header-anchor href=#%e6%9d%9c%e8%be%be%e5%85%ac%e5%bc%8f></a>杜达公式</h3><p><del>带鱼胆固醇含量高。</del>
+$p(H|S) = p(H|E)p(E|S) + p(H|\neg E)p(\neg E|S)$
+<strong>(100,0.01)</strong> 代表$LS$为100， $LN$为0.01.
+<img src=output_image/61d94d11e300585fd03e973a7293525a.png alt>
+$O(H|{E_1},{E_2}) = O(H) \times L{S_1} \times L{S_2}$ 可以这样叠加。
+<img src=output_image/331123a904dd4ccbc6eda2bf1be0ecc5.png alt>
+先观察$P(E_1|S_1)$题目给的是否大于0.5，若大于0.5，则求$P(H_1|E_1)$。
+<img src=output_image/735531a7a23fac5d09237b49dddff3a5.png alt>
+杜达公式有概率考察，需要防备，但ppt上的推导略微简略。
+==掌握<strong>主观贝叶斯应用——天气预报</strong>==，这玩意有两种计算方法：
+<img src=output_image/863232cc275f5b6802cb23bc4bcadf91.png alt></p><h2 id=知识的不确定性表示可信度因子cf模型><a class=header-anchor href=#%e7%9f%a5%e8%af%86%e7%9a%84%e4%b8%8d%e7%a1%ae%e5%ae%9a%e6%80%a7%e8%a1%a8%e7%a4%ba%e5%8f%af%e4%bf%a1%e5%ba%a6%e5%9b%a0%e5%ad%90cf%e6%a8%a1%e5%9e%8b></a>知识的不确定性表示：可信度因子(CF)模型</h2><p><em>可信度因子的定义为信任与不信任的差</em>
+$CF(H,E)=MB(H,E)-MD(H,E)$ CF(H,E)$\in$$\rm{[ - 1,1]}$
+<strong>MB (measure belief)信任度量：表示证据E对前提结论H的信任增长度
+MD (measure disbelief) 不信任度量：表示证据E对前提结论H的不信任增长度</strong></p><pre tabindex=0><code>若 CF(H,E)&gt;0，CF(H,E)的值越大，则证据E支持结论H越真 
+若CF(H,E)&lt;0 ，CF(H,E) 的值越小，则证据E支持结论H越假 
+若 CF(H,E)=0，则证据E的出现与否与H无关。
+</code></pre><p>可信度CF是由领域专家<del>题目</del>提出的。
+$CF(H|E) + CF(\neg H|E) = 0$
+<img src=output_image/0b7414b8f17c4686abb7c1fddc47d990.png alt>
+<img src=output_image/cf619edd3be0e9355fd3e9ee9857133d.png alt>
+<img src=output_image/798fc79862d2244281063e765904fed7.png alt></p><h3 id=不确定性推理-1><a class=header-anchor href=#%e4%b8%8d%e7%a1%ae%e5%ae%9a%e6%80%a7%e6%8e%a8%e7%90%86-1></a>不确定性推理</h3><p>$CF(H) = CF(H,E) \times \max \{ 0,CF(E)\}$</p><h3 id=结论不确定性的合成><a class=header-anchor href=#%e7%bb%93%e8%ae%ba%e4%b8%8d%e7%a1%ae%e5%ae%9a%e6%80%a7%e7%9a%84%e5%90%88%e6%88%90></a>结论不确定性的合成</h3><p><img src=output_image/a201562b4b76585946da464486a285d4.png alt>
+<strong>重点：==掌握可信度计算示例==</strong>
+先算出每个证据的可信度
+<img src=output_image/cd96e8c84217c0880f270770cb5823f0.png alt>
+$E_1(0.6)$ 这个代表的是证据的权重$w$，$E_6(0.8,0.75)$中，$0.8$是可信度，$0.75$是阈值。
+先算$CF(E_6)和$$CF(E_7)$，再$\frac{{0.7CF({E_6}) + 0.6CF({E_7})}}{{(0.7 + 0.3)}}$=$CF({\bar E})$，$CF({\bar E})$与阈值0.6进行比较发现$CF({\bar E})$比0.6大，于是使用$CF({\bar E})$。$R_3$那一句的$CF(R_3)=CF(H,E)$，再使用$CF(\bar E)*CF(H,E)$，得到$CF(H)$。
+<img src=output_image/3a2538ad2ff1b27507ccc486224d5b93.png alt>
+<img src=output_image/37a8f2c1e31523c4b82f640f73f88536.png alt></p><h2 id=证据理论><a class=header-anchor href=#%e8%af%81%e6%8d%ae%e7%90%86%e8%ae%ba></a>证据理论</h2><p>信任函数$Bel$（下限）与似然函数$Pl$（上限）
+$Bel({r,y})=m({r})+m({y})+m({r,y})$
+$Pl({r})=m({r})+m({r,y})+m({r,y,g})$ 所有与r有关的m的求和。
+$[Bel(A),Pl(A)]$表示信任区间。
+概率分配函数正交和的示例，举一个例子就很好懂了。
+<img src=output_image/355ac9d8f7313b6f7ffaa2248e875dec.png alt>
+四步走：</p><ul><li>先求出识别框架和m集合的可能取值，以及概率分配表。</li><li>求K</li><li>综合求出$m_1({h_1})$这样的，使用正交和公式
+$m(\{ {h_1}\} ) = \frac{1}{K}\sum\limits_{x \cap y = \{ {h_1}\} } {{m_1}(x){m_2}(y)}$</li><li>最后求$Bel({h_1})$等信任函数、似然函数$Pl({h_1})$，对此一定要参考识别框架。
+<img src=output_image/a80ce20847a0f904dbc7a712c94e9155.png alt><img src=output_image/dd0fbe9b083285f1069bea023be95c71.png alt>
+中间跳过了一些。
+<img src=output_image/f55f80c8eac8e04bbfee50ec10e1b4da.png alt></li></ul><h2 id=笑话一则><a class=header-anchor href=#%e7%ac%91%e8%af%9d%e4%b8%80%e5%88%99></a>笑话一则</h2><p>与诸君共赏。
+<img src=output_image/d0359a4294c2a49b13ac49669d954aca.png alt>
+<strong>基于证据理论的不确定性推理</strong>
+例题是这样的：
+<img src=output_image/48a639c79cc397517d754b403cbb335b.png alt></p><h3 id=zadeh悖论><a class=header-anchor href=#zadeh%e6%82%96%e8%ae%ba></a>Zadeh悖论</h3><p>感觉很有特点，掌握一下，两组概率分配函数正交和。
+答案可能有问题。
+在自动驾驶时某个具体道路场景中无人车前方会有四种命题假设：（A）有障碍物，（B）无障碍物，（C）有障碍物或者无障碍物，（D）空集 （既不是有障碍物，也不是无障碍物，就是没法判断），使用2个车载传感器进行检测。
+1）LiDAR作为证据源之一，在某个时刻对某个位置各个假设的分配概率分别为：A的概率是0.6，B的概率0.3，C的0.1，D的概率为0；
+2）相机作为另一个证据源之一，在某个时刻对某 个位置各个假设的分配概率分别为：A的概率是 0.1，B的概率0.8，C的0.1，D的概率为0， 现要求融合2个传感器的障碍物检测数据，判断障碍物的存在情况。贴一个结果：</p><p><img src=output_image/db8c096a1ee128d781e163a9c16b4d92.png alt></p><h2 id=模糊推理方法><a class=header-anchor href=#%e6%a8%a1%e7%b3%8a%e6%8e%a8%e7%90%86%e6%96%b9%e6%b3%95></a>模糊推理方法</h2><p>在模糊逻辑中，一个命题不再非真即假，它可被认为是“部分的真” ，模糊逻辑取消二值之间非此即彼的对立，用隶属度表示二值间的过度状态。
+<img src=output_image/d9ff8b31fcd25ab52f0ae6671b1aa043.png alt></p><h3 id=zadeh表示法><a class=header-anchor href=#zadeh%e8%a1%a8%e7%a4%ba%e6%b3%95></a>zadeh表示法</h3><p>模糊集合的表示包含该集合的元素、该元素属于这个集合的隶属度。
+通常用“隶属度/元素”的形式表示模糊集合。
+首先，确定论域{5，10，20，30，35}
+其次，确定对应隶属度{0，0.33，1，1，0.5}
+再者，求出隶属函数$m_A$：
+<img src=output_image/6800aff9d96d945076ce344370277171.png alt></p><h3 id=模糊集合的基本运算><a class=header-anchor href=#%e6%a8%a1%e7%b3%8a%e9%9b%86%e5%90%88%e7%9a%84%e5%9f%ba%e6%9c%ac%e8%bf%90%e7%ae%97></a>模糊集合的基本运算</h3><p>相等 在隶属函数在论域上相等
+包含 隶属函数在论域上${m_A}(x) \le {m_B}(x)x \in U$
+并集 交集 补集（论域在(0,1)上的补集）</p><p>$A \oplus B$对应系数相加，与1相比用小的那一个。
+<img src=output_image/b80b33a6ab1d9039d01f1f6325e55cc3.png alt></p><h3 id=经典集合关系和笛卡尔乘积><a class=header-anchor href=#%e7%bb%8f%e5%85%b8%e9%9b%86%e5%90%88%e5%85%b3%e7%b3%bb%e5%92%8c%e7%ac%9b%e5%8d%a1%e5%b0%94%e4%b9%98%e7%a7%af></a>经典集合关系和笛卡尔乘积</h3><p>集合关系：不同集合元素间的关联，通常用笛卡尔乘积(Cartesian product)定义
+用来求模糊集合A到B的隶属关系
+$R = A \times B = {\bf{m}}_A^T \times {\bf{m}}_B$ $m_B,m_A$就是一个行向量就是其模糊函数的系数，按上图就是$[0.3,0.8,0.7,0.1]$</p><p>模糊关系的合成，先合取再析取，乘法取min，加法取值max：
+<img src=output_image/6b6f36065cf04272336ad860653410d4.png alt>
+笛卡尔乘积。
+模糊推理以及模糊决策：
+<img src=output_image/5e0240f09c2780b57624d9236d81121b.png alt></p><h1 id=智能体agent><a class=header-anchor href=#%e6%99%ba%e8%83%bd%e4%bd%93agent></a>智能体Agent</h1><p>智能体的重要组件：传感器执行器效应器，环境收到效应器的影响，例如腿、屏幕。
+分为理性智能体和全职智能体，理性是使理想效应最大化，使用的是到当前的感知序列。</p><h2 id=智能体与环境><a class=header-anchor href=#%e6%99%ba%e8%83%bd%e4%bd%93%e4%b8%8e%e7%8e%af%e5%a2%83></a>智能体与环境</h2><h3 id=peas表示><a class=header-anchor href=#peas%e8%a1%a8%e7%a4%ba></a>PEAS表示</h3><p>performance environment actuators sensors
+请举例无人驾驶汽车的PEAS，掌握：
+性能（P）：速度、驾驶安全（汽车和用户）、开车到特定地点的时间、用户的舒适度等
+环境（E）：汽车行驶的道路、道路上的其他车辆、行人、十字路口、路标、交通信号等
+执行器（A）：转向、油门、 刹车、信号、喇叭、音响等所有用于控制汽车的设备
+传感器（S）：摄像头、GPS 、车速表、里程表、加速度计 、声纳等汽车通过其获得对周围环境的估计并从中得出某些感知的所有设备</p><h3 id=agent的任务环境了解即可><a class=header-anchor href=#agent%e7%9a%84%e4%bb%bb%e5%8a%a1%e7%8e%af%e5%a2%83%e4%ba%86%e8%a7%a3%e5%8d%b3%e5%8f%af></a>Agent的任务环境（了解即可）</h3><p>完全可观察（象棋） vs 部分可观察（驾驶）（Fully Observable vs Partially Observable）
+确定性（象棋） vs 随机性（驾驶）（Deterministic vs Stochastic）
+竞争 vs 合作（Competitive vs Collaborative）
+单智能体（单人迷宫） vs 多智能体（足球赛）（Single-agent vs Multi-agents）</p><p>智能体的环境类型（Types of Environments）
+静态 （空房子）vs 动态（过山车）（Static vs Dynamic）
+离散 （象棋）vs 连续 （驾驶）（Discrete vs Continuous）
+片段（问答机器人） vs 延续（网球） （Episodic vs Sequential）</p><h2 id=智能体与结构><a class=header-anchor href=#%e6%99%ba%e8%83%bd%e4%bd%93%e4%b8%8e%e7%bb%93%e6%9e%84></a>智能体与结构</h2><p>行为
+架构
+函数 以感知历史作为输入
+程序 以当前感知环境作为输入</p><p>智能体的形式：人类智能体、机器人智能体、软件智能体</p><p>智能体的特点：情境性、自主性、适应性、社交性</p><h3 id=智能体的类型掌握><a class=header-anchor href=#%e6%99%ba%e8%83%bd%e4%bd%93%e7%9a%84%e7%b1%bb%e5%9e%8b%e6%8e%8c%e6%8f%a1></a>智能体的类型（掌握）</h3><p><strong>简单反射智能体（simple reflex agents）</strong>
+==仅根据当前感知采取行动。==
+该智能体基于条件—动作规则工作，该规则将状态（即条件）映射到动作，如果 条件为真，则执行操作，否则不执行。
+仅当环境完全可观察时，该智能体才会成功。</p><p><strong>基于模型的反射智能体（model-based reflex agents）</strong>
+智能体可在部分可观测环境中工作，使用内部模型来确定动作的感知历史和效果， 并跟踪状态，该智能体的2个重要因素：
+模型（model）：关于“世界事情如何发生的知识”。
+内部状态（internal state）：基于感知历史的当前状态的表示。
+智能体具有“哪个是世界知识”的模型，并基于此模型查找其条件与当前情况匹配的规则执行动作，通过使用此关于世界的模型来处理部分可观察的环境。
+==在无法完全观察的环境中仍可工作==，须跟踪由每个感知调整的内部状态，并依赖感知历史。</p><p>随时更新内部状态信息 要求在Agent程序中加 入两种类型的知识：
+知识一：世界是如何独立于Agent而发展的信息
+知识二：Agent自身的行动如何影响世界
+缺点：部分可观察环境中的Agent不能精准确定当前状态</p><p><strong>基于目标的智能体（goal-based agents）</strong>
+<img src=output_image/ce4d56910bf27819cb412f5300223bbd.png alt>
+特点 ： Agent 需要一个目标来了解期望达到什么状况。
+随着达到目标所需要的动作数目的增多，问题越来越难求解。
+支持它决策的知识被显示表现出来，且可以修改,虽然显得效率较低，但更灵活。
+适合部分可观察、动态的、连续式的。
+<strong>基于效用的智能体（utility-based agents）</strong> 推荐算法
+<img src=output_image/b235c5deb08370fb6af406547f929293.png alt>
+<img src=output_image/a7cfa536e0f9c72002f60e13bae402fa.png alt></p><p><strong>学习智能体（learning agent）</strong>
+<img src=output_image/377a6ad584140d9ecd357d79bde5fc16.png alt>
+所有Agent都可以通过学习来改进它们的性能。</p><h2 id=智能体的应用略><a class=header-anchor href=#%e6%99%ba%e8%83%bd%e4%bd%93%e7%9a%84%e5%ba%94%e7%94%a8%e7%95%a5></a>智能体的应用(略)</h2><p>自动驾驶、医疗诊断等。。</p></div><footer class=article-footer><div class=share-wrapper><a href="http://connect.qq.com/widget/shareqq/index.html?url=https://user-xixiboliya.github.io/post/ai%E6%A6%82%E8%AE%BA/&amp;title=%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd%e6%a6%82%e8%ae%ba%e5%a4%8d%e4%b9%a0%e7%ac%94%e8%ae%b0&amp;desc=2024%20XJTU%20%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd%e6%a6%82%e8%ae%ba%e5%a4%8d%e4%b9%a0%e7%ac%94%e8%ae%b0%e3%80%82&amp;source=https://user-xixiboliya.github.io/" target=_blank rel="noopener noreferrer" title=人工智能概论复习笔记><div class="share-icon icon icon-qq"></div></a><a href=javascript:; title=人工智能概论复习笔记><div class="share-icon icon icon-weixin"><div id=share-weixin><div class=share-weixin-dom><div class=share-weixin-content><img id=share-weixin-banner><div id=share-weixin-title></div><div id=share-weixin-desc></div></div><div class=share-weixin-qrcode><div class=share-weixin-info><div id=share-weixin-author></div><div id=share-weixin-theme>Powered By hugo-theme-reimu</div></div><img id=share-weixin-qr></div></div><div class=share-weixin-canvas></div></div></div></a></div><ul class=article-tag-list itemprop=keywords></ul></footer></div><nav id=article-nav data-aos=fade-up><div class="article-nav-link-wrap article-nav-link-left"><img data-src="https://upload-bbs.miyoushe.com/upload/2023/09/04/326552234/afbe60ec7a59a6ca61c35cd72d0c3bbb_1789906293904182512.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,png" data-sizes=auto alt=人工智能与现代物理Ⅰ复习笔记 class=lazyload>
+<a href=https://user-xixiboliya.github.io/post/%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E4%B8%8E%E7%8E%B0%E4%BB%A3%E7%89%A9%E7%90%86i/></a><div class=article-nav-caption>Newer</div><h3 class=article-nav-title>人工智能与现代物理Ⅰ复习笔记</h3></div><div class="article-nav-link-wrap article-nav-link-right"><img data-src="https://upload-bbs.miyoushe.com/upload/2023/09/04/326552234/f1b6350e764e14d74a2115aa38ce5320_4051001620276447913.png?x-oss-process=image//resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,png" data-sizes=auto alt="CMU Proxylab" class=lazyload>
+<a href=https://user-xixiboliya.github.io/post/proxylab/></a><div class=article-nav-caption>Older</div><h3 class=article-nav-title>CMU Proxylab</h3></div></nav></article></section></div><footer id=footer><div style=width:100%;overflow:hidden><div class=footer-line></div></div><div id=footer-info><div><span class=icon-copyright></span>
+2020 -
+2025
+<span class="footer-info-sep rotate"></span>
+Bertsin</div><div>Powered by&nbsp;<a href=https://gohugo.io/ target=_blank>Hugo</a>&nbsp; Theme.<a href=https://github.com/D-Sketon/hugo-theme-reimu target=_blank>Reimu</a></div><div><span class=icon-brush>&nbsp;
+10.6k
+</span>&nbsp;|&nbsp;
+<span class=icon-coffee>&nbsp;
+01:05</span></div><div><span class=icon-eye></span>
+<span id=busuanzi_container_site_pv>Number of visits&nbsp;<span id=busuanzi_value_site_pv></span></span>
+&nbsp;|&nbsp;
+<span class=icon-user></span>
+<span id=busuanzi_container_site_uv>Number of visitors&nbsp;<span id=busuanzi_value_site_uv></span></span></div></div></footer><div class=sidebar-top><div class="sidebar-top-taichi rotate"></div><div class=arrow-up></div></div><div id=mask class=hide></div></div><nav id=mobile-nav><div class=sidebar-wrap><div class=sidebar-toc-sidebar><div class=sidebar-toc><h3 class=toc-title>Contents</h3><div class="sidebar-toc-wrapper toc-div-class"><nav id=TableOfContents><ul><li><a href=#三次爆发>三次爆发</a></li><li><a href=#两大分类>两大分类</a></li><li><a href=#研究领域>研究领域</a></li></ul><ul><li><a href=#谓词逻辑表示法略>谓词逻辑表示法(略)</a></li><li><a href=#产生式表示法>产生式表示法</a><ul><li><a href=#确定性规则与不确定性规则的举例>确定性规则与不确定性规则的举例</a></li><li><a href=#事实的表示>事实的表示</a></li><li><a href=#一个生成式系统>一个生成式系统</a></li></ul></li><li><a href=#语义网络表示法>语义网络表示法</a><ul><li><a href=#知识图谱>知识图谱</a></li></ul></li><li><a href=#框架表示法>框架表示法</a></li><li><a href=#状态空间表示法>状态空间表示法</a></li></ul><ul><li><a href=#状态空间搜索>状态空间搜索</a></li><li><a href=#盲目搜索>盲目搜索</a><ul><li><a href=#回溯>回溯</a></li></ul></li><li><a href=#一致代价搜索>一致代价搜索</a></li><li><a href=#评价函数>评价函数</a></li><li><a href=#贪婪搜索>贪婪搜索</a></li><li><a href=#a-算法>A 算法</a></li><li><a href=#a-搜索>A* 搜索</a></li></ul><ul><li><a href=#问题规约的与或树>问题规约的与或树</a><ul><li><a href=#与或树求解代价计算示例>与或树求解代价计算示例</a></li></ul></li><li><a href=#极小极大搜索>极小极大搜索</a></li><li><a href=#极小极大搜索示例井字棋搜索过程>极小极大搜索示例：井字棋搜索过程</a></li><li><a href=#alpha-beta-剪枝>Alpha-beta 剪枝</a></li><li><a href=#囚徒困境纳什均衡>囚徒困境：纳什均衡</a><ul><li><a href=#智猪博弈和婆媳之争>智猪博弈和婆媳之争</a></li></ul></li><li><a href=#蒙特卡洛搜索>蒙特卡洛搜索</a></li></ul><ul><li><a href=#推理的控制策略>推理的控制策略</a><ul><li><a href=#推理方向>推理方向</a></li><li><a href=#冲突消解策略>冲突消解策略</a></li></ul></li><li><a href=#命题逻辑>命题逻辑</a></li><li><a href=#演绎推理>演绎推理</a></li><li><a href=#三段法演绎推理>三段法演绎推理</a></li><li><a href=#假言演绎推理>假言演绎推理</a></li><li><a href=#完全归纳推理>完全归纳推理</a></li><li><a href=#不完全归纳推理>不完全归纳推理</a></li><li><a href=#枚举归纳推理>枚举归纳推理</a></li><li><a href=#默认推理>默认推理</a></li><li><a href=#自然演绎推理>自然演绎推理</a></li><li><a href=#归结推理>归结推理</a></li><li><a href=#前束范式与谓词转换等>前束范式与谓词转换等</a></li><li><a href=#skolem范式>skolem范式</a></li><li><a href=#子句>子句</a><ul><li><a href=#示例>示例</a></li></ul></li><li><a href=#海伯伦域-h域>海伯伦域 H域</a></li><li><a href=#鲁滨逊归结>鲁滨逊归结</a><ul><li></li></ul></li></ul><ul><li><a href=#概率推理>概率推理</a></li><li><a href=#主观贝叶斯>主观贝叶斯</a><ul><li><a href=#杜达公式>杜达公式</a></li></ul></li><li><a href=#知识的不确定性表示可信度因子cf模型>知识的不确定性表示：可信度因子(CF)模型</a><ul><li><a href=#不确定性推理-1>不确定性推理</a></li><li><a href=#结论不确定性的合成>结论不确定性的合成</a></li></ul></li><li><a href=#证据理论>证据理论</a></li><li><a href=#笑话一则>笑话一则</a><ul><li><a href=#zadeh悖论>Zadeh悖论</a></li></ul></li><li><a href=#模糊推理方法>模糊推理方法</a><ul><li><a href=#zadeh表示法>zadeh表示法</a></li><li><a href=#模糊集合的基本运算>模糊集合的基本运算</a></li><li><a href=#经典集合关系和笛卡尔乘积>经典集合关系和笛卡尔乘积</a></li></ul></li></ul><ul><li><a href=#智能体与环境>智能体与环境</a><ul><li><a href=#peas表示>PEAS表示</a></li><li><a href=#agent的任务环境了解即可>Agent的任务环境（了解即可）</a></li></ul></li><li><a href=#智能体与结构>智能体与结构</a><ul><li><a href=#智能体的类型掌握>智能体的类型（掌握）</a></li></ul></li><li><a href=#智能体的应用略>智能体的应用(略)</a></li></ul></nav></div></div></div><div class="sidebar-common-sidebar hidden"><div class=sidebar-author><img data-src=/avatar/avatar.webp data-sizes=auto alt=Bertsin class=lazyload><div class=sidebar-author-name>Bertsin</div><div class=sidebar-description>祈祷中...</div></div><div class=sidebar-state><div class=sidebar-state-article><div>Posts</div><div class=sidebar-state-number>22</div></div><div class=sidebar-state-category><div>Categories</div><div class=sidebar-state-number>6</div></div><div class=sidebar-state-tag><div>Tags</div><div class=sidebar-state-number>1</div></div></div><div class=sidebar-social><div class="icon-bilibili sidebar-social-icon"><a href="https://space.bilibili.com/651491932?spm_id_from=333.1007.0.0" itemprop=url target=_blank aria-label=bilibili rel="noopener external nofollow noreferrer"></a></div><div class="icon-email sidebar-social-icon"><a href=linboxi123@163.com itemprop=url target=_blank aria-label=email rel="noopener external nofollow noreferrer"></a></div><div class="icon-github sidebar-social-icon"><a href=https://github.com/user-xixiboliya itemprop=url target=_blank aria-label=github rel="noopener external nofollow noreferrer"></a></div><div class="icon-zhihu sidebar-social-icon"><a href=https://www.zhihu.com/people/lllll-19-64-21 itemprop=url target=_blank aria-label=zhihu rel="noopener external nofollow noreferrer"></a></div></div><div class=sidebar-menu><div class=sidebar-menu-link-wrap><a class=sidebar-menu-link-dummy href=/ aria-label=Home></a><div class='sidebar-menu-icon icon rotate'>&#xe62b;</div><div class=sidebar-menu-link>Home</div></div><div class=sidebar-menu-link-wrap><a class=sidebar-menu-link-dummy href=/archives aria-label=Archives></a><div class='sidebar-menu-icon icon'>&#xe633;</div><div class=sidebar-menu-link>Archives</div></div><div class=sidebar-menu-link-wrap><a class=sidebar-menu-link-dummy href=/about aria-label=About></a><div class='sidebar-menu-icon icon'>&#xe63d;</div><div class=sidebar-menu-link>About</div></div><div class=sidebar-menu-link-wrap><a class=sidebar-menu-link-dummy href=/friend aria-label=Friend></a><div class='sidebar-menu-icon icon'>&#xe639;</div><div class=sidebar-menu-link>Friend</div></div></div></div></div><div class=sidebar-btn-wrapper><div class="sidebar-toc-btn current"></div><div class=sidebar-common-btn></div></div></nav></div><div class=site-search><div class="reimu-popup popup"><div class=reimu-search><div class=reimu-search-input-icon></div><div class=reimu-search-input id=reimu-search-input></div><div class=popup-btn-close></div></div><div class=reimu-results><div id=reimu-stats></div><div id=reimu-hits></div><div id=reimu-pagination class=reimu-pagination></div></div><img class=reimu-bg src=/images/reimu.png></div></div><script src=https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js integrity=sha384-3gT/vsepWkfz/ff7PpWNUeMzeWoH3cDhm/A8jM7ouoAK0/fP/9bcHHR5kHq2nf+e crossorigin=anonymous></script><script src=https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js integrity=sha384-J08i8An/QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q crossorigin=anonymous></script><script src=/js/main.js integrity crossorigin=anonymous></script><script src=/js/aos.js integrity crossorigin=anonymous></script><script>var aosInit=()=>{AOS.init({duration:1e3,easing:"ease",once:!0,offset:50})};document.readyState==="loading"?document.addEventListener("DOMContentLoaded",aosInit):aosInit()</script><script src=/js/pjax_main.js integrity crossorigin=anonymous data-pjax></script><script>var ALGOLIA_CONFIG={logo:"/images/algolia_logo.svg",algolia:{applicationID:"E7TXX1S76T",apiKey:"f3def5697bab431015815d63d4289527",indexName:"algolia",hits:{per_page:parseInt("10")},labels:{input_placeholder:"搜索.....",hits_empty:"未发现与 「${query}」相关内容",hits_stats:"找到${hits}条结果（用时 ${time} ms）"}}}</script><script src=https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js defer integrity=sha384-xvLS0jfKuoREs7pqkRI/OI8GcqohO5S+jQz7ZBtQXnsXmD+9jDOOY4cL6dCPzlrk crossorigin=anonymous></script><script src=https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js defer integrity=sha384-hHJCflT4KBLQyHfKO9vpstIcFKn/Y+KHTORelMMEn7mOp2AVPp+7fr03dLgZiV3J crossorigin=anonymous></script><script src=/js/algolia_search.js integrity crossorigin=anonymous></script><div id=lazy-script><div><script data-pjax>window.REIMU_POST={author:"Bertsin",title:"人工智能概论复习笔记",url:"https://user-xixiboliya.github.io/post/ai%E6%A6%82%E8%AE%BA/",description:"2024 XJTU 人工智能概论复习笔记。",cover:"https://user-xixiboliya.github.io/images/banner.webp"}</script><script src=/js/insert_highlight.js integrity crossorigin=anonymous data-pjax></script><script type=module data-pjax>
+        const PhotoSwipeLightbox = (await safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js", "sha384-DiL6M\/gG\u002bwmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF\/N6lrZi\/")).default;
+
+        const pswp = () => {
+          if (_$$('.article-entry a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-entry',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")
+            }).init();
+          }
+          if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+            new PhotoSwipeLightbox({
+              gallery: '.article-gallery',
+              children: 'a.article-gallery-item',
+              pswpModule: () => safeImport("https:\/\/npm.webcache.cn\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8\u002boTJ7m3DfYEWX1fu1scuS4\u002bs")
+            }).init();
+          }
+          window.lightboxStatus = 'done';
+          window.removeEventListener('lightbox:ready', pswp);
+        }
+        if(window.lightboxStatus === 'ready') {
+          pswp()
+        } else {
+          window.addEventListener('lightbox:ready', pswp);
+        }
+      </script><script src=https://npm.webcache.cn/qrcode@1.4.4/build/qrcode.min.js defer data-pjax integrity=sha384-0RsG1yo/crf/1Qc14sho26SXXOTngNCjgJw7fuvXBt9W/OChF/Ijx+aUuBDqQwEk crossorigin=anonymous></script><script src=https://npm.webcache.cn/html-to-image@1.11.11/dist/html-to-image.js defer data-pjax integrity=sha384-UbfRVKN3/elS1r7JcK2FhmPP+KlJ4CvYwbyYD7tH+uTkbT9bNJr9eJeQ0FoFbAgz crossorigin=anonymous></script><script data-pjax>window.MathJax={loader:{load:["input/tex","output/chtml","[tex]/ams"]},tex:{tags:"ams",inlineMath:[["$","$"],["\\(","\\)"]],displayMath:[["$$","$$"],["\\[","\\]"]],processEscapes:!0},options:{processHtmlClass:"tex2jax_process"}}</script><script src=https://npm.webcache.cn/mathjax@3.2.2/es5/tex-mml-chtml.js defer data-pjax integrity=sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei crossorigin=anonymous></script></div></div><script src=https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js async integrity=sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S crossorigin=anonymous></script><script>"serviceWorker"in navigator&&navigator.serviceWorker.getRegistrations().then(e=>{for(let t of e)t.unregister()})</script><script>const reimuCopyright=String.raw`
+   ______     ______     __     __    __     __  __    
+  /\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+  \ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+   \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+    \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                    
+  `;console.log(String.raw`%c ${reimuCopyright}`,"color: #ff5252;"),console.log("%c Theme.Reimu %c https://github.com/D-Sketon/hugo-theme-reimu ","color: white; background: #ff5252; padding:5px 0;","padding:4px;border:1px solid #ff5252;")</script></body></html>

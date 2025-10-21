@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Common on Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/categories/common/</link><description>Recent content in Common on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 14 Jul 2025 16:00:00 -0710</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/categories/common/index.xml" rel="self" type="application/rss+xml"/><item><title>一些奇怪小技巧</title><link>https://user-xixiboliya.github.io/post/%E5%A5%87%E6%80%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</link><pubDate>Thu, 23 Jan 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/%E5%A5%87%E6%80%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid><description>&lt;h1 id="shieldsio徽章制作">
+&lt;a class="header-anchor" href="#shieldsio%e5%be%bd%e7%ab%a0%e5%88%b6%e4%bd%9c">&lt;/a>
+Shields.io徽章制作
+&lt;/h1>&lt;p>在浏览 GitHub 时，你可能发现很多项目都有很漂亮的徽章。这些徽章可以用来显示项目版本、进度条、star 数量、fork 数量&amp;hellip;.，那么这些徽章是如何生成的呢？&lt;/p>
+&lt;p>准确的说，这种 badges 是可以在任何地方使用的，但是一般来说还是在 Github 里面见到的会多一些，所以干脆就在描述中添加一个 Github 的前缀。&lt;/p>
+&lt;p>&lt;img src="output_image/9fe3f58296496562d0c9ff3f6506fb5c.png" alt="">&lt;/p>
+&lt;p>其实这些徽章大多都出于一个网站 &lt;a href="https://shields.io/">shields&lt;/a>，里面不仅可以生成静态的徽章，也可以生成动态显示stars的徽章。&lt;/p>
+&lt;p>在Shields.io 网站中，进去默认展开的是静态徽章Static Badge。
+&lt;img src="output_image/e15ee28ae839c3bf77a6927704b75332.webp" alt="">&lt;/p>
+&lt;p>在右侧可以看到四个内容，分别是：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>title&lt;/strong>：badge 的文字描述。&lt;/li>
+&lt;li>&lt;strong>color&lt;/strong>：badge 的背景色，使用 hex 编码表示（不包括 &lt;code>#&lt;/code>）。&lt;/li>
+&lt;li>&lt;strong>logoname&lt;/strong>：badge 的 logo 名称。&lt;/li>
+&lt;li>&lt;strong>logocolor&lt;/strong>：logo 的颜色，使用 hex 编码表示（不包括 &lt;code>#&lt;/code>）。&lt;/li>
+&lt;/ul>
+&lt;p>在下图中，logo需要严格按照&lt;a href="https://simpleicons.org/">simple icon&lt;/a>中的名字规定，&lt;code>#FCC624&lt;/code>规定了徽章的背景色。比如，我找到了微信的图标，只需在simple icon的“logo”栏输入“WeChat”，即可让微信的图标出现在徽章上。
+&lt;img src="output_image/c2f35a1675ef8efaa27699e46202329b.png" alt="">&lt;/p>
+&lt;p>在badgeContent中，一般的输入可以是&lt;code>label-(optional)message-color&lt;/code>，即【第一段内容】-【第二段内容】-【颜色】 ，中间使用&lt;code>-&lt;/code>隔离。&lt;/p>
+&lt;p>在badgeContent要输入空格或者下划线等内容可以参考下面：&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>URL input&lt;/th>
+ &lt;th>Badge output&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Underscore &lt;code>_&lt;/code> or &lt;code>%20&lt;/code>&lt;/td>
+ &lt;td>Space&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Double underscore &lt;code>__&lt;/code>&lt;/td>
+ &lt;td>Underscore &lt;code>_&lt;/code>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Double dash &lt;code>--&lt;/code>&lt;/td>
+ &lt;td>Dash &lt;code>-&lt;/code>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>例如输入&lt;code>python-&amp;gt;=3.10.0-blue:&lt;/code>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>&lt;img src="output_image/a81de07298980f6353e7124f51d22dff.png" alt="">&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>与此同时，Shields.io也会生成对应的markdown供你使用。&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>在这里建议将 logo 颜色设置为白色，然后背景色设置为网页中推荐的那个 logo 的配色，会比正常设置要有质感一些，比如说显示 &lt;code>vitepress&lt;/code>，就可以使用：&lt;/p></description></item></channel></rss>
