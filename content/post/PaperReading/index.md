@@ -53,7 +53,7 @@ $\pi_{0.5}$的范式与$\pi_{0}$几乎差不多，且某种程度上与unified m
 ![](output_image/075f05769f8ee2a0947d7b82e04e8606.png)
 文本仍是用llm处理，图像采用了MAGVIT-v2，将256$\times$ 256图像编码为16 $\times$ 16个离散词元。对于图像文本输入，支持自适应因果注意力和全注意力。
 
-## [NaVILA: Legged Robot Vision-Language-Action Model for Navigation](https://arxiv.org/abs/2412.04453)
+## NaVILA: Legged Robot Vision-Language-Action Model for Navigation
 - 研究问题：该方法使得四足能够在复杂的环境中进行VLN
 - 解决的challenge：是人类语言到四足低级腿部低级action的转化。架构分为两层，上层是VLA：
 ![](output_image/362264c463ee73f0608d3dc4a0d73b55.png)
@@ -65,7 +65,8 @@ $\pi_{0.5}$的范式与$\pi_{0}$几乎差不多，且某种程度上与unified m
 文章里道出：本文提升模型了对复杂指令和场景的理解，且在现有 VLN 任务中优于前人方法，单RGB输入达到了与全景视图、里程计等输入相当的效果。
 
 开源情况：https://navila-bot.github.io/ 部分开源
-## [You Only Teach Once](https://arxiv.org/pdf/2501.14208)
+
+## You Only Teach Once
 ![](output_image/4e3e7bd5c5da7e6f4b3584003253f810.png)
 - 提出了一种高效的学习范式，从视频中提取目标（单RGB多RGB）、位姿等等特征，迁移到机械臂的动作生成。
 
@@ -80,7 +81,7 @@ $\pi_{0.5}$的范式与$\pi_{0}$几乎差不多，且某种程度上与unified m
 	- 面向固定工作台。
 	- 执行器限制：平行夹爪无法完成精细操作。
 	- 进行了分布外的物体的测试，但任务结构相同，未涉及任务结构的变换，视觉误差和固定工作台限制其范化能力，有很多组件都有待升级。
-## [RobotDancing: Residual-Action Reinforcement Learning Enables Robust Long-Horizon Humanoid Motion Tracking](https://arxiv.org/pdf/2509.20717)
+## RobotDancing: Residual-Action Reinforcement Learning Enables Robust Long-Horizon Humanoid Motion Tracking
 这是一个tiny的工作。
 ![](output_image/8234d19edb62a15dff0003286265f86e.png)
 - 解决问题：实现长时程高动态的人形运动追踪，因为关节的电机指令并未起到闭环补偿模型与现实系统之间的Gap。
@@ -89,7 +90,7 @@ $\pi_{0.5}$的范式与$\pi_{0}$几乎差不多，且某种程度上与unified m
 	- training：对于t时刻，从目标舞蹈动作$G$检索$t+1$时刻的动作用于纠正actor生成的action。将t时刻之前$k$步的参考动作$G_{t-k+1:t+1}$和加噪的前k步观测给到actor，用$G_{t+1}$纠正actor output，由PD转换为底层关节controller给到robot。
 	- policy消融实验体现了论文方法收敛速度更快，能在train阶段达到更高的reward，并且误差比baseline小。
 - 在宇树的H2 H1 G1上泛化性良好，其他的不好说。
-## [Iterative RL for VLA model (iRe-VLA)](https://www.arxiv.org/pdf/2501.16664)
+## Iterative RL for VLA model (iRe-VLA)
 解决问题：通过监督微调可以将VLMs融入低级机器人的控制，VLA的在线RL用于大型VLA可能极其不稳定，因而提出了迭代RL，即本文iRe-vla，在RL和监督微调（SFT）之间迭代。
 ![](output_image/bb1be728cc95d7a945ed99cbd4690439.png)
 - 模型结构：
@@ -100,7 +101,7 @@ $\pi_{0.5}$的范式与$\pi_{0}$几乎差不多，且某种程度上与unified m
 ![](output_image/85d8c067eab9095906f284d3bff59d1b.png)
 - 消融实验表明，始终冻结VLM进行RL-SFT并没有本文iRe-VLA效果好。
 - 局限：无法从零开始学习陌生技能，当前方法更适用于已有技能的微调和优化，而非完全的技能迁移或自主学习新任务。
-## [Do generative video models learn physical principles from videos?](https://arxiv.org/pdf/2501.09038)
+## Do generative video models learn physical principles from videos?
 本文是Google DeepMind的一篇报告，其主页甚至给出了各个模型对于物理理解的Leaderboard，目前在该Benchmark下最好的是VideoPoet，Sora(i2v)的rank并不是很高。
 - 论文的结论是：对视频生成式模型，视觉逼真并不等同于物理理解。 
 - 本文开发了Physics-IQ Benchmark，用于测评模型的物理理解能力。
