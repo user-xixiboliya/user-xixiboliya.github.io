@@ -5,6 +5,11 @@ categories:
   - Emboieded AI 
 math: true
 description: 快速的从一些论文中扫过，您真的要dive into 它们吗？
+resources:
+  - src: "**.{png,jpg}"
+    title: "Image #:counter"
+    params:
+      byline: ""
 date: 2025-10-21T15:00:00-07:10
 lastmod: 2025-10-21T16:00:00-07:20
 ---
