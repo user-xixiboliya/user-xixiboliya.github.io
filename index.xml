@@ -10,7 +10,37 @@ $$L^\tau(\theta) = \mathbb{E}_{p(\boldsymbol{A}_t \mid \boldsymbol{o}_t), q(\bol
 &lt;p>原文提出的一些局限性：大多数知识来源于预训练阶段，微调则负责告诉模型如何用某些知识完成用户的指令。复杂任务的高精度数据(longhorizon移动操作任务)进行微调会导致模型脆弱，以zero shot 方式运行预训练模型并不总能展现出后训练数据中所展示的流畅策略。&lt;/p>
 &lt;blockquote>
 &lt;p>action expert 有两种，一种是自回归的detokenizer,另一种是flow matching 的Diffusion Policy（例如pi0）。流匹配的DP倾向于让model学到一个分布，将噪声流到动作，输出的控制信号是连续的。自回归的Detokenizer是逐token预测，输出空间是离散的token化动作。&lt;/p>
-&lt;p>对于VLA而言，大部分VLA的主干是VLM，另⼀种范式的兴起也不可忽视，也就是World Model的范式，换言之，即使用 Video Prediction Model 作为 VLA 的主干部分，并且辅佐以 DP 或者 Detokenizer 进行 Action 的输出。&lt;a href="https://axi404.top/blog/embodied-talk-2#vlm-%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%8C%83%E5%BC%8F">参考链接&lt;/a> 相关工作有MindJourney 、Unified Video Action Model和Genie Envisioner。但这个idea并不是很新的了。&lt;/p></description></item><item><title>Windows-cpp-clang 环境搭建</title><link>https://user-xixiboliya.github.io/post/windows-cpp/</link><pubDate>Wed, 25 Jun 2025 15:00:00 -0718</pubDate><guid>https://user-xixiboliya.github.io/post/windows-cpp/</guid><description>&lt;blockquote>
+&lt;p>对于VLA而言，大部分VLA的主干是VLM，另⼀种范式的兴起也不可忽视，也就是World Model的范式，换言之，即使用 Video Prediction Model 作为 VLA 的主干部分，并且辅佐以 DP 或者 Detokenizer 进行 Action 的输出。&lt;a href="https://axi404.top/blog/embodied-talk-2#vlm-%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%8C%83%E5%BC%8F">参考链接&lt;/a> 相关工作有MindJourney 、Unified Video Action Model和Genie Envisioner。但这个idea并不是很新的了。&lt;/p></description></item><item><title>Paper Reading 2</title><link>https://user-xixiboliya.github.io/post/paperreading2/</link><pubDate>Tue, 21 Oct 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/paperreading2/</guid><description>&lt;h2 id="local-policies-enable-zero-shot-long-horizon-manipulationhttpsarxivorgabs241022332">
+&lt;a class="header-anchor" href="#local-policies-enable-zero-shot-long-horizon-manipulationhttpsarxivorgabs241022332">&lt;/a>
+&lt;a href="https://arxiv.org/abs/2410.22332">Local Policies Enable Zero-shot Long-horizon Manipulation&lt;/a>
+&lt;/h2>&lt;ul>
+&lt;li>问题：sim2real中面临挑战，主要源于难以模拟复杂的接触以及“生成真实的任务分布”。&lt;/li>
+&lt;li>贡献：ManipGen，其利用一种新的局部策略，使得sim2real能够迁移以及zero-shot。在仿真中训练agent便可以实现迁移规模化，提出了在仿真中训练的policy；进而同VLM和运动规划器结合进行部署。
+在仿真中训练了数千个RL expert，采用PPO，通过DAgger将单任务RL expert蒸馏为用于迁移的视觉动作policy，使模型能够跨物体适应多种技能。VLM将动作分解实现基于text的长时程操作以及局部的sim2real迁移。
+&lt;img src="output_image/938a7a1383901f3964d24c8128ed23bf.png" alt="">
+对于语言目标$g$和观测$O$，使得VLM预测$k$个语言子目标$\sum\limits_k {{g_k}}$，从$g_{k}$中提取子策略，子目标被LLM结构化为(物体，技能)元组。每次的输入为第$k$子目标$g_{k}$和当前观测$O^t$，操作分为两个阶段$\pi_{reach}$和$\pi_{loc}$，$\pi_{reach}$需要接近物体并靠近目标位姿$X_{targ,k}$(采用Grounded SAM对点云分割)，运动规划器则是Neural MP。接着由$\pi_{loc}$进行丰富的交互。如此分配，不同场景下的相同任务$\pi_{loc}$相对固定，仅需观察交互区域周围的环境，采用的是腕部相机的深度图。&lt;/li>
+&lt;/ul>
+&lt;p>对于上文中提到的训练RL expert的阶段一，聚焦于抓取、放置、打开、关闭把手的基础任务，基础数据是使用 3.5K 个多样化对象（UnidexGrasp 数据集），随机生成初始位姿与障碍物；以及2.6K 个门/抽屉把手（PartNet 数据集），随机化尺寸、形状、摩擦系数等物理属性。观测$O$则是单一观测，并引入特权信息（物体的网格进行位姿采样）。奖励function则综合了：特定末端执行器的位姿+特定关节配置和特定物体位姿+末端执行器相对于物体的运动+是否成功+惩罚动作。&lt;/p>
+&lt;p>RL expert的阶段二如何蒸馏，传统 DAgger 在多任务场景下不稳定（不同任务的初始状态差异大），改进方法为回放缓冲区（存储最近 K$\times$B 条轨迹），交替进行策略更新和与新数据收集，平衡在线与离线学习。换而言之就是边训练边采样，每采到一批新轨迹，就在当前经验池$K$批上训练一次，如果经验池满了则删去最旧的，再放入最新的，然后训练一次。$K=100$时效果最佳。除此之外对于边缘像素丢失进行了处理。&lt;/p>
+&lt;p>论文对于现有方法的分析是：SayCan在初始位姿不理想或者任务需要丰富的接触控制时不理想；LLMTrajGen在避障上做的不好。传统的sim2real 方法如 Transic，IndustReal 需任务特定训练或真实世界修正数据，无法 zero shot。&lt;/p>
+&lt;p>未来：解决透明/反光物体的深度感知问题（如 RGB-D 融合）；引入在线自适应机制（如实时策略微调）减少模块化系统的级联错误。&lt;/p>
+&lt;h2 id="adaptive-compliance-policylearning-approximate-compliance-for-diffusion-guided-control">
+&lt;a class="header-anchor" href="#adaptive-compliance-policylearning-approximate-compliance-for-diffusion-guided-control">&lt;/a>
+Adaptive Compliance Policy:Learning Approximate Compliance for Diffusion Guided Control
+&lt;/h2>&lt;p>对于robot需要精确的力控制的任务，大多数imitation learning需要以位置为中心，缺乏显式的力感知能力，并且协作机械臂添加力和力矩传感器通常成本较高且需要额外的硬件设计。本论文通过关节力矩估计末端执行器的力，同时利用数字孪生预测力矩进行补偿。&lt;/p>
+&lt;p>本论文是双环的框架，外层是输入image，末端位姿和受力，以25Hz去predict下一个动作；接着将目标位姿输入内环，内环的阻抗扭矩控制器，运行频率为 &lt;code>2 kHz&lt;/code>,重力补偿则是&lt;code>250Hz&lt;/code>，输出为生成力矩指令，即“力入-力出”的结构。这一套有两种互补的力反馈机制：手持控制器提供触觉反馈，在虚拟现实中提供视觉反馈，也就是力向量可视化。
+&lt;img src="output_image/fa4bac07db92ef56e4587a75d2544115.png" alt="">
+外环：外部力估计量提供交互力，与正向运动学（FK）输出融合，并通过多层感知机（MLP）层进一步处理。视觉观测由双残差网络主干网络编码，并通过交叉注意力模块与估计的力嵌入进行融合，多模态加噪输入transformer encoder。内环是将预测的动作位姿通过逆向运动学进行跟踪，给到阻抗扭矩控制器。&lt;/p>
+&lt;p>仿真中的数据采集基于mujoco，数据采集一共采集了150条轨迹，每一条轨迹包含同步的 RGB图像、笛卡尔位置、关节力矩、末端执行器力/力矩以及操作员指令。&lt;/p>
+&lt;p>对于仿真与实机实验结果，一共设置了三组：末端执行器position、末端执行器position+关节力矩、末端执行器position+末端执行器力，输入图像均为RGB图像。&lt;/p>
+&lt;ul>
+&lt;li>仅使用末端执行器位置组仿真68%，到实机成功率掉得厉害；加入关节力矩观测量的第二组并没有加入末端执行器的第三组好，第三组的仿真成功率为90%，实机成功率为80%。一种解释是原始的关节转矩收到运动链的影响导致噪声较大且含义模糊。&lt;/li>
+&lt;/ul>
+&lt;p>本论文只是一个对于力控的trival性探索，可以看见其框架均为手搭，未来能在任务、结合VLA的指令等方向上进行探索。&lt;/p>
+&lt;h2 id="diffusion-based-impedance-learning-for-contact-rich-manipulation-tasks">
+&lt;a class="header-anchor" href="#diffusion-based-impedance-learning-for-contact-rich-manipulation-tasks">&lt;/a>
+Diffusion-Based Impedance Learning for Contact-Rich Manipulation Tasks
+&lt;/h2>&lt;p>原文链接：&lt;a href="https://arxiv.org/abs/2509.19696">Diffusion-Based Impedance Learning for Contact-Rich Manipulation Tasks&lt;/a>&lt;/p></description></item><item><title>Windows-cpp-clang 环境搭建</title><link>https://user-xixiboliya.github.io/post/windows-cpp/</link><pubDate>Wed, 25 Jun 2025 15:00:00 -0718</pubDate><guid>https://user-xixiboliya.github.io/post/windows-cpp/</guid><description>&lt;blockquote>
 &lt;p>本文初版参照RM视觉组的msys2-windows-cpp环境搭建教程，并在一定程度上进行了补充。&lt;/p>
 &lt;/blockquote>
 &lt;p>让我们开始吧。&lt;/p>
