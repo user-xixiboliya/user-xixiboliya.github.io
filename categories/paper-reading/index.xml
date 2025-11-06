@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Paper Reading on Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/categories/paper-reading/</link><description>Recent content in Paper Reading on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 21 Oct 2025 16:00:00 -0720</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/categories/paper-reading/index.xml" rel="self" type="application/rss+xml"/><item><title>Paper Reading 2</title><link>https://user-xixiboliya.github.io/post/paperreading2/</link><pubDate>Tue, 21 Oct 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/paperreading2/</guid><description>&lt;h2 id="local-policies-enable-zero-shot-long-horizon-manipulationhttpsarxivorgabs241022332">
-&lt;a class="header-anchor" href="#local-policies-enable-zero-shot-long-horizon-manipulationhttpsarxivorgabs241022332">&lt;/a>
-&lt;a href="https://arxiv.org/abs/2410.22332">Local Policies Enable Zero-shot Long-horizon Manipulation&lt;/a>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Paper Reading on Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/categories/paper-reading/</link><description>Recent content in Paper Reading on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 21 Oct 2025 16:00:00 -0720</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/categories/paper-reading/index.xml" rel="self" type="application/rss+xml"/><item><title>Paper Reading 2</title><link>https://user-xixiboliya.github.io/post/paperreading2/</link><pubDate>Tue, 21 Oct 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/paperreading2/</guid><description>&lt;h2 id="local-policies-enable-zero-shot-long-horizon-manipulation">
+&lt;a class="header-anchor" href="#local-policies-enable-zero-shot-long-horizon-manipulation">&lt;/a>
+Local Policies Enable Zero-shot Long-horizon Manipulation
 &lt;/h2>&lt;ul>
 &lt;li>问题：sim2real中面临挑战，主要源于难以模拟复杂的接触以及“生成真实的任务分布”。&lt;/li>
 &lt;li>贡献：ManipGen，其利用一种新的局部策略，使得sim2real能够迁移以及zero-shot。在仿真中训练agent便可以实现迁移规模化，提出了在仿真中训练的policy；进而同VLM和运动规划器结合进行部署。
@@ -28,4 +28,5 @@ Adaptive Compliance Policy:Learning Approximate Compliance for Diffusion Guided 
 &lt;h2 id="diffusion-based-impedance-learning-for-contact-rich-manipulation-tasks">
 &lt;a class="header-anchor" href="#diffusion-based-impedance-learning-for-contact-rich-manipulation-tasks">&lt;/a>
 Diffusion-Based Impedance Learning for Contact-Rich Manipulation Tasks
-&lt;/h2>&lt;p>原文链接：&lt;a href="https://arxiv.org/abs/2509.19696">Diffusion-Based Impedance Learning for Contact-Rich Manipulation Tasks&lt;/a>&lt;/p></description></item></channel></rss>
+&lt;/h2>&lt;blockquote>
+&lt;p>diffusion policy的开山之作。&lt;/p></description></item></channel></rss>
