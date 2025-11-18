@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/algolia.json</link><description>Recent content on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 21 Oct 2025 16:00:00 -0720</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Paper Reading 1</title><link>https://user-xixiboliya.github.io/post/paperreading/</link><pubDate>Tue, 21 Oct 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/paperreading/</guid><description>&lt;h1 id="pi0">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Welcome to Bertsin Homepage!</title><link>https://user-xixiboliya.github.io/algolia.json</link><description>Recent content on Welcome to Bertsin Homepage!</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 10 Nov 2025 16:00:00 -0720</lastBuildDate><atom:link href="https://user-xixiboliya.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Paper Reading 3 - VLN Section</title><link>https://user-xixiboliya.github.io/post/paperreading3/</link><pubDate>Mon, 10 Nov 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/paperreading3/</guid><description>&lt;h1 id="dream-to-recall-imagination-guided-experience-retrieval-for-memory-persistent-vision-and-language-navigation">
+&lt;a class="header-anchor" href="#dream-to-recall-imagination-guided-experience-retrieval-for-memory-persistent-vision-and-language-navigation">&lt;/a>
+Dream to Recall: Imagination-Guided Experience Retrieval for Memory-Persistent Vision-and-Language Navigation
+&lt;/h1>&lt;p>&lt;img src="output_image/cbdfb083c1d6dd33fbd6a26dcf3b66ea.png" alt="">&lt;/p>
+&lt;ul>
+&lt;li>世界模型(RSSM)的任务是：基于语言条件，想象未来导航状态：即预测 $z_{t+1},z_{t+2},…,z_{t+d}$（潜在状态）作为“如果继续导航，会发生什么/我会到哪里”。&lt;/li>
+&lt;li>同时，这些想象状态既用于“编码当前经验以存入记忆”，也用于“生成检索查询”以便后续从记忆中调取相关经验。&lt;/li>
+&lt;/ul>
+&lt;h1 id="disentangling-foreground-and-background-for-vision-language-navigation-via-online-augmentation">
+&lt;a class="header-anchor" href="#disentangling-foreground-and-background-for-vision-language-navigation-via-online-augmentation">&lt;/a>
+Disentangling Foreground and Background for vision-Language Navigation via Online Augmentation
+&lt;/h1>&lt;p>&lt;img src="output_image/05c4c5c89e582998286b5ad121b3d33a.png" alt="">&lt;/p>
+&lt;h1 id="navid-video-based-vlm-plans-the-next-step-for-vision-and-language-navigation">
+&lt;a class="header-anchor" href="#navid-video-based-vlm-plans-the-next-step-for-vision-and-language-navigation">&lt;/a>
+NaVid: Video-based VLM Plans the Next Step for Vision-and-Language Navigation
+&lt;/h1>&lt;p>&lt;img src="output_image/c71bc8acb28a77115888a8a98b77ca2b.png" alt="">&lt;/p>
+&lt;h1 id="janusvln通过双重隐式记忆解耦视觉语言导航中的语义与空间性">
+&lt;a class="header-anchor" href="#janusvln%e9%80%9a%e8%bf%87%e5%8f%8c%e9%87%8d%e9%9a%90%e5%bc%8f%e8%ae%b0%e5%bf%86%e8%a7%a3%e8%80%a6%e8%a7%86%e8%a7%89%e8%af%ad%e8%a8%80%e5%af%bc%e8%88%aa%e4%b8%ad%e7%9a%84%e8%af%ad%e4%b9%89%e4%b8%8e%e7%a9%ba%e9%97%b4%e6%80%a7">&lt;/a>
+JanusVLN：通过双重隐式记忆解耦视觉语言导航中的语义与空间性
+&lt;/h1>&lt;p>&lt;img src="output_image/066bf8884ef0d62d0e0af43bc2fa3e4b.png" alt="">
+使用RGB达到导航的效果。对于图片输入，3D空间信息由VGGT得到，2D视觉编码则由Qwen VL得到。&lt;/p>
+&lt;h1 id="lavira-language-vision-robot-actions-translation-for-zero-shot-vision-language-navigation-in-continuous-environments">
+&lt;a class="header-anchor" href="#lavira-language-vision-robot-actions-translation-for-zero-shot-vision-language-navigation-in-continuous-environments">&lt;/a>
+LaViRA: Language-Vision-Robot Actions Translation for Zero-Shot Vision Language Navigation in Continuous Environments
+&lt;/h1>&lt;p>&lt;img src="output_image/ee32e6e3a4ac58a357416c2022493489.png" alt="">&lt;/p></description></item><item><title>Paper Reading 1</title><link>https://user-xixiboliya.github.io/post/paperreading/</link><pubDate>Tue, 21 Oct 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/paperreading/</guid><description>&lt;h1 id="pi0">
 &lt;a class="header-anchor" href="#pi0">&lt;/a>
 pi0
 &lt;/h1>$$\boldsymbol{o}_t = \left[ \left[ \boldsymbol{I}_1^t, \dots, \boldsymbol{I}_n^t, \ell_t \right], \left[ \boldsymbol{q}_t \right], \left[ \boldsymbol{a}_t^\tau, \boldsymbol{a}_{t+1}^\tau, \dots, \boldsymbol{a}_{t+H-1}^\tau \right] \right]$$&lt;p>
@@ -1032,14 +1056,12 @@ ssh使用入门
 &lt;a class="header-anchor" href="#%e7%94%b3%e8%af%b7%e6%96%b9%e6%b3%95">&lt;/a>
 申请方法
 &lt;/h2>&lt;ul>
-&lt;li>添加本站后，在本页留言，格式如下&lt;/li>
+&lt;li>添加本站后，在&lt;a href="https://github.com/user-xixiboliya/user-xixiboliya.github.io/issues/1">仓库的github issue&lt;/a>留言，格式如下&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">```yml&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#75715e">#您的名字&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yml" data-lang="yml">&lt;span style="display:flex;">&lt;span>- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#75715e">#您的名字&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">url&lt;/span>: &lt;span style="color:#75715e">#您的网址&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">desc&lt;/span>: &lt;span style="color:#75715e">#简短描述&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#75715e">#一张图片&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">```&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="小伙伴们">
 &lt;a class="header-anchor" href="#%e5%b0%8f%e4%bc%99%e4%bc%b4%e4%bb%ac">&lt;/a>
 小伙伴们
@@ -1132,6 +1154,28 @@ ssh使用入门
  &lt;/div>
  &lt;div class="friend-desc">
  HITsz电气大牛
+ &lt;/div>
+ &lt;/div>
+ &lt;/div>
+ 
+ &lt;div class="friend-item-wrap">
+ &lt;a href="https://huang2202.github.io" rel="noopener external nofollow noreferrer" target="_blank">&lt;/a>
+ &lt;div class="friend-icon-wrap">
+ &lt;div class="friend-icon">
+ &lt;img
+ data-src="https://huang2202.github.io/img/nova.png"
+ data-sizes="auto"
+ alt="开卷洞洞天"
+ class="lazyload"
+ />
+ &lt;/div>
+ &lt;/div>
+ &lt;div class="friend-info-wrap">
+ &lt;div class="friend-name">
+ 开卷洞洞天
+ &lt;/div>
+ &lt;div class="friend-desc">
+ 一个关于追寻北极星的Blog
  &lt;/div>
  &lt;/div>
  &lt;/div>
