@@ -13,7 +13,8 @@ Disentangling Foreground and Background for vision-Language Navigation via Onlin
 &lt;h1 id="navid-video-based-vlm-plans-the-next-step-for-vision-and-language-navigation">
 &lt;a class="header-anchor" href="#navid-video-based-vlm-plans-the-next-step-for-vision-and-language-navigation">&lt;/a>
 NaVid: Video-based VLM Plans the Next Step for Vision-and-Language Navigation
-&lt;/h1>&lt;p>&lt;img src="output_image/c71bc8acb28a77115888a8a98b77ca2b.png" alt="">&lt;/p>
+&lt;/h1>&lt;p>&lt;img src="output_image/c71bc8acb28a77115888a8a98b77ca2b.png" alt="">
+翻译：&lt;a href="https://hjfy.top/arxiv/2402.15852">NaVid: Video-based VLM Plans the Next Step for Vision-and-Language Navigation&lt;/a>&lt;/p>
 &lt;h1 id="janusvln通过双重隐式记忆解耦视觉语言导航中的语义与空间性">
 &lt;a class="header-anchor" href="#janusvln%e9%80%9a%e8%bf%87%e5%8f%8c%e9%87%8d%e9%9a%90%e5%bc%8f%e8%ae%b0%e5%bf%86%e8%a7%a3%e8%80%a6%e8%a7%86%e8%a7%89%e8%af%ad%e8%a8%80%e5%af%bc%e8%88%aa%e4%b8%ad%e7%9a%84%e8%af%ad%e4%b9%89%e4%b8%8e%e7%a9%ba%e9%97%b4%e6%80%a7">&lt;/a>
 JanusVLN：通过双重隐式记忆解耦视觉语言导航中的语义与空间性
@@ -22,7 +23,8 @@ JanusVLN：通过双重隐式记忆解耦视觉语言导航中的语义与空间
 &lt;h1 id="lavira-language-vision-robot-actions-translation-for-zero-shot-vision-language-navigation-in-continuous-environments">
 &lt;a class="header-anchor" href="#lavira-language-vision-robot-actions-translation-for-zero-shot-vision-language-navigation-in-continuous-environments">&lt;/a>
 LaViRA: Language-Vision-Robot Actions Translation for Zero-Shot Vision Language Navigation in Continuous Environments
-&lt;/h1>&lt;p>&lt;img src="output_image/ee32e6e3a4ac58a357416c2022493489.png" alt="">&lt;/p></description></item><item><title>Paper Reading 1</title><link>https://user-xixiboliya.github.io/post/paperreading/</link><pubDate>Tue, 21 Oct 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/paperreading/</guid><description>&lt;h1 id="pi0">
+&lt;/h1>&lt;p>输入是纯 RGB 图像和 自然语言指令。
+&lt;img src="output_image/ee32e6e3a4ac58a357416c2022493489.png" alt="">&lt;/p></description></item><item><title>Paper Reading 1</title><link>https://user-xixiboliya.github.io/post/paperreading/</link><pubDate>Tue, 21 Oct 2025 15:00:00 -0710</pubDate><guid>https://user-xixiboliya.github.io/post/paperreading/</guid><description>&lt;h1 id="pi0">
 &lt;a class="header-anchor" href="#pi0">&lt;/a>
 pi0
 &lt;/h1>$$\boldsymbol{o}_t = \left[ \left[ \boldsymbol{I}_1^t, \dots, \boldsymbol{I}_n^t, \ell_t \right], \left[ \boldsymbol{q}_t \right], \left[ \boldsymbol{a}_t^\tau, \boldsymbol{a}_{t+1}^\tau, \dots, \boldsymbol{a}_{t+H-1}^\tau \right] \right]$$&lt;p>
